@@ -189,7 +189,7 @@ def _clean_text(text: str) -> str:
     return "Film"
 
 
-def clean_title(raw_title: str, fallback: str = "Moving Poster", film_name: str = "", film_year: str = "") -> str:
+def clean_title(raw_title: str, fallback: str = "Moving Poster", film_name: str = "", film_year: str = "", channel: str = "", hints: str = "") -> str:
     """Gelişmiş başlık temizleme — dosya adı, VERIFY_NEEDED, UUID, rastgele karakterler temizlenir.
 
     Args:
@@ -197,6 +197,8 @@ def clean_title(raw_title: str, fallback: str = "Moving Poster", film_name: str 
         fallback: Hiçbir anlamlı metin kalmadıysa kullanılacak varsayılan
         film_name: Biliniyorsa film adı (metadata'dan)
         film_year: Biliniyorsa yıl
+        channel: Kanal adı (DeepSeek entegrasyonu için)
+        hints: Video ipuçları (DeepSeek entegrasyonu için)
 
     Returns:
         Temizlenmiş, okunabilir başlık
@@ -230,6 +232,16 @@ def clean_title(raw_title: str, fallback: str = "Moving Poster", film_name: str 
     # 5. Eğer başlık hala boş veya çok kısaysa, fallback kullan
     if not title or len(title) < 3:
         return fallback
+
+    # 6. Eğer hâlâ anlamsızsa veya jenerikse DeepSeek'ten yardım al
+    if (len(title) < 10 or 'moving poster' in title.lower() or 'sahne' in title.lower() or 'yayin' in title.lower()) and channel and hints:
+        try:
+            from deepseek_client import get_title_suggestion
+            suggested = get_title_suggestion(hints, channel)
+            if suggested:
+                return suggested
+        except Exception:
+            pass
 
     return title.strip()
 

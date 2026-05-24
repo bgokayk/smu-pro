@@ -235,7 +235,148 @@ def instagram_get_followers_count() -> int:
         return 0
 
 
-# ── yorum motoru ───────────────────────────────────────────────────────────
+# ── CommentEngine sınıfı ──────────────────────────────────────────────────
+
+class CommentEngine:
+    """Yorum motoru — başarılı publish sonrası otomatik yorum atar.
+
+    Kullanım:
+        engine = CommentEngine(config)
+        engine.post_youtube_comment("VIDEO_ID", "poster_loop_cinema", {"film": "Inception"})
+    """
+
+    def __init__(self, config: dict[str, Any]):
+        self.config = config
+        self.templates = config.get("commentTemplates", {})
+        self.last_comment_time = 0  # rate limiting
+
+    def can_comment(self) -> bool:
+        """Saatte en fazla 2 yorum kontrolü."""
+        return time.time() - self.last_comment_time > 1800  # 30 dakika
+
+    def post_youtube_comment(self, video_id: str, channel_name: str, metadata: dict[str, Any] | None = None) -> dict[str, Any]:
+        """YouTube videosuna yorum at.
+
+        Args:
+            video_id: YouTube video ID'si
+            channel_name: Kanal adı (ör: poster_loop_cinema)
+            metadata: Şablon değişkenleri (film adı vb.)
+
+        Returns:
+            İşlem sonucu dict
+        """
+        if not self.can_comment():
+            LOG.info("Rate limit, yorum atlanıyor (30dk bekleme).")
+            return {"success": False, "error": "rate_limited"}
+
+        # Kanal için şablonları al
+        channel_templates = self.templates.get(channel_name, [])
+        if not channel_templates:
+            LOG.info("[%s] Yorum şablonu yok, atlanıyor.", channel_name)
+            return {"success": False, "error": "no_templates"}
+
+        # Rastgele bir şablon seç
+        import random
+        template = random.choice(channel_templates)
+
+        # Şablon içindeki değişkenleri doldur
+        comment_text = template
+        if metadata:
+            try:
+                comment_text = template.format(channel=channel_name, **metadata)
+            except (KeyError, ValueError):
+                comment_text = template
+
+        # YouTube API'ye yorum gönder
+        try:
+            from googleapiclient.discovery import build
+            from googleapiclient.errors import HttpError
+
+            api_key = get_env("YOUTUBE_API_KEY")
+            if not api_key:
+                LOG.error("YOUTUBE_API_KEY bulunamadı")
+                return {"success": False, "error": "missing_api_key"}
+
+            youtube = build("youtube", "v3", developerKey=api_key)
+            request = youtube.commentThreads().insert(
+                part="snippet",
+                body={
+                    "snippet": {
+                        "videoId": video_id,
+                        "topLevelComment": {
+                            "snippet": {
+                                "textOriginal": comment_text
+                            }
+                        }
+                    }
+                }
+            )
+            response = request.execute()
+            self.last_comment_time = time.time()
+            LOG.info("Yorum eklendi: %s → %s", channel_name, comment_text[:60])
+            return {
+                "success": True,
+                "platform": "youtube",
+                "video_id": video_id,
+                "comment_id": response.get("id", ""),
+                "text": comment_text,
+            }
+        except HttpError as e:
+            error_str = str(e)
+            LOG.error("YouTube yorum hatası (%s): %s", channel_name, error_str)
+            return {"success": False, "error": error_str}
+        except Exception as e:
+            LOG.error("Yorum motoru hatası (%s): %s", channel_name, str(e))
+            return {"success": False, "error": str(e)}
+
+    def post_instagram_comment(self, media_id: str, channel_name: str, metadata: dict[str, Any] | None = None) -> dict[str, Any]:
+        """Instagram gönderisine yorum at."""
+        if not self.can_comment():
+            return {"success": False, "error": "rate_limited"}
+
+        channel_templates = self.templates.get(channel_name, [])
+        if not channel_templates:
+            return {"success": False, "error": "no_templates"}
+
+        import random
+        template = random.choice(channel_templates)
+        comment_text = template
+        if metadata:
+            try:
+                comment_text = template.format(channel=channel_name, **metadata)
+            except (KeyError, ValueError):
+                comment_text = template
+
+        try:
+            import urllib.request
+            import urllib.parse
+
+            token = _instagram_token()
+            url = f"https://graph.facebook.com/v19.0/{media_id}/comments"
+            params = {
+                "message": comment_text,
+                "access_token": token,
+            }
+            data = urllib.parse.urlencode(params).encode("utf-8")
+            req = urllib.request.Request(url, data=data)
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                response = json.loads(resp.read().decode("utf-8"))
+
+            self.last_comment_time = time.time()
+            LOG.info("Instagram yorum eklendi: %s → %s", channel_name, comment_text[:60])
+            return {
+                "success": True,
+                "platform": "instagram",
+                "media_id": media_id,
+                "comment_id": response.get("id", ""),
+                "text": comment_text,
+            }
+        except Exception as e:
+            LOG.error("Instagram yorum hatası (%s): %s", channel_name, str(e))
+            return {"success": False, "error": str(e)}
+
+
+# ── yorum motoru (eski fonksiyonlar) ──────────────────────────────────────
 
 def get_comment_templates(channel_id: str) -> list[str]:
     """Config'den yorum şablonlarını al."""
