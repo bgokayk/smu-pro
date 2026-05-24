@@ -1,0 +1,4 @@
+# SMU Pro - Social Media Uploader
+# Core dependencies (stdlib only for main scripts)
+# No external dependencies required for smu_final.py, smu_daemon.py, smu.py, content_ops.py
+# Optional: pyinstaller for .exe build

@@ -1,0 +1,9 @@
+*.pyc
+__pycache__
+.env
+state/
+logs/
+schedules/
+dist/
+build/
+*.spec
