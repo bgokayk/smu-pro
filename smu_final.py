@@ -196,6 +196,53 @@ def trigger_comment():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 
+@app.route('/api/notify', methods=['POST'])
+def notify_publish():
+    """Worker'lardan bildirim tetiklemek için endpoint.
+
+    POST JSON:
+        {
+            "title": "Inception (2010) – Rüya Sahnesi",
+            "channel": "poster_loop_cinema",
+            "url": "https://youtube.com/watch?v=..."
+        }
+    """
+    try:
+        data = request.get_json(force=True)
+    except Exception:
+        return jsonify({"status": "error", "message": "Invalid JSON"}), 400
+
+    title = data.get('title', 'Bilinmeyen')
+    channel = data.get('channel', 'Bilinmeyen')
+    url = data.get('url', '#')
+
+    message = f"✅ Yeni paylaşım: {title}\n📺 Kanal: {channel}\n🔗 {url}"
+
+    # Config'i yükle
+    config = load_config()
+
+    # Telegram bildirimi
+    try:
+        from notifiers.telegram_notifier import TelegramNotifier
+        tg_config = config.get('telegram', {})
+        tg = TelegramNotifier(tg_config.get('bot_token', ''), tg_config.get('chat_id', ''))
+        tg.send_message(message)
+    except Exception as e:
+        print(f"Telegram bildirim hatası: {e}")
+
+    # Discord bildirimi
+    try:
+        from notifiers.discord_notifier import DiscordNotifier
+        discord_webhook = config.get('discord_webhook_url', '')
+        if discord_webhook:
+            dc = DiscordNotifier(discord_webhook)
+            dc.send(message)
+    except Exception as e:
+        print(f"Discord bildirim hatası: {e}")
+
+    return jsonify({"status": "ok", "message": "Bildirimler gönderildi"})
+
+
 def start_daemon():
     """Daemon'u arka planda başlat (bloklamaz)."""
     daemon_script = ROOT / "smu_daemon.py"
