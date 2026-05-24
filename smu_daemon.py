@@ -587,7 +587,9 @@ def slots_due_now(schedule: dict[str, Any], already_fired: list[str], window_min
     now = _now_local()
     result = []
     for slot in schedule.get("slots", []):
-        slot_id = f"{slot['channel']}-slot{slot['slot']}"
+        channel = slot.get("channel", "unknown")
+        slot_num = slot.get("slot", 0)
+        slot_id = f"{channel}-slot{slot_num}"
         if slot_id in already_fired:
             continue
         if slot.get("status") not in FIREABLE_STATUSES:
@@ -635,15 +637,17 @@ def _already_published(slot: dict[str, Any]) -> bool:
 
 
 def fire_slot(slot: dict[str, Any], dry_run: bool = False) -> bool:
-    # Published Registry ile duplicate kontrolü (kalıcı)
     channel_id = slot.get("channel", "")
+    slot_num = slot.get("slot", 0)
     content_id = slot.get("queueItemId") or slot.get("id") or ""
+
+    # Published Registry ile duplicate kontrolü (kalıcı)
     if content_id and publisher_registry.is_published(channel_id, content_id):
         LOG.warning("PublishedRegistry duplicate engellendi: %s / %s", channel_id, content_id)
         return False
 
     # Duplicate kontrolu (in-memory)
-    slot_key = f"{channel_id}_slot{slot['slot']}_{content_id}"
+    slot_key = f"{channel_id}_slot{slot_num}_{content_id}"
     if not hasattr(fire_slot, "_published"):
         fire_slot._published = set()
     if slot_key in fire_slot._published:
@@ -655,18 +659,10 @@ def fire_slot(slot: dict[str, Any], dry_run: bool = False) -> bool:
         LOG.warning("Audit freeze active; slot skipped: %s", audit_freeze_reason())
         return False
 
-    # Duplicate publish kontrolu — state.json'da youtubeDone veya instagramDone varsa atla
-    slot_id = f"{channel_id}-slot{slot.get('slot', '0')}"
-    state_path = PUBLISH_STATE_DIR / f"{slot_id}.json"
-    if state_path.exists():
-        try:
-            with open(state_path, 'r', encoding='utf-8-sig') as f:
-                state_data = json.load(f)
-            if state_data.get('youtubeDone') or state_data.get('instagramDone'):
-                LOG.warning("Duplicate engellendi (state): %s zaten yayinlanmis.", slot_id)
-                return False
-        except Exception:
-            pass
+    # Duplicate publish kontrolu — _already_published() kullan
+    if _already_published(slot):
+        LOG.warning("Duplicate engellendi (state): %s zaten yayinlanmis.", slot_key)
+        return False
 
     worker_path = _channel_worker(channel_id)
     env = _slot_worker_env(channel_id, slot)
@@ -820,7 +816,9 @@ def cmd_next_event(args: argparse.Namespace) -> None:
     next_slot = None
     next_time = None
     for slot in schedule.get("slots", []):
-        slot_id = f"{slot['channel']}-slot{slot['slot']}"
+        channel = slot.get("channel", "unknown")
+        slot_num = slot.get("slot", 0)
+        slot_id = f"{channel}-slot{slot_num}"
         if slot_id in fired or slot.get("status") != "scheduled":
             continue
         try:
@@ -839,7 +837,9 @@ def cmd_next_event(args: argparse.Namespace) -> None:
     else:
         now_naive = now.replace(tzinfo=None)
         diff = (next_time - now_naive).total_seconds()
-        print(f"Sonraki slot: [{next_slot['channel']}] {next_slot['publishAtLocal']}  "
+        next_channel = next_slot.get('channel', 'unknown')
+        next_time_str = next_slot.get('publishAtLocal', '?')
+        print(f"Sonraki slot: [{next_channel}] {next_time_str}  "
               f"({int(diff // 60)}dk {int(diff % 60)}sn sonra)")
 
 

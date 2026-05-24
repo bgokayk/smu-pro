@@ -73,11 +73,6 @@ def load_logs() -> list[str]:
     return []
 
 
-def load_all_slots() -> list[dict[str, Any]]:
-    """Tüm slotları yükle (filtresiz)."""
-    return load_schedule()
-
-
 def get_followers_stats() -> dict[str, int]:
     """Takipçi istatistiklerini content_ops.py üzerinden al."""
     try:
@@ -99,7 +94,7 @@ def get_followers_stats() -> dict[str, int]:
 
 @app.route('/')
 def dashboard():
-    all_slots = load_all_slots()
+    all_slots = load_schedule()
     config = load_config()
     comment_templates = config.get('commentTemplates', {})
 
@@ -131,7 +126,7 @@ def dashboard():
 
 @app.route('/api/data')
 def api_data():
-    all_slots = load_all_slots()
+    all_slots = load_schedule()
     future_slots = [
         s for s in all_slots
         if s.get('status') in ['scheduled', 'queued']
@@ -202,16 +197,26 @@ def trigger_comment():
 
 
 def start_daemon():
+    """Daemon'u arka planda başlat (bloklamaz)."""
     daemon_script = ROOT / "smu_daemon.py"
     if daemon_script.exists():
-        subprocess.Popen(
-            [sys.executable, str(daemon_script), 'start'],
-            cwd=ROOT,
-            creationflags=subprocess.CREATE_NO_WINDOW,
-        )
+        try:
+            subprocess.Popen(
+                [sys.executable, str(daemon_script), 'start'],
+                cwd=ROOT,
+                creationflags=subprocess.CREATE_NO_WINDOW,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+        except Exception as e:
+            print(f"Daemon başlatılamadı: {e}")
 
 
 if __name__ == '__main__':
-    start_daemon()
+    # Daemon'u arka planda başlat (başarısız olursa Flask yine de çalışır)
+    try:
+        start_daemon()
+    except Exception:
+        pass
     webbrowser.open('http://localhost:5000')
     app.run(host='127.0.0.1', port=5000, debug=False)
