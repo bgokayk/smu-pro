@@ -1,16 +1,77 @@
 {
   "name": "SMU",
   "timezone": "Europe/Istanbul",
-  "noPostWindow": { "start": "01:00", "end": "07:00", "disabled": true },
-  "publishCadence": { "mode": "hourly_fixed_minutes", "minutes": [5, 25, 40] },
-  "morningPrepWindow": { "start": "07:00", "end": "11:00" },
-  "sourcePolicy": { "requiredRightsStatus": "confirmed", "allowWatermarkRemoval": false, "allowRepostFromUnapprovedPages": false, "allowCommentSpam": false },
-  "channels": {
-    "poster_loop_cinema": { "active": true, "browser": "Chrome", "dailyPostTarget": 30, "dailyAccountDiscoveryTarget": 10, "dailyCommentDraftTarget": 10, "slotOffsetMinutes": 0, "sourceBucket": "C:/Users/User/.codex/analog-neo-moving-poster/source-videos", "readyBuckets": ["C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video"], "notes": "Film clips only.", "youtubeChannelId": "UC_poster_loop_cinema", "instagramMediaId": "" },
-    "sahnebaddiestr": { "active": true, "browser": "Edge", "dailyPostTarget": 30, "dailyAccountDiscoveryTarget": 10, "dailyCommentDraftTarget": 10, "slotOffsetMinutes": 9, "sourceBucket": "C:/Users/User/.codex/sahne-baddies-auto/source-videos", "readyBuckets": ["C:/Users/User/.codex/sahne-baddies-auto/exports"], "notes": "Celebrity clips only.", "youtubeChannelId": "UC_sahnebaddiestr", "instagramMediaId": "" },
-    "chatkesti": { "active": true, "browser": "Firefox", "dailyPostTarget": 30, "dailyAccountDiscoveryTarget": 10, "dailyCommentDraftTarget": 10, "slotOffsetMinutes": 18, "sourceBucket": "C:/Users/User/.codex/yayinci-kesitleri-auto/source-clips", "readyBuckets": ["C:/Users/User/.codex/yayinci-kesitleri-auto/exports"], "notes": "Stream clips.", "youtubeChannelId": "UC_chatkesti", "instagramMediaId": "" }
+  "noPostWindow": {
+    "start": "01:00",
+    "end": "07:00",
+    "disabled": true
   },
-  "deepseek_api_key": "",
+  "publishCadence": {
+    "mode": "hourly_fixed_minutes",
+    "minutes": [
+      5,
+      25,
+      40
+    ]
+  },
+  "morningPrepWindow": {
+    "start": "07:00",
+    "end": "11:00"
+  },
+  "sourcePolicy": {
+    "requiredRightsStatus": "confirmed",
+    "allowWatermarkRemoval": false,
+    "allowRepostFromUnapprovedPages": false,
+    "allowCommentSpam": false
+  },
+  "channels": {
+    "poster_loop_cinema": {
+      "active": true,
+      "browser": "Chrome",
+      "dailyPostTarget": 30,
+      "dailyAccountDiscoveryTarget": 10,
+      "dailyCommentDraftTarget": 10,
+      "slotOffsetMinutes": 0,
+      "sourceBucket": "C:/Users/User/.codex/analog-neo-moving-poster/source-videos",
+      "readyBuckets": [
+        "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video"
+      ],
+      "notes": "Film clips only.",
+      "youtubeChannelId": "UC_poster_loop_cinema",
+      "instagramMediaId": ""
+    },
+    "sahnebaddiestr": {
+      "active": true,
+      "browser": "Edge",
+      "dailyPostTarget": 30,
+      "dailyAccountDiscoveryTarget": 10,
+      "dailyCommentDraftTarget": 10,
+      "slotOffsetMinutes": 9,
+      "sourceBucket": "C:/Users/User/.codex/sahne-baddies-auto/source-videos",
+      "readyBuckets": [
+        "C:/Users/User/.codex/sahne-baddies-auto/exports"
+      ],
+      "notes": "Celebrity clips only.",
+      "youtubeChannelId": "UC_sahnebaddiestr",
+      "instagramMediaId": ""
+    },
+    "chatkesti": {
+      "active": true,
+      "browser": "Firefox",
+      "dailyPostTarget": 30,
+      "dailyAccountDiscoveryTarget": 10,
+      "dailyCommentDraftTarget": 10,
+      "slotOffsetMinutes": 18,
+      "sourceBucket": "C:/Users/User/.codex/yayinci-kesitleri-auto/source-clips",
+      "readyBuckets": [
+        "C:/Users/User/.codex/yayinci-kesitleri-auto/exports"
+      ],
+      "notes": "Stream clips.",
+      "youtubeChannelId": "UC_chatkesti",
+      "instagramMediaId": ""
+    }
+  },
+  "deepseek_api_key": "sk-5d6a12d37ffb4ef988e99a29bae7ba47",
   "youtube_api_key": "",
   "telegram": {
     "bot_token": "BOT_TOKEN_BURAYA",
@@ -18,9 +79,41 @@
   },
   "discord_webhook_url": "WEBHOOK_URL_BURAYA",
   "commentTemplates": {
-    "poster_loop_cinema": ["Bu sahne poster formatinda direkt calisir.", "Bu filmden secilecek baska sahne de var.", "Bu kadraj tam moving posterlik.", "Renk paleti bu filmde ayri guzel durur.", "Bu sahnenin sessiz hali bile yetiyor.", "Bu film minimal poster diline cok yakisir.", "Bu an tek kareyle bile hatirlaniyor.", "Bu sahnenin atmosferi posterin kendisi gibi.", "Bu filmi tekrar actiran sahnelerden.", "Bu kadrajin hareketli poster hali merak ettirir."],
-    "sahnebaddiestr": ["Bu sahnenin enerjisi ayri.", "Ekran durusu burada net belli oluyor.", "Bu anin aurasini tasiyan sey mimik.", "Bu vibe direkt editlik.", "Sahne enerjisi tek basina yetmis.", "Bu anin durusu direkt akilda kaliyor.", "Kamera enerjiyi yakalamis.", "Bu sahnede stil ve tavir ayni anda geliyor.", "Bu editin ana duygusu tam burada.", "Ekran enerjisi sakin ama net."],
-    "chatkesti": ["Bu an süper olmuş 😂", "Koptum resmen 🤣", "Chat bunu çok sevdi ❤️", "Yayıncı burada kendini aştı 👏", "Kaçırmayın, müthiş anlar ✨", "Kesinlikle izlenmeli 🎮", "Bu klip özet niteliğinde 🎬", "O anı yakalamışsınız 🔥", "Kesitlerin kralı 👑", "Bir sonraki hangi yayıncı gelsin? 😉"]
+    "poster_loop_cinema": [
+      "Bu sahne poster formatinda direkt calisir.",
+      "Bu filmden secilecek baska sahne de var.",
+      "Bu kadraj tam moving posterlik.",
+      "Renk paleti bu filmde ayri guzel durur.",
+      "Bu sahnenin sessiz hali bile yetiyor.",
+      "Bu film minimal poster diline cok yakisir.",
+      "Bu an tek kareyle bile hatirlaniyor.",
+      "Bu sahnenin atmosferi posterin kendisi gibi.",
+      "Bu filmi tekrar actiran sahnelerden.",
+      "Bu kadrajin hareketli poster hali merak ettirir."
+    ],
+    "sahnebaddiestr": [
+      "Bu sahnenin enerjisi ayri.",
+      "Ekran durusu burada net belli oluyor.",
+      "Bu anin aurasini tasiyan sey mimik.",
+      "Bu vibe direkt editlik.",
+      "Sahne enerjisi tek basina yetmis.",
+      "Bu anin durusu direkt akilda kaliyor.",
+      "Kamera enerjiyi yakalamis.",
+      "Bu sahnede stil ve tavir ayni anda geliyor.",
+      "Bu editin ana duygusu tam burada.",
+      "Ekran enerjisi sakin ama net."
+    ],
+    "chatkesti": [
+      "Bu an süper olmuş 😂",
+      "Koptum resmen 🤣",
+      "Chat bunu çok sevdi ❤️",
+      "Yayıncı burada kendini aştı 👏",
+      "Kaçırmayın, müthiş anlar ✨",
+      "Kesinlikle izlenmeli 🎮",
+      "Bu klip özet niteliğinde 🎬",
+      "O anı yakalamışsınız 🔥",
+      "Kesitlerin kralı 👑",
+      "Bir sonraki hangi yayıncı gelsin? 😉"
+    ]
   }
 }
-
