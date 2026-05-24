@@ -37,9 +37,6 @@ import time
 from pathlib import Path
 from typing import Any
 
-# Published Registry — duplicate paylaşım koruması
-from published_registry import PublishedRegistry, get_registry
-
 
 ROOT = Path(__file__).resolve().parent
 CONFIG_FILE = ROOT / "smu_config.json"
@@ -48,9 +45,6 @@ DAEMON_STATE = ROOT / "state" / "daemon_state.json"
 AUDIT_FREEZE_FILE = ROOT / "state" / "audit_freeze.json"
 SLOT_QUEUE_DIR = ROOT / "queues" / "slot_runs"
 PUBLISH_STATE_DIR = ROOT / "state" / "publish_runs"
-
-# Global published registry instance
-publisher_registry = get_registry()
 
 ISTANBUL_OFFSET = dt.timedelta(hours=3)   # UTC+3 (DST yok, zoneinfo yoksa sabit)
 
@@ -635,27 +629,21 @@ def _already_published(slot: dict[str, Any]) -> bool:
 
 
 def fire_slot(slot: dict[str, Any], dry_run: bool = False) -> bool:
-    # Published Registry ile duplicate kontrolü (kalıcı)
-    channel_id = slot.get("channel", "")
-    content_id = slot.get("queueItemId") or slot.get("id") or ""
-    if content_id and publisher_registry.is_published(channel_id, content_id):
-        LOG.warning("PublishedRegistry duplicate engellendi: %s / %s", channel_id, content_id)
-        return False
-
-    # Duplicate kontrolu (in-memory)
-    slot_key = f"{channel_id}_slot{slot['slot']}_{content_id}"
-    if not hasattr(fire_slot, "_published"):
-        fire_slot._published = set()
-    if slot_key in fire_slot._published:
-        LOG.warning(f"Duplicate engellendi (in-memory): {slot_key}")
-        return False
-    fire_slot._published.add(slot_key)
+    global _YAYINLANAN_SLOTLAR
 
     if audit_freeze_active():
         LOG.warning("Audit freeze active; slot skipped: %s", audit_freeze_reason())
         return False
 
+    channel_id = slot.get("channel", "")
+    slot_key = f"{channel_id}_slot{slot['slot']}_{slot.get('queueItemId','')}"
+    if slot_key in _YAYINLANAN_SLOTLAR:
+        LOG.warning("Duplicate engellendi: %s", slot_key)
+        return False
+    _YAYINLANAN_SLOTLAR.add(slot_key)
+
     # Duplicate publish kontrolu — state.json'da youtubeDone veya instagramDone varsa atla
+    channel_id = slot.get("channel", "")
     slot_id = f"{channel_id}-slot{slot.get('slot', '0')}"
     state_path = PUBLISH_STATE_DIR / f"{slot_id}.json"
     if state_path.exists():
@@ -663,42 +651,33 @@ def fire_slot(slot: dict[str, Any], dry_run: bool = False) -> bool:
             with open(state_path, 'r', encoding='utf-8-sig') as f:
                 state_data = json.load(f)
             if state_data.get('youtubeDone') or state_data.get('instagramDone'):
-                LOG.warning("Duplicate engellendi (state): %s zaten yayinlanmis.", slot_id)
+                LOG.warning("Duplicate engellendi: %s zaten yayinlanmis.", slot_id)
                 return False
         except Exception:
             pass
 
+    channel_id = slot.get("channel", "")
     worker_path = _channel_worker(channel_id)
     env = _slot_worker_env(channel_id, slot)
     LOG.info("Slot atesleniyor: %s  %s  dosya=%s",
              channel_id, slot.get("publishAtLocal"), slot.get("file", ""))
-
-    ok = False
     if worker_path.suffix.lower() == ".py":
         full_env = {**os.environ, **env}
         if dry_run:
             LOG.info("[dry-run] python %s", worker_path.name)
-            ok = True
-        else:
-            result = subprocess.run(
-                [sys.executable, str(worker_path)],
-                cwd=str(worker_path.parent),
-                env=full_env,
-                text=True,
-                timeout=3600,
-            )
-            ok = result.returncode == 0
-            if not ok:
-                LOG.warning("python worker cikis kodu %d: %s", result.returncode, worker_path.name)
-    else:
-        ok = run_node(worker_path, env=env, dry_run=dry_run)
-
-    # Başarılı publish sonrası registry'ye kaydet
-    if ok and content_id:
-        publisher_registry.mark_published(channel_id, content_id)
-        LOG.info("PublishedRegistry'e kaydedildi: %s / %s", channel_id, content_id)
-
-    return ok
+            return True
+        result = subprocess.run(
+            [sys.executable, str(worker_path)],
+            cwd=str(worker_path.parent),
+            env=full_env,
+            text=True,
+            timeout=3600,
+        )
+        if result.returncode != 0:
+            LOG.warning("python worker cikis kodu %d: %s", result.returncode, worker_path.name)
+            return False
+        return True
+    return run_node(worker_path, env=env, dry_run=dry_run)
 
 
 # ── yorum motoru ──────────────────────────────────────────────────────────────

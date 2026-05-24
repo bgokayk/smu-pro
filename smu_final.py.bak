@@ -59,18 +59,14 @@ def dashboard():
     slots = load_schedule()
     config = load_config()
     comment_templates = config.get('commentTemplates', {})
-    # Sadece status == 'scheduled' olan slotları göster
-    future_slots = [slot for slot in slots if slot.get('status') == 'scheduled']
-    schedule_json = json.dumps({"slots": future_slots}, ensure_ascii=False)
+    schedule_json = json.dumps({"slots": slots}, ensure_ascii=False)
     templates_json = json.dumps(comment_templates, ensure_ascii=False)
     return render_template_string(HTML_TEMPLATE, schedule_json=schedule_json, comment_templates=templates_json)
 
 @app.route('/api/data')
 def api_data():
     slots = load_schedule()
-    # Sadece status == 'scheduled' olan slotları döndür
-    future_slots = [slot for slot in slots if slot.get('status') == 'scheduled']
-    return jsonify({"slots": future_slots})
+    return jsonify({"slots": slots})
 
 @app.route('/api/followers')
 def api_followers():

@@ -178,101 +178,30 @@ def _clean_text(text: str) -> str:
     """Tüm dosya adı, ID, rastgele string kalıntılarını temizler."""
     if not text:
         return ""
-    # Tüm ID, rakam, rastgele string kalıntılarını temizle
+    text = text.strip()
+    # 1. Rakam-tire-desen: 100- , 099- , 086- gibi
     text = re.sub(r'^\d{2,3}-[A-Z0-9]+-', '', text)
+    # 2. Rastgele büyük harf/rakam grupları (8-12 karakter)
     text = re.sub(r'\b[A-Z0-9]{8,}\b', '', text)
+    # 3. İçinde tire olan uzun string'leri temizle (örnek: "gordugune-guvendi-ve-asl-oyunu")
     text = re.sub(r'([a-z]+-)+[a-z]+', '', text)
-    text = re.sub(r'[-_]+', ' ', text).strip()
-    # İlk harfleri büyük yap
-    if len(text) > 2:
-        return text.title()
-    return "Film"
-
-
-def clean_title(raw_title: str, fallback: str = "Moving Poster", film_name: str = "", film_year: str = "") -> str:
-    """Gelişmiş başlık temizleme — dosya adı, VERIFY_NEEDED, UUID, rastgele karakterler temizlenir.
-
-    Args:
-        raw_title: Ham başlık (dosya adı, API çıktısı vb.)
-        fallback: Hiçbir anlamlı metin kalmadıysa kullanılacak varsayılan
-        film_name: Biliniyorsa film adı (metadata'dan)
-        film_year: Biliniyorsa yıl
-
-    Returns:
-        Temizlenmiş, okunabilir başlık
-    """
-    # Eğer film adı verilmişse, doğrudan onu kullan
-    if film_name:
-        return f"{film_name} ({film_year}) – Moving Poster" if film_year else f"{film_name} – Moving Poster"
-
-    if not raw_title:
-        return fallback
-
-    title = raw_title
-
-    # 1. Dosya adı desenleri: "086-G80AH6SipDM-gordugune-guvendi-..." veya "007-9pgyqqthwcq-..."
-    #    Sadece baştaki sayı-ID- kısmını temizle, anlamlı kısmı koru
-    title = re.sub(r'^\d{2,3}-[A-Za-z0-9]{6,}[-_]', '', title)
-
-    # 2. VERIFY_NEEDED, UUID, uzun hex dizileri
-    title = re.sub(r'\bVERIFY_NEEDED\b', '', title, flags=re.IGNORECASE)
-    title = re.sub(r'\b[A-F0-9]{8,}\b', '', title)  # Uzun hex dizileri
-    title = re.sub(r'\b[a-f0-9]{8,}\b', '', title)
-
-    # 3. Alt çizgi ve tireleri boşluğa çevir (ama "–" gibi Unicode tireleri koru)
-    title = re.sub(r'[_-]', ' ', title)
-
-    # 4. Fazla boşlukları temizle
-    title = re.sub(r'\s+', ' ', title).strip()
-    title = re.sub(r'^\s*[|]\s*', '', title).strip()
-    title = re.sub(r'\s*[|]\s*$', '', title).strip()
-
-    # 5. Eğer başlık hala boş veya çok kısaysa, fallback kullan
-    if not title or len(title) < 3:
-        return fallback
-
-    return title.strip()
-
-
-def clean_caption(raw_caption: str, fallback: str = "Moving Poster", film_name: str = "", film_year: str = "") -> str:
-    """Caption temizleme — Instagram limitlerine uygun hale getirir."""
-    # Eğer film adı verilmişse, doğrudan onu kullan
-    if film_name:
-        caption = f"{film_name} ({film_year}) – Moving Poster" if film_year else f"{film_name} – Moving Poster"
-        if len(caption) > 2000:
-            caption = caption[:1997] + "..."
-        return caption.strip()
-
-    if not raw_caption:
-        return fallback
-
-    caption = raw_caption
-
-    # 1. Dosya adı desenlerini temizle
-    caption = re.sub(r'^\d{2,3}-[A-Za-z0-9_-]{6,}[-_]', '', caption)
-
-    # 2. VERIFY_NEEDED, UUID, uzun hex dizileri
-    caption = re.sub(r'\bVERIFY_NEEDED\b', '', caption, flags=re.IGNORECASE)
-    caption = re.sub(r'\b[A-F0-9]{8,}\b', '', caption)
-    caption = re.sub(r'\b[a-f0-9]{8,}\b', '', caption)
-
-    # 3. Alt çizgi ve tireleri boşluğa çevir
-    caption = re.sub(r'[_-]', ' ', caption)
-
-    # 4. Fazla boşlukları temizle
-    caption = re.sub(r'\s+', ' ', caption).strip()
-    caption = re.sub(r'^\s*[|]\s*', '', caption).strip()
-    caption = re.sub(r'\s*[|]\s*$', '', caption).strip()
-
-    # 5. Eğer boş veya çok kısaysa fallback kullan
-    if not caption or len(caption) < 3:
-        return fallback
-
-    # 6. Instagram caption limiti: 2200 karakter (güvenli: 2000)
-    if len(caption) > 2000:
-        caption = caption[:1997] + "..."
-
-    return caption.strip()
+    # 4. VERIFY_NEEDED placeholder'larını kaldır
+    text = text.replace("VERIFY_NEEDED", "").replace("verify_needed", "")
+    # 5. poster-loop, sahne-baddies, chatkesti gibi suffix'leri kaldır
+    text = re.sub(r'\s*[-–|]\s*(poster[- ]loop|sahne[- ]baddies|chatkesti|optimized)\s*', '', text, flags=re.IGNORECASE)
+    # 6. "moving poster" ve "which film" gibi İngilizce kalıpları kaldır
+    text = re.sub(r'\s*moving poster\.?\s*(Which|Wh).*$', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'\s*\|?\s*Yayin burada koptu\.?\s*', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'\s*\|?\s*Bu sahnenin enerjisi ayri\.?\s*', '', text, flags=re.IGNORECASE)
+    # 7. Fazla tire ve boşlukları temizle
+    text = re.sub(r'[-_]+', ' ', text)
+    text = re.sub(r'\s+', ' ', text).strip()
+    # 8. Baştaki/sondaki tire, nokta, virgül temizliği
+    text = text.strip(" -–.,;:|")
+    # 9. Eğer anlamlı bir şey kalmamışsa varsayılan değer döndür
+    if not text or len(text) < 3:
+        return "Film"
+    return text
 
 
 def _make_yt_title(base: str, max_len: int = 60) -> str:
@@ -859,24 +788,6 @@ def cmd_followers(args: argparse.Namespace) -> None:
     print(json.dumps(stats, ensure_ascii=False, indent=2))
 
 
-def cmd_clean_title(args: argparse.Namespace) -> None:
-    """Ham başlığı temizle ve okunabilir formata dönüştür."""
-    raw = args.title
-    if not raw and args.file:
-        raw = Path(args.file).stem
-    result = clean_title(raw, fallback=args.fallback, film_name=args.film_name, film_year=args.film_year)
-    print(result)
-
-
-def cmd_clean_caption(args: argparse.Namespace) -> None:
-    """Ham caption'ı temizle ve Instagram limitlerine uygun hale getir."""
-    raw = args.caption
-    if not raw and args.file:
-        raw = Path(args.file).stem
-    result = clean_caption(raw, fallback=args.fallback, film_name=args.film_name, film_year=args.film_year)
-    print(result)
-
-
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Unified ContentOps runner")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -914,22 +825,6 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--channel", default="all")
     p.add_argument("--dry-run", action="store_true")
     p.set_defaults(func=cmd_launch_browsers)
-
-    p = sub.add_parser("clean-title", help="Temiz başlık oluştur (dosya adı kalıntılarını temizler)")
-    p.add_argument("--title", default="", help="Temizlenecek ham başlık")
-    p.add_argument("--file", default="", help="Dosya adından başlık çıkar")
-    p.add_argument("--film-name", default="", help="Film adı (metadata'dan)")
-    p.add_argument("--film-year", default="", help="Film yılı")
-    p.add_argument("--fallback", default="Moving Poster", help="Hiçbir şey kalmadıysa kullanılacak varsayılan")
-    p.set_defaults(func=cmd_clean_title)
-
-    p = sub.add_parser("clean-caption", help="Temiz caption oluştur (Instagram limitlerine uygun)")
-    p.add_argument("--caption", default="", help="Temizlenecek ham caption")
-    p.add_argument("--file", default="", help="Dosya adından caption çıkar")
-    p.add_argument("--film-name", default="", help="Film adı (metadata'dan)")
-    p.add_argument("--film-year", default="", help="Film yılı")
-    p.add_argument("--fallback", default="Moving Poster", help="Hiçbir şey kalmadıysa kullanılacak varsayılan")
-    p.set_defaults(func=cmd_clean_caption)
 
     p = sub.add_parser("followers", help="Show follower stats (mock data)")
     p.set_defaults(func=cmd_followers)
