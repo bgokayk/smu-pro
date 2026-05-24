@@ -744,7 +744,7 @@ function statusBadge(status) {
     scheduled:                  ['badge-yellow', 'Planlandı'],
     queued:                     ['badge-yellow', 'Kuyrukta'],
     needs_queue_item:           ['badge-gray',   'Bekliyor'],
-    blocked_legacy_smu_review:  ['badge-yellow', 'Planlandı'],
+    blocked_legacy_smu_review:  ['badge-red',    'Bloklu İnceleme'],
     failed:                     ['badge-red',    'Hata'],
     skipped:                    ['badge-gray',   'Atlandı'],
     publishing:                 ['badge-blue',   'Yükleniyor…'],
@@ -785,6 +785,7 @@ function priorityBadge(p) {
 
 function isInSleepWindow(config) {
   if (!config) return false
+  if (config.noPostWindow?.disabled) return false
   const now = new Date()
   const istanbul = new Date(now.getTime() + 3 * 60 * 60 * 1000)
   const h = istanbul.getUTCHours()
@@ -794,7 +795,7 @@ function isInSleepWindow(config) {
   const [eh, em] = (config.noPostWindow?.end   || '07:00').split(':').map(Number)
   const start = sh * 60 + sm
   const end   = eh * 60 + em
-  return cur >= start && cur < end
+  return start < end ? (cur >= start && cur < end) : (cur >= start || cur < end)
 }
 
 // ── Render functions ──────────────────────────────────────────────────────────
@@ -877,8 +878,9 @@ function renderChannels(config, schedule) {
 
     // Next slot
     const now = Date.now()
+    const actionableStatuses = new Set(['scheduled', 'queued', 'needs_queue_item', 'publishing'])
     const upcoming = chSlots
-      .filter(s => s.status !== 'done' && s.status !== 'published' && s.status !== 'failed' && s.status !== 'skipped')
+      .filter(s => actionableStatuses.has(s.status))
       .map(s => ({ ...s, t: parseLocalDateTime(s.publishAtLocal) }))
       .filter(s => s.t)
       .sort((a, b) => a.t - b.t)
@@ -1012,23 +1014,25 @@ function renderComments(commentDrafts) {
 
   const chData = commentDrafts.channels || {}
   const sections = Object.entries(chData).map(([key, ch]) => {
-    const accounts = (ch.targetAccounts || []).filter(a => a.account || a.url || a.commentDraft)
-    if (accounts.length === 0) {
+    const drafts = ch.drafts || []
+    const accounts = ch.targetAccounts || []
+    const visibleDrafts = drafts.filter(d => d.comment || d.text || d.commentDraft)
+    if (visibleDrafts.length === 0) {
       return `<div style="padding:12px 16px;border-bottom:1px solid var(--border)">
         <div class="section-label" style="margin-bottom:0">${channelDisplayName(key)}</div>
-        <div style="font-size:11px;color:var(--text-3);margin-top:6px">Hesap bulunamadı — manuel ekle</div>
+        <div style="font-size:11px;color:var(--text-3);margin-top:6px">Yorum taslağı yok — manuel ekle</div>
       </div>`
     }
 
-    const items = accounts.slice(0, 5).map(a => `
+    const items = visibleDrafts.slice(0, 5).map(d => `
       <div class="comment-item">
-        <div class="comment-account">${a.account || a.url || 'Hesap belirsiz'}</div>
-        <div class="comment-text">${a.commentDraft || a.topic || '—'}</div>
-        <div class="comment-status">${a.status || '—'}</div>
+        <div class="comment-account">Taslak</div>
+        <div class="comment-text">${d.comment || d.text || d.commentDraft || '—'}</div>
+        <div class="comment-status">${d.status || 'draft'} · ${accounts.length || ch.accountDiscoveryTarget || 0} hesap hedefi</div>
       </div>`).join('')
 
-    const more = accounts.length > 5
-      ? `<div style="font-size:11px;color:var(--text-3);padding:8px 0">${accounts.length - 5} daha…</div>`
+    const more = visibleDrafts.length > 5
+      ? `<div style="font-size:11px;color:var(--text-3);padding:8px 0">${visibleDrafts.length - 5} taslak daha…</div>`
       : ''
 
     return `<div style="border-bottom:1px solid var(--border)">

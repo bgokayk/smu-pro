@@ -101,7 +101,7 @@ ipcMain.handle('get-data', () => {
 ipcMain.handle('run-command', async (event, cmd) => {
   return new Promise((resolve) => {
     const cwd = CONTENT_OPS
-    exec(cmd, { cwd, timeout: 30000 }, (err, stdout, stderr) => {
+    exec(cmd, { cwd, timeout: 60 * 60 * 1000, windowsHide: true, maxBuffer: 10 * 1024 * 1024 }, (err, stdout, stderr) => {
       resolve({ ok: !err, stdout, stderr, error: err ? err.message : null })
     })
   })

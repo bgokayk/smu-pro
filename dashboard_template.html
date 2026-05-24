@@ -27,9 +27,19 @@
         .widget-scroll::-webkit-scrollbar { width: 4px; }
         .widget-scroll::-webkit-scrollbar-thumb { background: #2d3748; border-radius: 4px; }
         .table-wrap { overflow-x: auto; }
-        .table-wrap table { min-width: 800px; }
+        .table-wrap table { min-width: 900px; table-layout: fixed; }
         .table-wrap td, .table-wrap th { white-space: nowrap; }
-        .table-wrap td.text-wrap { white-space: normal; max-width: 250px; min-width: 150px; }
+        .table-wrap th:nth-child(1), .table-wrap td:nth-child(1) { width: 74px; }
+        .table-wrap th:nth-child(2), .table-wrap td:nth-child(2) { width: 150px; }
+        .table-wrap th:nth-child(3), .table-wrap td:nth-child(3) { width: 130px; }
+        .table-wrap th:nth-child(6), .table-wrap td:nth-child(6) { width: 92px; }
+        .table-wrap td.text-wrap {
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-word;
+            line-height: 1.35;
+        }
         .pulse-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
         .pulse-dot.green { background: #4caf50; }
         .pulse-dot.orange { background: #ff9800; }
@@ -42,6 +52,10 @@
         .log-error { color: #f87171; }
         .log-warn { color: #fbbf24; }
         .log-info { color: #60a5fa; }
+        .dashboard-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+        @media (min-width: 1500px) {
+            .dashboard-grid { grid-template-columns: minmax(0, 3fr) 320px; }
+        }
     </style>
 </head>
 <body class="text-gray-200">
@@ -97,9 +111,9 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-7" id="channels"></div>
 
             <!-- ANA TABLO + SAG BLOK -->
-            <div class="grid grid-cols-1 xl:grid-cols-4 gap-6 mb-7">
+            <div class="dashboard-grid mb-7">
                 <!-- TABLO (3/4) -->
-                <div class="xl:col-span-3 card p-0 overflow-hidden">
+                <div class="card p-0 overflow-hidden">
                     <div class="px-5 py-3 border-b border-gray-800 flex justify-between items-center">
                         <h2 class="font-semibold"><i class="ri-table-line mr-2"></i>Bugunun Yayin Takvimi</h2>
                         <span class="text-xs text-gray-500" id="scheduleCount">0 slot</span>
@@ -122,7 +136,7 @@
                 </div>
 
                 <!-- SAG BLOK (1/4) -->
-                <div class="xl:col-span-1 space-y-4">
+                <div class="space-y-4">
                     <!-- Widget 1: Yaklasan Yayinlar -->
                     <div class="card p-4">
                         <h3 class="text-sm font-semibold mb-3 flex items-center gap-2">
@@ -173,7 +187,7 @@
 
 <script>
 // ========== VERI ==========
-const scheduleData = {{ schedule_json|safe }};
+let scheduleData = {{ schedule_json|safe }};
 const followersData = {{ followers_json|safe }};
 const channelNames = {
     poster_loop_cinema: 'Poster Loop Cinema',
@@ -244,12 +258,16 @@ function timeAgo(dateStr) {
 // ========== API'LERDEN VERI CEK ==========
 async function fetchAllData() {
     try {
-        const [followersRes, commentsRes] = await Promise.all([
+        const [followersRes, commentsRes, dataRes] = await Promise.all([
             fetch('/api/followers').then(r => r.json()).catch(() => ({})),
-            fetch('/api/comments').then(r => r.json()).catch(() => ({}))
+            fetch('/api/comments').then(r => r.json()).catch(() => ({})),
+            fetch('/api/data').then(r => r.json()).catch(() => ({}))
         ]);
         followerData = followersRes;
         commentData = commentsRes;
+        if (dataRes && dataRes.schedule) {
+            scheduleData = dataRes.schedule;
+        }
     } catch (e) {
         console.warn('API fetch error:', e);
     }
@@ -530,7 +548,7 @@ function setupMenu() {
                 renderLogsView();
             }
         });
-    });
+    }
 }
 
 // ========== DIGER SAYFALAR ==========
@@ -615,7 +633,7 @@ function renderLogsView() {
                 var cls = 'log-info';
                 if (line.toLowerCase().indexOf('error') >= 0 || line.toLowerCase().indexOf('hata') >= 0) cls = 'log-error';
                 else if (line.toLowerCase().indexOf('warn') >= 0 || line.toLowerCase().indexOf('uyari') >= 0) cls = 'log-warn';
-                logHtml += '<div class="log-line ' + cls + '">' + line.replace(/</g, '<').replace(/>/g, '>') + '</div>';
+                logHtml += '<div class="log-line ' + cls + '">' + line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>';
             }
             document.getElementById('logContent').innerHTML = logHtml || '<div class="text-gray-500 py-4">Log kaydi bulunamadi</div>';
         })

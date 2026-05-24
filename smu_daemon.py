@@ -452,24 +452,11 @@ def do_morning_prep(config: dict[str, Any], dry_run: bool = False) -> None:
             dry_run=dry_run,
         )
 
-    # 3. Her kanal için pipeline'ın ürettiği queue'yu slotlara at
+    # 3. prepare-day already builds today's queues and attaches them to the schedule.
+    # Do not force-attach legacy automation queues here; that can overwrite a fresh
+    # daily schedule with stale batches.
     if schedule_file.exists():
-        for channel_id in active_channels:
-            pipeline = CHANNEL_PIPELINES.get(channel_id, {})
-            queue_file: Path = pipeline.get("queue_file", Path(""))
-            if queue_file.exists():
-                LOG.info("  Slotlara atanıyor (force): %s → %s", channel_id, queue_file.name)
-                run_python(
-                    [str(ROOT / "smu.py"), "attach-queue",
-                     "--schedule", str(schedule_file),
-                     "--queue",    str(queue_file),
-                     "--channel",  channel_id,
-                     "--out",      str(schedule_file),
-                     "--force"],    # override template slots with real queue content
-                    dry_run=dry_run,
-                )
-            else:
-                LOG.warning("  Queue dosyası yok, slot boş kalacak: %s (%s)", channel_id, queue_file)
+        LOG.info("Günlük takvim hazır: %s", schedule_file)
     else:
         LOG.warning("Schedule dosyası bulunamadı: %s", schedule_file)
 

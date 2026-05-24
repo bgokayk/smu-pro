@@ -101,12 +101,13 @@ def make_slots(day: dt.date, config: dict[str, Any], channel_id: str, channel: d
     start, end = publication_window(config, day)
     target = int(channel.get("dailyPostTarget", 10))
     minutes = fixed_hourly_minutes(config, channel)
+    offset = dt.timedelta(minutes=int(channel.get("slotOffsetMinutes", 0)))
     slots = []
     if minutes:
         current_hour = start.replace(minute=0, second=0, microsecond=0)
         while current_hour < end and len(slots) < target:
             for minute in minutes:
-                when = current_hour.replace(minute=minute)
+                when = current_hour.replace(minute=minute) + offset
                 if when < start or when >= end:
                     continue
                 if len(slots) >= target:
@@ -130,7 +131,6 @@ def make_slots(day: dt.date, config: dict[str, Any], channel_id: str, channel: d
             current_hour += dt.timedelta(hours=1)
         return slots
 
-    offset = dt.timedelta(minutes=int(channel.get("slotOffsetMinutes", 0)))
     total_seconds = (end - start).total_seconds()
     step = total_seconds / target
     for index in range(target):

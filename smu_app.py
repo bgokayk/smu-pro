@@ -6,6 +6,8 @@ import subprocess
 import sys
 import time
 import webbrowser
+import datetime as dt
+import socket
 from pathlib import Path
 from threading import Thread
 from flask import Flask, jsonify, render_template_string
@@ -16,9 +18,50 @@ SCHEDULE_FILE = ROOT / "schedules" / f"{time.strftime('%Y-%m-%d')}_smu_schedule.
 DAEMON_SCRIPT = ROOT / "smu_daemon.py"
 COMMENT_FILE = ROOT / "comments" / f"{time.strftime('%Y-%m-%d')}_comment_drafts.json"
 LOG_FILE = ROOT / "logs" / "smu_daemon.log"
+CONFIG_FILE = ROOT / "smu_config.json"
+MODERN_TEMPLATE = (ROOT / "dashboard_template.html").read_text(encoding="utf-8")
 
 # ---------- Flask Uygulaması ----------
 app = Flask(__name__)
+
+def _today_istanbul() -> str:
+    try:
+        from zoneinfo import ZoneInfo
+        return dt.datetime.now(tz=ZoneInfo("Europe/Istanbul")).date().isoformat()
+    except Exception:
+        return (dt.datetime.utcnow() + dt.timedelta(hours=3)).date().isoformat()
+
+
+def _read_json(path: Path, default):
+    try:
+        return json.loads(path.read_text(encoding='utf-8-sig'))
+    except Exception:
+        return default
+
+
+def _latest_daily_file(folder: str, suffix: str) -> Path:
+    directory = ROOT / folder
+    today_file = directory / f"{_today_istanbul()}{suffix}"
+    if today_file.exists():
+        return today_file
+    files = sorted(directory.glob(f"*{suffix}")) if directory.exists() else []
+    return files[-1] if files else today_file
+
+
+def _schedule_path() -> Path:
+    return _latest_daily_file("schedules", "_smu_schedule.json")
+
+
+def _comment_path() -> Path:
+    return _latest_daily_file("comments", "_comment_drafts.json")
+
+
+def _follower_counts():
+    data = get_follower_data()
+    return {
+        key: int(value.get("followers", 0)) if isinstance(value, dict) else int(value or 0)
+        for key, value in data.items()
+    }
 
 # ---------- Örnek Takipçi Verileri (şimdilik statik, gerçek API ile değiştirilebilir) ----------
 def get_follower_data():
@@ -33,35 +76,42 @@ def get_follower_data():
 # ---------- API Uç Noktaları ----------
 @app.route('/api/schedule')
 def api_schedule():
-    if SCHEDULE_FILE.exists():
-        data = json.loads(SCHEDULE_FILE.read_text(encoding='utf-8'))
-        return jsonify(data.get('slots', []))
-    return jsonify([])
+    data = _read_json(_schedule_path(), {})
+    return jsonify(data.get('slots', []))
 
 @app.route('/api/followers')
 def api_followers():
-    return jsonify(get_follower_data())
+    return jsonify(_follower_counts())
 
 @app.route('/api/comments')
 def api_comments():
-    if COMMENT_FILE.exists():
-        data = json.loads(COMMENT_FILE.read_text(encoding='utf-8'))
-        return jsonify(data)
-    return jsonify({})
+    return jsonify(_read_json(_comment_path(), {}))
 
 @app.route('/api/logs')
 def api_logs():
     if LOG_FILE.exists():
-        # son 100 satırı oku
         with open(LOG_FILE, 'r', encoding='utf-8') as f:
             lines = f.readlines()[-100:]
-        return jsonify({'logs': ''.join(lines)})
-    return jsonify({'logs': 'Log dosyası bulunamadı.'})
+        return jsonify({'logs': [line.rstrip('\n') for line in lines]})
+    return jsonify({'logs': []})
+
+
+@app.route('/api/data')
+def api_data():
+    schedule = _read_json(_schedule_path(), {})
+    comments = _read_json(_comment_path(), {})
+    return jsonify({'schedule': schedule, 'comments': comments})
 
 @app.route('/')
 def index():
-    # Arayüzü döndür (HTML/CSS/JS)
-    return render_template_string(HTML_TEMPLATE)
+    schedule = _read_json(_schedule_path(), {})
+    config = _read_json(CONFIG_FILE, {})
+    return render_template_string(
+        MODERN_TEMPLATE,
+        schedule_json=json.dumps({'slots': schedule.get('slots', [])}, ensure_ascii=False),
+        followers_json=json.dumps(_follower_counts(), ensure_ascii=False),
+        comment_templates=json.dumps(config.get('commentTemplates', {}), ensure_ascii=False),
+    )
 
 # ---------- HTML Şablonu (Güncellenmiş Dashboard) ----------
 HTML_TEMPLATE = '''
@@ -256,27 +306,59 @@ HTML_TEMPLATE = '''
 
 # ---------- Daemon'u Arka Planda Başlat ----------
 def start_daemon():
-    # Daemon zaten çalışıyor mu?
+    # Daemon zaten çalışıyor mu? tasklist komut satırını göstermediği için
+    # Win32_Process üzerinden kontrol ediyoruz.
     try:
-        # Windows'ta tasklist ile kontrol
-        result = subprocess.run(['tasklist', '/FI', 'IMAGENAME eq python.exe'], capture_output=True, text=True)
-        if 'smu_daemon.py' not in result.stdout:
-            subprocess.Popen([sys.executable, str(DAEMON_SCRIPT), 'start'], cwd=ROOT, creationflags=subprocess.CREATE_NO_WINDOW)
+        result = subprocess.run(
+            [
+                'powershell',
+                '-NoProfile',
+                '-Command',
+                "Get-CimInstance Win32_Process | "
+                "Where-Object { $_.CommandLine -match 'smu_daemon.py' -and $_.CommandLine -match ' start' } | "
+                "Select-Object -First 1 -ExpandProperty ProcessId",
+            ],
+            capture_output=True,
+            text=True,
+            timeout=8,
+        )
+        if not result.stdout.strip():
+            creationflags = getattr(subprocess, 'CREATE_NO_WINDOW', 0)
+            subprocess.Popen([sys.executable, str(DAEMON_SCRIPT), 'start'], cwd=ROOT, creationflags=creationflags)
             time.sleep(2)
     except Exception:
-        # Linux/Mac için ps aux
         pass
+
+
+def _port_available(port: int) -> bool:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.settimeout(0.2)
+        return sock.connect_ex(('127.0.0.1', port)) != 0
+
+
+def _pick_dashboard_port(preferred: int = 5000) -> int:
+    if _port_available(preferred):
+        return preferred
+    for port in range(preferred + 1, preferred + 20):
+        if _port_available(port):
+            return port
+    return preferred
+
 
 # ---------- Ana Fonksiyon ----------
 def main():
     start_daemon()
+    preferred_port = int(os.environ.get('SMU_DASHBOARD_PORT', '5000'))
+    port = _pick_dashboard_port(preferred_port)
+
     # Flask'ı ayrı bir thread'de başlat
     def run_flask():
-        app.run(host='127.0.0.1', port=5000, debug=False, use_reloader=False)
+        app.run(host='127.0.0.1', port=port, debug=False, use_reloader=False)
     Thread(target=run_flask, daemon=True).start()
     # Tarayıcıyı aç
-    webbrowser.open('http://127.0.0.1:5000')
-    print("SMU Pro Dashboard başlatıldı: http://127.0.0.1:5000")
+    url = f'http://127.0.0.1:{port}'
+    webbrowser.open(url)
+    print(f"SMU Pro Dashboard başlatıldı: {url}")
     try:
         while True:
             time.sleep(1)
