@@ -39,6 +39,7 @@ from typing import Any
 
 # Published Registry — duplicate paylaşım koruması
 from published_registry import PublishedRegistry, get_registry
+from published_ledger import get_ledger
 
 
 ROOT = Path(__file__).resolve().parent
@@ -693,6 +694,22 @@ def fire_slot(slot: dict[str, Any], dry_run: bool = False) -> bool:
     if ok and content_id:
         publisher_registry.mark_published(channel_id, content_id)
         LOG.info("PublishedRegistry'e kaydedildi: %s / %s", channel_id, content_id)
+
+        # PublishedLedger'a da kaydet (gelişmiş duplicate koruma)
+        try:
+            ledger = get_ledger()
+            ledger.add_entry(
+                clip_id=content_id,
+                channel=channel_id,
+                platform="youtube",
+                url="",
+                title=slot.get("youtubeTitle", ""),
+                description=slot.get("youtubeDescription", ""),
+                metadata=slot,
+            )
+            LOG.info("PublishedLedger'a kaydedildi: %s / %s", channel_id, content_id)
+        except Exception as e:
+            LOG.warning("PublishedLedger kayıt hatası (önemli değil): %s", e)
 
     return ok
 

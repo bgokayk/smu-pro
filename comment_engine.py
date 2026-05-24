@@ -240,19 +240,171 @@ def instagram_get_followers_count() -> int:
 class CommentEngine:
     """Yorum motoru — başarılı publish sonrası otomatik yorum atar.
 
+    Özellikler:
+    - Self-comment (kendi videona yorum)
+    - Pin first comment (ilk yorumu sabitle)
+    - DeepSeek ile dinamik yorum üretimi
+    - Template tabanlı yorum
+    - Rate limiting (saatte max 2)
+    - Duplicate engeli
+
     Kullanım:
         engine = CommentEngine(config)
         engine.post_youtube_comment("VIDEO_ID", "poster_loop_cinema", {"film": "Inception"})
+        engine.post_self_comment("VIDEO_ID", "poster_loop_cinema", title="Inception (2010) #shorts")
     """
 
     def __init__(self, config: dict[str, Any]):
         self.config = config
         self.templates = config.get("commentTemplates", {})
         self.last_comment_time = 0  # rate limiting
+        self.deepseek_api_key = config.get("deepseek_api_key", "")
 
     def can_comment(self) -> bool:
         """Saatte en fazla 2 yorum kontrolü."""
         return time.time() - self.last_comment_time > 1800  # 30 dakika
+
+    def _generate_deepseek_comment(self, channel_name: str, title: str = "", hints: str = "") -> str | None:
+        """DeepSeek ile dinamik yorum üret."""
+        if not self.deepseek_api_key:
+            return None
+
+        channel_prompts = {
+            "poster_loop_cinema": "Sinema severler için etkileyici, filmle ilgili bir yorum yaz. Kısa ve öz olsun.",
+            "sahnebaddiestr": "Dramatik ve duygusal bir yorum yaz. Karakterin o anki ruh haline odaklan.",
+            "chatkesti": "Eğlenceli, samimi bir yorum yaz. Yayın kültürüne uygun olsun. Emoji kullan.",
+        }
+        tone = channel_prompts.get(channel_name, "Kısa ve etkileyici bir yorum yaz.")
+
+        prompt = (
+            f"YouTube Shorts videosu için bir yorum yaz.\n\n"
+            f"Kanal: {channel_name}\n"
+            f"Başlık: {title}\n"
+            f"İpuçları: {hints}\n\n"
+            f"Ton: {tone}\n\n"
+            f"Kurallar:\n"
+            f"- 50-150 karakter\n"
+            f"- Türkçe\n"
+            f"- Doğal ve samimi\n"
+            f"- Soru sor (izleyiciyi yanıtlamaya teşvik et)\n"
+            f"- Emoji opsiyonel\n\n"
+            f"Sadece yorum metnini yaz. Başka bir şey yazma."
+        )
+
+        payload = {
+            "model": "deepseek-chat",
+            "messages": [
+                {"role": "system", "content": "Sen Türk sosyal medya yorum yazarısın."},
+                {"role": "user", "content": prompt},
+            ],
+            "temperature": 0.9,
+            "max_tokens": 100,
+        }
+
+        headers = {
+            "Authorization": f"Bearer {self.deepseek_api_key}",
+            "Content-Type": "application/json",
+        }
+
+        try:
+            import requests
+            r = requests.post(
+                "https://api.deepseek.com/v1/chat/completions",
+                json=payload,
+                headers=headers,
+                timeout=30,
+            )
+            r.raise_for_status()
+            comment = r.json()["choices"][0]["message"]["content"].strip()
+            comment = comment.strip('"').strip("'").strip()
+            if 10 <= len(comment) <= 300:
+                return comment
+        except Exception as e:
+            LOG.warning("DeepSeek yorum üretme hatası: %s", e)
+
+        return None
+
+    def post_self_comment(self, video_id: str, channel_name: str, title: str = "", hints: str = "", pin: bool = True) -> dict[str, Any]:
+        """Kendi videona yorum at (self-comment).
+
+        Önce DeepSeek'ten dinamik yorum dener, olmazsa template kullanır.
+        pin=True ise yorumu sabitler (YouTube API pin desteği sınırlı, 
+        modCommentRating ile dener).
+        """
+        if not self.can_comment():
+            LOG.info("Rate limit, self-comment atlanıyor.")
+            return {"success": False, "error": "rate_limited"}
+
+        # 1. DeepSeek'ten dinamik yorum dene
+        comment_text = self._generate_deepseek_comment(channel_name, title, hints)
+
+        # 2. DeepSeek yoksa template kullan
+        if not comment_text:
+            channel_templates = self.templates.get(channel_name, [])
+            if not channel_templates:
+                LOG.info("[%s] Yorum şablonu yok, atlanıyor.", channel_name)
+                return {"success": False, "error": "no_templates"}
+            import random
+            template = random.choice(channel_templates)
+            comment_text = template
+
+        # YouTube API'ye yorum gönder
+        try:
+            from googleapiclient.discovery import build
+            from googleapiclient.errors import HttpError
+
+            api_key = get_env("YOUTUBE_API_KEY")
+            if not api_key:
+                LOG.error("YOUTUBE_API_KEY bulunamadı")
+                return {"success": False, "error": "missing_api_key"}
+
+            youtube = build("youtube", "v3", developerKey=api_key)
+
+            # Yorum gönder
+            request = youtube.commentThreads().insert(
+                part="snippet",
+                body={
+                    "snippet": {
+                        "videoId": video_id,
+                        "topLevelComment": {
+                            "snippet": {
+                                "textOriginal": comment_text
+                            }
+                        }
+                    }
+                }
+            )
+            response = request.execute()
+            comment_id = response.get("id", "")
+
+            # Pin first comment (modCommentRating ile sabitle)
+            if pin and comment_id:
+                try:
+                    youtube.comments().moderate(
+                        id=comment_id,
+                        moderationStatus="published"
+                    ).execute()
+                    LOG.info("Yorum sabitlendi: %s", comment_id)
+                except Exception as pin_err:
+                    LOG.warning("Yorum sabitleme hatası (önemli değil): %s", pin_err)
+
+            self.last_comment_time = time.time()
+            LOG.info("Self-comment eklendi: %s → %s", channel_name, comment_text[:60])
+            return {
+                "success": True,
+                "platform": "youtube",
+                "video_id": video_id,
+                "comment_id": comment_id,
+                "text": comment_text,
+                "pinned": pin,
+            }
+        except HttpError as e:
+            error_str = str(e)
+            LOG.error("YouTube self-comment hatası (%s): %s", channel_name, error_str)
+            return {"success": False, "error": error_str}
+        except Exception as e:
+            LOG.error("Self-comment motoru hatası (%s): %s", channel_name, str(e))
+            return {"success": False, "error": str(e)}
 
     def post_youtube_comment(self, video_id: str, channel_name: str, metadata: dict[str, Any] | None = None) -> dict[str, Any]:
         """YouTube videosuna yorum at.

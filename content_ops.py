@@ -193,10 +193,10 @@ def clean_title(raw_title: str, fallback: str = "Moving Poster", film_name: str 
     """Gelişmiş başlık temizleme — dosya adı, VERIFY_NEEDED, UUID, rastgele karakterler temizlenir.
 
     Args:
-        raw_title: Ham başlık (dosya adı, API çıktısı vb.)
-        fallback: Hiçbir anlamlı metin kalmadıysa kullanılacak varsayılan
-        film_name: Biliniyorsa film adı (metadata'dan)
-        film_year: Biliniyorsa yıl
+        raw_title: Ham başlık (dosya adı, ID'li başlık vb.)
+        fallback: Temizlik sonrası boş kalırsa kullanılacak varsayılan
+        film_name: Film adı (varsa doğrudan kullan)
+        film_year: Film yılı
         channel: Kanal adı (DeepSeek entegrasyonu için)
         hints: Video ipuçları (DeepSeek entegrasyonu için)
 
@@ -242,6 +242,13 @@ def clean_title(raw_title: str, fallback: str = "Moving Poster", film_name: str 
                 return suggested
         except Exception:
             pass
+
+    # 7. Son temizlik: "poster-loop" kalıntılarını temizle
+    title = re.sub(r'-poster-loop.*$', '', title, flags=re.IGNORECASE)
+    title = re.sub(r'\bposter\s*loop\b', '', title, flags=re.IGNORECASE)
+    title = re.sub(r'\bmoving\s*poster\b', '', title, flags=re.IGNORECASE)
+    title = re.sub(r'\bWh\b', '', title)  # "Wh" kalıntısı
+    title = re.sub(r'\s+', ' ', title).strip()
 
     return title.strip()
 
