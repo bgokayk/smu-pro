@@ -276,8 +276,10 @@ def infer_item(channel_id: str, channel: dict[str, Any], source_path: Path, righ
         # Öncelik: sidecar'daki film_hint > film > raw_title'dan çıkarılan film adı > source_path.stem
         film = (meta.get("film_hint") or meta.get("film") or "")
         if not film and raw_title:
+            # Önce ID'yi temizle: "086-G80AH6SipDM-gordugune-guvendi-ve-asl-oyunu-kacrd" → "gordugune guvendi ve asl oyunu kacrd"
+            clean_raw = re.sub(r'^\d{2,3}-[A-Za-z0-9_-]{6,}[-_]', '', raw_title)
             # "Film Name (2023) | 4K" → "Film Name"
-            film = re.sub(r'\s*[\(\[].*?[\)\]]\s*', '', raw_title).split('|')[0].split('-')[0].strip()
+            film = re.sub(r'\s*[\(\[].*?[\)\]]\s*', '', clean_raw).split('|')[0].split('-')[0].strip()
         if not film:
             film = source_path.stem
         item.update(

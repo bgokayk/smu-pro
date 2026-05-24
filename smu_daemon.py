@@ -1,19 +1,19 @@
-﻿#!/usr/bin/env python3
-"""SMU Daemon â€” 24/7 sosyal medya otomasyon sÃ¼reci.
+#!/usr/bin/env python3
+"""SMU Daemon — 24/7 sosyal medya otomasyon süreci.
 
-DÃ¶ngÃ¼ mantÄ±ÄŸÄ±:
+Döngü mantığı:
   - 01:00-07:00 Istanbul saatinde uyku modu (post yok, download yok)
-  - 07:00: Sabah hazÄ±rlÄ±ÄŸÄ± â†’ indir â†’ gÃ¼n planÄ±nÄ± yap â†’ kuyruÄŸa ekle
-  - GÃ¼n iÃ§i: schedule'daki slotlara gÃ¶re worker'larÄ± tetikle
-  - Her post sonrasÄ± yorum taslaÄŸÄ±
+  - 07:00: Sabah hazırlığı → indir → gün planını yap → kuyruğa ekle
+  - Gün içi: schedule'daki slotlara göre worker'ları tetikle
+  - Her post sonrası yorum taslağı
   - Gece 01:00: tekrar uyku
 
-KullanÄ±m:
-  python smu_daemon.py start              # Ã‡alÄ±ÅŸtÄ±r (sonsuz dÃ¶ngÃ¼)
+Kullanım:
+  python smu_daemon.py start              # Çalıştır (sonsuz döngü)
   python smu_daemon.py start --dry-run    # Test modu
-  python smu_daemon.py next-event         # Bir sonraki olayÄ± gÃ¶ster
-  python smu_daemon.py status             # BugÃ¼nkÃ¼ durum
-  python smu_daemon.py morning-prep       # Elle sabah hazÄ±rlÄ±ÄŸÄ±nÄ± baÅŸlat
+  python smu_daemon.py next-event         # Bir sonraki olayı göster
+  python smu_daemon.py status             # Bugünkü durum
+  python smu_daemon.py morning-prep       # Elle sabah hazırlığını başlat
 """
 
 from __future__ import annotations
@@ -59,7 +59,7 @@ except Exception:
         return dt.datetime.now(dt.timezone.utc) + ISTANBUL_OFFSET
 
 
-# â”€â”€ loglama â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── loglama ────────────────────────────────────────────────────────────────────
 
 def _setup_logging() -> logging.Logger:
     LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -79,28 +79,31 @@ def _setup_logging() -> logging.Logger:
 
 LOG = _setup_logging()
 
+# Duplicate koruma icin basit kilit
+_YAYINLANAN_SLOTLAR: set[str] = set()
 
-# â”€â”€ config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+# ── config ─────────────────────────────────────────────────────────────────────
 
 def load_config() -> dict[str, Any]:
-    """Config dosyasÄ±nÄ± oku, hata yÃ¶netimi ile dÃ¶ndÃ¼r."""
+    """Config dosyasını oku, hata yönetimi ile döndür."""
     try:
         data = json.loads(CONFIG_FILE.read_text(encoding="utf-8-sig"))
         if not isinstance(data, dict):
-            LOG.warning("Config dosyasÄ± dict deÄŸil, boÅŸ config dÃ¶nÃ¼lÃ¼yor")
+            LOG.warning("Config dosyası dict değil, boş config dönülüyor")
             return {}
         return data
     except FileNotFoundError:
-        LOG.error("Config dosyasÄ± bulunamadÄ±: %s", CONFIG_FILE)
+        LOG.error("Config dosyası bulunamadı: %s", CONFIG_FILE)
         return {}
     except json.JSONDecodeError as exc:
-        LOG.error("Config dosyasÄ± JSON ayrÄ±ÅŸtÄ±rma hatasÄ±: %s", exc)
+        LOG.error("Config dosyası JSON ayrıştırma hatası: %s", exc)
         return {}
     except PermissionError:
-        LOG.error("Config dosyasÄ± okuma izni yok: %s", CONFIG_FILE)
+        LOG.error("Config dosyası okuma izni yok: %s", CONFIG_FILE)
         return {}
     except Exception as exc:
-        LOG.error("Config dosyasÄ± okunurken beklenmeyen hata: %s", exc)
+        LOG.error("Config dosyası okunurken beklenmeyen hata: %s", exc)
         return {}
 
 
@@ -115,7 +118,7 @@ def write_json(path: Path, data: Any) -> None:
     tmp.replace(path)
 
 
-# â”€â”€ zaman yÃ¶netimi â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── zaman yönetimi ────────────────────────────────────────────────────────────
 
 def _parse_hhmm(value: str) -> dt.time:
     h, m = value.split(":")
@@ -123,7 +126,7 @@ def _parse_hhmm(value: str) -> dt.time:
 
 
 def in_no_post_window(config: dict[str, Any], now: dt.datetime | None = None) -> bool:
-    """01:00-07:00 aralÄ±ÄŸÄ±nda mÄ±yÄ±z? disabled=true ise hiÃ§ girmez."""
+    """01:00-07:00 aralığında mıyız? disabled=true ise hiç girmez."""
     npw = config.get("noPostWindow", {})
     if npw.get("disabled", False):
         return False
@@ -134,12 +137,12 @@ def in_no_post_window(config: dict[str, Any], now: dt.datetime | None = None) ->
     end   = _parse_hhmm(npw["end"])
     if start < end:
         return start <= t < end
-    # Gece yarÄ±sÄ±nÄ± geÃ§en pencere (start > end): 23:00 - 05:00 gibi
+    # Gece yarısını geçen pencere (start > end): 23:00 - 05:00 gibi
     return t >= start or t < end
 
 
 def seconds_until_window_end(config: dict[str, Any]) -> int:
-    """07:00'a kaÃ§ saniye?"""
+    """07:00'a kaç saniye?"""
     now = _now_local()
     end = _parse_hhmm(config["noPostWindow"]["end"])
     target = now.replace(hour=end.hour, minute=end.minute, second=0, microsecond=0)
@@ -149,10 +152,10 @@ def seconds_until_window_end(config: dict[str, Any]) -> int:
 
 
 def seconds_until_no_post(config: dict[str, Any]) -> int:
-    """01:00'e kaÃ§ saniye? disabled=true ise Ã§ok bÃ¼yÃ¼k deÄŸer dÃ¶ner (asla uyuma)."""
+    """01:00'e kaç saniye? disabled=true ise çok büyük değer döner (asla uyuma)."""
     npw = config.get("noPostWindow", {})
     if npw.get("disabled", False):
-        return 86400  # 24 saat â€” asla uyku moduna girmez
+        return 86400  # 24 saat — asla uyku moduna girmez
     now = _now_local()
     start = _parse_hhmm(npw["start"])
     target = now.replace(hour=start.hour, minute=start.minute, second=0, microsecond=0)
@@ -161,7 +164,7 @@ def seconds_until_no_post(config: dict[str, Any]) -> int:
     return int((target - now).total_seconds())
 
 
-# â”€â”€ daemon durumu â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── daemon durumu ─────────────────────────────────────────────────────────────
 
 def load_daemon_state() -> dict[str, Any]:
     if DAEMON_STATE.exists():
@@ -169,7 +172,7 @@ def load_daemon_state() -> dict[str, Any]:
             return read_json(DAEMON_STATE)
         except Exception:
             pass
-    return {"last_morning_prep": "", "last_slots_fired": [], "last_comment_round": ""}
+    return {"last_morning_prep": "", "published_slots": [], "last_comment_round": ""}
 
 
 def save_daemon_state(state: dict[str, Any]) -> None:
@@ -195,7 +198,7 @@ def morning_prep_done_today(state: dict[str, Any]) -> bool:
     return state.get("last_morning_prep", "")[:10] == today
 
 
-# â”€â”€ alt sÃ¼reÃ§leri Ã§alÄ±ÅŸtÄ±r â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── alt süreçleri çalıştır ────────────────────────────────────────────────────
 
 def run_python(args: list[str], cwd: Path | None = None, dry_run: bool = False) -> bool:
     cmd = [sys.executable] + args
@@ -203,7 +206,7 @@ def run_python(args: list[str], cwd: Path | None = None, dry_run: bool = False) 
     if dry_run:
         LOG.info("[dry-run] %s", label)
         return True
-    LOG.info("Ã‡alÄ±ÅŸtÄ±rÄ±yor: %s", label)
+    LOG.info("Çalıştırıyor: %s", label)
     result = subprocess.run(
         cmd,
         cwd=str(cwd or ROOT),
@@ -214,7 +217,7 @@ def run_python(args: list[str], cwd: Path | None = None, dry_run: bool = False) 
         errors="replace",
     )
     if result.returncode != 0:
-        LOG.warning("Ã‡Ä±kÄ±ÅŸ kodu %d: %s", result.returncode, label)
+        LOG.warning("Çıkış kodu %d: %s", result.returncode, label)
         if result.stdout and result.stdout.strip():
             LOG.warning("  stdout: %s", result.stdout.strip()[-800:])
         if result.stderr and result.stderr.strip():
@@ -230,7 +233,7 @@ def run_node(script: Path, env: dict[str, str] | None = None, dry_run: bool = Fa
         LOG.info("[dry-run] node %s", script.name)
         return True
     if not script.exists():
-        LOG.warning("Script bulunamadÄ±: %s", script)
+        LOG.warning("Script bulunamadı: %s", script)
         return False
     full_env = {**os.environ, **(env or {})}
     LOG.info("node %s", script.name)
@@ -242,23 +245,22 @@ def run_node(script: Path, env: dict[str, str] | None = None, dry_run: bool = Fa
         timeout=3600,
     )
     if result.returncode != 0:
-        LOG.warning("node Ã§Ä±kÄ±ÅŸ kodu %d: %s", result.returncode, script.name)
+        LOG.warning("node çıkış kodu %d: %s", result.returncode, script.name)
         return False
     return True
 
 
-# â”€â”€ kanal pipeline tanÄ±mlarÄ± â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── kanal pipeline tanımları (dinamik: sources/ klasöründen yüklenir) ──────────
 
-CHANNEL_PIPELINES: dict[str, dict[str, Any]] = {
+SOURCES_DIR = ROOT / "sources"
+
+# Statik pipeline tanımları (arka uyumluluk için)
+_STATIC_PIPELINES: dict[str, dict[str, Any]] = {
     "poster_loop_cinema": {
         "root": Path("C:/Users/User/.codex/analog-neo-moving-poster"),
         "steps": [
-            # Filmmax-21-50 export klasÃ¶rÃ¼nden queue JSON Ã¼ret (render zaten tamamlandÄ±)
-            {"type": "python", "script": "build_posterloop_queue_21_50.py", "label": "queue oluÅŸtur"},
-            # Not: render_filmmax_poster_exports.py filmmax-last20 iÃ§indir ve zaten tamamlandÄ±.
-            # filmmax-21-50 render'Ä± ayrÄ± bir scriptile yapÄ±lÄ±r, burada Ã§alÄ±ÅŸtÄ±rÄ±lmaz.
+            {"type": "python", "script": "build_posterloop_queue_21_50.py", "label": "queue oluştur"},
         ],
-        # pipeline bittikten sonra bu dosya schedule slotlarÄ±na eklenir
         "queue_file": Path("C:/Users/User/.codex/analog-neo-moving-poster/automation/posterloop_queue_21_50.json"),
         "worker": Path("C:/Users/User/.codex/analog-neo-moving-poster/automation/posterloop_dual_publish_worker.js"),
         "worker_env": {
@@ -270,10 +272,9 @@ CHANNEL_PIPELINES: dict[str, dict[str, Any]] = {
         "root": Path("C:/Users/User/.codex/sahne-baddies-auto"),
         "steps": [
             {"type": "python", "script": "ingest_baddies_sources.py", "label": "ingest"},
-            {"type": "python", "script": "build_baddies_queue.py",    "label": "queue oluÅŸtur"},
+            {"type": "python", "script": "build_baddies_queue.py",    "label": "queue oluştur"},
             {"type": "python", "script": "render_baddies_exports.py", "label": "render"},
         ],
-        # build_baddies_queue.py bu dosyayÄ± Ã¼retmeli
         "queue_file": Path("C:/Users/User/.codex/sahne-baddies-auto/automation/baddies_queue_batch001.json"),
         "worker": Path("C:/Users/User/.codex/sahne-baddies-auto/automation/baddies_dual_publish_worker.js"),
         "worker_env": {
@@ -287,7 +288,7 @@ CHANNEL_PIPELINES: dict[str, dict[str, Any]] = {
             {"type": "python", "script": "ingest_chatkesti_sources.py", "label": "ingest"},
             {"type": "python", "script": "analyze_clip_layout.py", "args": ["--items"], "label": "analiz"},
             {"type": "python", "script": "render_chatkesti_exports.py", "label": "render"},
-            {"type": "python", "script": "build_chatkesti_queue.py",    "label": "queue oluÅŸtur"},
+            {"type": "python", "script": "build_chatkesti_queue.py",    "label": "queue oluştur"},
         ],
         "queue_file": Path("C:/Users/User/.codex/yayinci-kesitleri-auto/automation/chatkesti_queue_batch001.json"),
         "worker": Path("C:/Users/User/.codex/yayinci-kesitleri-auto/automation/chatkesti_firefox_publish_worker.py"),
@@ -300,11 +301,94 @@ CHANNEL_PIPELINES: dict[str, dict[str, Any]] = {
 }
 
 
+def _load_dynamic_pipelines() -> dict[str, dict[str, Any]]:
+    """sources/ klasöründeki her JSON için pipeline oluştur.
+
+    sources/{kanal_adi}_sources.json formatında dosyalar beklenir.
+    Her kanal için ayrı browser profili ve debug portu otomatik tahsis edilir.
+    """
+    pipelines = dict(_STATIC_PIPELINES)
+
+    if not SOURCES_DIR.exists():
+        return pipelines
+
+    # Kullanılmış portları takip et
+    used_ports: set[int] = {9222, 9223}  # poster_loop ve baddies için
+
+    for source_file in sorted(SOURCES_DIR.glob("*_sources.json")):
+        channel_id = source_file.stem.replace("_sources", "")
+        if channel_id in pipelines:
+            continue  # Statik tanım varsa onu kullan
+
+        try:
+            source_data = read_json(source_file)
+        except Exception:
+            LOG.warning("Kaynak dosyası okunamadı: %s", source_file)
+            continue
+
+        # Config'den kanal bilgilerini al
+        config = load_config()
+        channel_config = config.get("channels", {}).get(channel_id, {})
+
+        # Browser profili ve debug portu otomatik tahsis
+        browser_type = channel_config.get("browser", "Chrome")
+        debug_port = 9224
+        while debug_port in used_ports:
+            debug_port += 1
+        used_ports.add(debug_port)
+
+        # Root dizin
+        root = Path(source_data.get("root", ""))
+        if not root.exists():
+            LOG.warning("Root dizin bulunamadı: %s (%s)", root, channel_id)
+            continue
+
+        # Worker script
+        worker_path = Path(source_data.get("worker", ""))
+        if not worker_path.exists():
+            worker_path = root / "automation" / f"{channel_id}_publish_worker.py"
+            if not worker_path.exists():
+                LOG.warning("Worker bulunamadı: %s (%s)", worker_path, channel_id)
+                continue
+
+        # Queue file
+        queue_file = Path(source_data.get("queue_file", ""))
+        if not queue_file.exists():
+            queue_file = root / "automation" / f"{channel_id}_queue_batch001.json"
+
+        # Pipeline steps
+        steps = source_data.get("steps", [])
+        if not steps:
+            # Varsayılan adımlar
+            steps = [
+                {"type": "python", "script": f"ingest_{channel_id}_sources.py", "label": "ingest"},
+                {"type": "python", "script": f"build_{channel_id}_queue.py", "label": "queue oluştur"},
+            ]
+
+        pipelines[channel_id] = {
+            "root": root,
+            "steps": steps,
+            "queue_file": queue_file,
+            "worker": worker_path,
+            "worker_env": {
+                f"{channel_id.upper()}_BASE": str(root),
+                f"{channel_id.upper()}_DEBUG_ENDPOINT": f"http://127.0.0.1:{debug_port}",
+                f"{channel_id.upper()}_QUEUE_PATH": str(queue_file),
+            },
+        }
+        LOG.info("Dinamik pipeline oluşturuldu: %s (port=%d, browser=%s)", channel_id, debug_port, browser_type)
+
+    return pipelines
+
+
+CHANNEL_PIPELINES: dict[str, dict[str, Any]] = _load_dynamic_pipelines()
+
+
 def run_channel_pipeline(channel_id: str, dry_run: bool = False) -> bool:
-    """Bir kanalÄ±n ingestâ†’queueâ†’render pipeline'Ä±nÄ± Ã§alÄ±ÅŸtÄ±r."""
+    """Bir kanalın ingest→queue→render pipeline'ını çalıştır."""
     pipeline = CHANNEL_PIPELINES.get(channel_id)
     if not pipeline:
-        LOG.warning("Pipeline tanÄ±mÄ± yok: %s", channel_id)
+        LOG.warning("Pipeline tanımı yok: %s", channel_id)
         return False
 
     root = pipeline["root"]
@@ -312,24 +396,24 @@ def run_channel_pipeline(channel_id: str, dry_run: bool = False) -> bool:
         script = root / step["script"]
         label  = step.get("label", step["script"])
         if not script.exists():
-            LOG.warning("  Script bulunamadÄ±, atlanÄ±yor: %s", script)
+            LOG.warning("  Script bulunamadı, atlanıyor: %s", script)
             continue
         LOG.info("  [%s] %s", channel_id, label)
         ok = run_python([str(script), *step.get("args", [])], cwd=root, dry_run=dry_run)
         if not ok:
-            LOG.warning("  [%s] %s baÅŸarÄ±sÄ±z, devam ediliyorâ€¦", channel_id, label)
+            LOG.warning("  [%s] %s başarısız, devam ediliyor…", channel_id, label)
 
     return True
 
 
-# â”€â”€ sabah hazÄ±rlÄ±ÄŸÄ± â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── sabah hazırlığı ───────────────────────────────────────────────────────────
 
 def do_morning_prep(config: dict[str, Any], dry_run: bool = False) -> None:
     if audit_freeze_active():
         LOG.warning("Audit freeze active; morning-prep skipped: %s", audit_freeze_reason())
         return
 
-    LOG.info("=== Sabah hazÄ±rlÄ±ÄŸÄ± baÅŸlÄ±yor ===")
+    LOG.info("=== Sabah hazırlığı başlıyor ===")
 
     active_channels = [
         ch_id
@@ -337,13 +421,13 @@ def do_morning_prep(config: dict[str, Any], dry_run: bool = False) -> None:
         if ch.get("active", False)
     ]
 
-    # 1. Her kanal iÃ§in ingest â†’ queue â†’ render
+    # 1. Her kanal için ingest → queue → render
     for channel_id in active_channels:
         LOG.info("--- Pipeline: %s ---", channel_id)
         run_channel_pipeline(channel_id, dry_run=dry_run)
 
-    # 2. BoÅŸ takvim + yorum planÄ± oluÅŸtur (slotlar needs_queue_item olarak gelir)
-    LOG.info("GÃ¼nlÃ¼k takvim hazÄ±rlanÄ±yorâ€¦")
+    # 2. Boş takvim + yorum planı oluştur (slotlar needs_queue_item olarak gelir)
+    LOG.info("Günlük takvim hazırlanıyor…")
     today = _now_local().date().isoformat()
     schedule_file = ROOT / "schedules" / f"{today}_smu_schedule.json"
 
@@ -355,19 +439,19 @@ def do_morning_prep(config: dict[str, Any], dry_run: bool = False) -> None:
     )
     if not prep_ok:
         # Fallback: create a blank slot schedule without content pipeline
-        LOG.warning("prepare-day baÅŸarÄ±sÄ±z; yedek plan-day Ã§alÄ±ÅŸtÄ±rÄ±lÄ±yorâ€¦")
+        LOG.warning("prepare-day başarısız; yedek plan-day çalıştırılıyor…")
         run_python(
             [str(ROOT / "smu.py"), "plan-day"],
             dry_run=dry_run,
         )
 
-    # 3. Her kanal iÃ§in pipeline'Ä±n Ã¼rettiÄŸi queue'yu slotlara at
+    # 3. Her kanal için pipeline'ın ürettiği queue'yu slotlara at
     if schedule_file.exists():
         for channel_id in active_channels:
             pipeline = CHANNEL_PIPELINES.get(channel_id, {})
             queue_file: Path = pipeline.get("queue_file", Path(""))
             if queue_file.exists():
-                LOG.info("  Slotlara atanÄ±yor (force): %s â†’ %s", channel_id, queue_file.name)
+                LOG.info("  Slotlara atanıyor (force): %s → %s", channel_id, queue_file.name)
                 run_python(
                     [str(ROOT / "smu.py"), "attach-queue",
                      "--schedule", str(schedule_file),
@@ -378,12 +462,12 @@ def do_morning_prep(config: dict[str, Any], dry_run: bool = False) -> None:
                     dry_run=dry_run,
                 )
             else:
-                LOG.warning("  Queue dosyasÄ± yok, slot boÅŸ kalacak: %s (%s)", channel_id, queue_file)
+                LOG.warning("  Queue dosyası yok, slot boş kalacak: %s (%s)", channel_id, queue_file)
     else:
-        LOG.warning("Schedule dosyasÄ± bulunamadÄ±: %s", schedule_file)
+        LOG.warning("Schedule dosyası bulunamadı: %s", schedule_file)
 
-    # 4. TarayÄ±cÄ±larÄ± aÃ§ (Chrome â†’ PosterLoop, Edge â†’ BaddiesTR)
-    LOG.info("TarayÄ±cÄ±lar aÃ§Ä±lÄ±yorâ€¦")
+    # 4. Tarayıcıları aç (Chrome → PosterLoop, Edge → BaddiesTR)
+    LOG.info("Tarayıcılar açılıyor…")
     run_python(
         [str(ROOT / "content_ops.py"), "launch-browsers", "--channel", "all"],
         dry_run=dry_run,
@@ -391,12 +475,12 @@ def do_morning_prep(config: dict[str, Any], dry_run: bool = False) -> None:
 
     state = load_daemon_state()
     state["last_morning_prep"] = _now_local().isoformat(timespec="seconds")
-    state["last_slots_fired"] = []
+    state["published_slots"] = []
     save_daemon_state(state)
-    LOG.info("=== Sabah hazÄ±rlÄ±ÄŸÄ± tamamlandÄ± ===")
+    LOG.info("=== Sabah hazırlığı tamamlandı ===")
 
 
-# â”€â”€ slot yÃ¶netimi â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── slot yönetimi ─────────────────────────────────────────────────────────────
 
 def _channel_worker(channel_id: str) -> Path:
     pipeline = CHANNEL_PIPELINES.get(channel_id, {})
@@ -488,12 +572,12 @@ def load_today_schedule() -> dict[str, Any]:
 
 
 # Statuses that are eligible to be fired by the slot loop.
-# "blocked_legacy_smu_review" was set by an older Codex version â€” treat as scheduled.
+# "blocked_legacy_smu_review" was set by an older Codex version — treat as scheduled.
 FIREABLE_STATUSES = {"scheduled", "queued"}
 
 
 def slots_due_now(schedule: dict[str, Any], already_fired: list[str], window_min: int = 3) -> list[dict[str, Any]]:
-    """Åu anki zamana gÃ¶re ateÅŸlenmesi gereken slotlarÄ± bul."""
+    """Şu anki zamana göre ateşlenmesi gereken slotları bul."""
     now = _now_local()
     result = []
     for slot in schedule.get("slots", []):
@@ -503,30 +587,30 @@ def slots_due_now(schedule: dict[str, Any], already_fired: list[str], window_min
         if slot.get("status") not in FIREABLE_STATUSES:
             continue
         if not slot.get("file"):
-            # No media file attached â€” cannot publish
+            # No media file attached — cannot publish
             continue
         try:
             slot_time = dt.datetime.strptime(slot["publishAtLocal"], "%Y-%m-%d %H:%M")
         except (KeyError, ValueError):
             continue
-        # BugÃ¼nkÃ¼ saat bazÄ±nda karÅŸÄ±laÅŸtÄ±r
+        # Bugünkü saat bazında karşılaştır
         slot_time_naive = slot_time.replace(tzinfo=None)
         now_naive = now.replace(tzinfo=None) if now.tzinfo else now
         diff = (now_naive - slot_time_naive).total_seconds()
-        # Slot zamanÄ± geÃ§ti ama window_min dakikadan fazla geÃ§medi
+        # Slot zamanı geçti ama window_min dakikadan fazla geçmedi
         if 0 <= diff <= window_min * 60:
             result.append({**slot, "_slot_id": slot_id})
     return result
 
 
 def _publish_state_path(slot: dict[str, Any]) -> Path:
-    """Slot için publish state dosyasının yolunu döndür."""
+    """Slot icin publish state dosyasinin yolunu dondur."""
     slot_id = _safe_slot_id(slot)
     return PUBLISH_STATE_DIR / f"{slot_id}.json"
 
 
 def _already_published(slot: dict[str, Any]) -> bool:
-    """Bu slot daha önce başarıyla publish oldu mu? (youtubeDone veya instagramDone varsa)"""
+    """Bu slot daha once basariyla publish oldu mu? (youtubeDone veya instagramDone varsa)"""
     state_path = _publish_state_path(slot)
     if not state_path.exists():
         return False
@@ -536,28 +620,47 @@ def _already_published(slot: dict[str, Any]) -> bool:
         return False
     if not isinstance(data, dict):
         return False
-    # Worker state.json'da youtubeDone veya instagramDone varsa publish tamamlanmıştır
+    # Worker state.json'da youtubeDone veya instagramDone varsa publish tamamlanmistir
     for key in data:
         if key.endswith("Done") and isinstance(data[key], list) and len(data[key]) > 0:
-            LOG.info("  Zaten publish olmuş (state=%s): %s", key, state_path.name)
+            LOG.info("  Zaten publish olmus (state=%s): %s", key, state_path.name)
             return True
     return False
 
 
 def fire_slot(slot: dict[str, Any], dry_run: bool = False) -> bool:
+    # Duplicate kontrolu (in-memory)
+    channel_id = slot.get("channel", "")
+    slot_key = f"{channel_id}_slot{slot['slot']}_{slot.get('queueItemId', '')}"
+    if not hasattr(fire_slot, "_published"):
+        fire_slot._published = set()
+    if slot_key in fire_slot._published:
+        LOG.warning(f"Duplicate engellendi: {slot_key}")
+        return False
+    fire_slot._published.add(slot_key)
+
     if audit_freeze_active():
         LOG.warning("Audit freeze active; slot skipped: %s", audit_freeze_reason())
         return False
 
-    # Duplicate publish kontrolü — daha önce başarıyla publish olduysa atla
-    if _already_published(slot):
-        LOG.info("  Slot zaten publish olmuş, atlanıyor: %s", slot.get("_slot_id", ""))
-        return True  # Başarısızlık değil, zaten yapılmış
+    # Duplicate publish kontrolu — state.json'da youtubeDone veya instagramDone varsa atla
+    channel_id = slot.get("channel", "")
+    slot_id = f"{channel_id}-slot{slot.get('slot', '0')}"
+    state_path = PUBLISH_STATE_DIR / f"{slot_id}.json"
+    if state_path.exists():
+        try:
+            with open(state_path, 'r', encoding='utf-8-sig') as f:
+                state_data = json.load(f)
+            if state_data.get('youtubeDone') or state_data.get('instagramDone'):
+                LOG.warning("Duplicate engellendi: %s zaten yayinlanmis.", slot_id)
+                return False
+        except Exception:
+            pass
 
     channel_id = slot.get("channel", "")
     worker_path = _channel_worker(channel_id)
     env = _slot_worker_env(channel_id, slot)
-    LOG.info("Slot ateşleniyor: %s  %s  dosya=%s",
+    LOG.info("Slot atesleniyor: %s  %s  dosya=%s",
              channel_id, slot.get("publishAtLocal"), slot.get("file", ""))
     if worker_path.suffix.lower() == ".py":
         full_env = {**os.environ, **env}
@@ -578,18 +681,17 @@ def fire_slot(slot: dict[str, Any], dry_run: bool = False) -> bool:
     return run_node(worker_path, env=env, dry_run=dry_run)
 
 
-# â”€â”€ yorum motoru â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â
+# ── yorum motoru ──────────────────────────────────────────────────────────────
 
-
-# â”€â”€ ana dÃ¶ngÃ¼ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── ana döngü ─────────────────────────────────────────────────────────────────
 
 def cmd_start(args: argparse.Namespace) -> None:
     config = load_config()
-    LOG.info("SMU Daemon baÅŸlatÄ±ldÄ± (dry_run=%s)", args.dry_run)
+    LOG.info("SMU Daemon başlatıldı (dry_run=%s)", args.dry_run)
 
     while True:
         try:
-            config = load_config()   # Her dÃ¶ngÃ¼de config'i yenile
+            config = load_config()   # Her döngüde config'i yenile
             now = _now_local()
 
             if audit_freeze_active():
@@ -599,27 +701,27 @@ def cmd_start(args: argparse.Namespace) -> None:
 
             if in_no_post_window(config, now):
                 secs = seconds_until_window_end(config)
-                LOG.info("Uyku modu (01:00-07:00). BitiÅŸ: %ds sonra (%.1fh)",
+                LOG.info("Uyku modu (01:00-07:00). Bitiş: %ds sonra (%.1fh)",
                          secs, secs / 3600)
                 _sleep_chunked(secs, label="uyku modu")
                 continue
 
             state = load_daemon_state()
 
-            # Sabah hazÄ±rlÄ±ÄŸÄ± (sadece gÃ¼n baÅŸÄ±nda bir kez)
+            # Sabah hazırlığı (sadece gün başında bir kez)
             if not morning_prep_done_today(state):
                 do_morning_prep(config, dry_run=args.dry_run)
 
-            # GÃ¼n iÃ§i slot kontrolÃ¼
+            # Gün içi slot kontrolü
             run_daily_loop(config, dry_run=args.dry_run)
 
             # Yorum motoru (saatte en fazla 2 yorum)
             _run_comment_engine(config, dry_run=args.dry_run)
 
-            # 01:00'e kaÃ§ saniye kaldÄ±?
+            # 01:00'e kaç saniye kaldı?
             secs_to_sleep = seconds_until_no_post(config)
             if secs_to_sleep < 120:
-                LOG.info("01:00 yaklaÅŸÄ±yor, kÄ±sa beklemeâ€¦")
+                LOG.info("01:00 yaklaşıyor, kısa bekleme…")
                 time.sleep(60)
             else:
                 # 1 dakikada bir slot kontrol et
@@ -634,24 +736,24 @@ def cmd_start(args: argparse.Namespace) -> None:
 
 
 def _sleep_chunked(total_seconds: int, label: str = "") -> None:
-    """Uzun uyku â€” her 5 dakikada bir log atar, Ctrl+C'ye duyarlÄ±."""
+    """Uzun uyku — her 5 dakikada bir log atar, Ctrl+C'ye duyarlı."""
     chunk = 300  # 5 dakika
     remaining = total_seconds
     while remaining > 0:
         wait = min(chunk, remaining)
-        LOG.debug("  [%s] %ds dahaâ€¦", label, remaining)
+        LOG.debug("  [%s] %ds daha…", label, remaining)
         time.sleep(wait)
         remaining -= wait
 
 
-# â”€â”€ diÄŸer komutlar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── diğer komutlar ────────────────────────────────────────────────────────────
 
 def cmd_status(args: argparse.Namespace) -> None:
     config = load_config()
     now = _now_local()
     is_sleep = in_no_post_window(config, now)
 
-    print(f"Åu an (Istanbul): {now.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Şu an (Istanbul): {now.strftime('%Y-%m-%d %H:%M:%S')}")
     if audit_freeze_active():
         print(f"Mod: [AUDIT_FREEZE] {audit_freeze_reason()}")
     else:
@@ -665,16 +767,16 @@ def cmd_status(args: argparse.Namespace) -> None:
         print(f"Uyku moduna: {secs // 3600}h {(secs % 3600) // 60}m")
 
     state = load_daemon_state()
-    print(f"Son sabah hazÄ±rlÄ±ÄŸÄ±: {state.get('last_morning_prep', 'yok')}")
-    print(f"BugÃ¼n ateÅŸlenen slot: {len(state.get('last_slots_fired', []))}")
+    print(f"Son sabah hazırlığı: {state.get('last_morning_prep', 'yok')}")
+    print(f"Bugün ateşlenen slot: {len(state.get('published_slots', []))}")
 
     schedule = load_today_schedule()
     if schedule:
         total = len(schedule.get("slots", []))
         scheduled = sum(1 for s in schedule.get("slots", []) if s.get("status") == "scheduled")
-        print(f"BugÃ¼nkÃ¼ schedule: {total} slot, {scheduled} planlanmÄ±ÅŸ")
+        print(f"Bugünkü schedule: {total} slot, {scheduled} planlanmış")
     else:
-        print("BugÃ¼nkÃ¼ schedule yok")
+        print("Bugünkü schedule yok")
 
 
 def cmd_morning_prep(args: argparse.Namespace) -> None:
@@ -688,12 +790,12 @@ def cmd_next_event(args: argparse.Namespace) -> None:
 
     if in_no_post_window(config, now):
         secs = seconds_until_window_end(config)
-        print(f"Sonraki olay: Uyku bitti (07:00) â€” {secs // 60}dk sonra")
+        print(f"Sonraki olay: Uyku bitti (07:00) — {secs // 60}dk sonra")
         return
 
     schedule = load_today_schedule()
     state = load_daemon_state()
-    fired = state.get("last_slots_fired", [])
+    fired = state.get("published_slots", [])
 
     next_slot = None
     next_time = None
@@ -716,28 +818,28 @@ def cmd_next_event(args: argparse.Namespace) -> None:
         print(f"Kalan slot yok. Uyku modu: {secs // 60}dk sonra")
     else:
         now_naive = now.replace(tzinfo=None)
-        diff = (next_time - now_naive).total_seconds()  # type: ignore[operator]
+        diff = (next_time - now_naive).total_seconds()
         print(f"Sonraki slot: [{next_slot['channel']}] {next_slot['publishAtLocal']}  "
               f"({int(diff // 60)}dk {int(diff % 60)}sn sonra)")
 
 
-# â”€â”€ CLI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── CLI ───────────────────────────────────────────────────────────────────────
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="SMU Daemon")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
-    p = sub.add_parser("start", help="24/7 daemon baÅŸlat")
-    p.add_argument("--dry-run", action="store_true", help="GerÃ§ek action yapma")
+    p = sub.add_parser("start", help="24/7 daemon başlat")
+    p.add_argument("--dry-run", action="store_true", help="Gerçek action yapma")
     p.set_defaults(func=cmd_start)
 
     p = sub.add_parser("status", help="Daemon ve schedule durumu")
     p.set_defaults(func=cmd_status)
 
-    p = sub.add_parser("next-event", help="Bir sonraki olayÄ± gÃ¶ster")
+    p = sub.add_parser("next-event", help="Bir sonraki olayı göster")
     p.set_defaults(func=cmd_next_event)
 
-    p = sub.add_parser("morning-prep", help="Sabah hazÄ±rlÄ±ÄŸÄ±nÄ± elle Ã§alÄ±ÅŸtÄ±r")
+    p = sub.add_parser("morning-prep", help="Sabah hazırlığını elle çalıştır")
     p.add_argument("--dry-run", action="store_true")
     p.set_defaults(func=cmd_morning_prep)
 
@@ -758,9 +860,9 @@ def run_daily_loop(config: dict[str, Any], dry_run: bool = False) -> None:
         return
 
     state = load_daemon_state()
-    fired: list[str] = state.get("last_slots_fired", [])
+    published: list[str] = state.get("published_slots", [])
 
-    due = slots_due_now(schedule, fired)
+    due = slots_due_now(schedule, published)
     if not due:
         return
 
@@ -769,8 +871,8 @@ def run_daily_loop(config: dict[str, Any], dry_run: bool = False) -> None:
         LOG.info("Slot ateşleniyor: %s  %s", slot_id, slot.get("publishAtLocal", ""))
         ok = fire_slot(slot, dry_run=dry_run)
         if ok:
-            fired.append(slot_id)
-            state["last_slots_fired"] = fired
+            published.append(slot_id)
+            state["published_slots"] = published
             save_daemon_state(state)
             LOG.info("Slot başarılı: %s", slot_id)
         else:
@@ -778,9 +880,10 @@ def run_daily_loop(config: dict[str, Any], dry_run: bool = False) -> None:
 
 
 def _run_comment_engine(config: dict[str, Any], dry_run: bool = False) -> None:
-    """Yorum motoru: saatte en fazla 2 yorum taslağı oluştur.
+    """Yorum motoru: saatte en fazla 2 yorumu gerçek API'ye gönder.
 
     Son yorum turundan bu yana en az 30 dakika geçmiş olmalı.
+    Gerçek YouTube Data API v3 ve Instagram Graph API kullanır.
     """
     state = load_daemon_state()
     last_round = state.get("last_comment_round", "")
@@ -795,16 +898,16 @@ def _run_comment_engine(config: dict[str, Any], dry_run: bool = False) -> None:
         except (ValueError, TypeError):
             pass
 
-    # Yorum taslağı oluştur
-    LOG.info("Yorum motoru çalıştırılıyor...")
+    # Gerçek yorum motorunu çalıştır
+    LOG.info("Yorum motoru çalıştırılıyor (gerçek API)...")
     ok = run_python(
-        [str(ROOT / "smu.py"), "generate-comments", "--max", "2"],
+        [str(ROOT / "comment_engine.py"), "post"],
         dry_run=dry_run,
     )
     if ok:
         state["last_comment_round"] = now.isoformat(timespec="seconds")
         save_daemon_state(state)
-        LOG.info("Yorum motoru tamamlandı")
+        LOG.info("Yorum motoru tamamlandı (gerçek API)")
     else:
         LOG.warning("Yorum motoru başarısız")
 

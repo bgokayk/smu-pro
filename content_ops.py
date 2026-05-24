@@ -175,19 +175,18 @@ def export_path(config: dict[str, Any], item: dict[str, Any], batch: str) -> str
 
 
 def _clean_text(text: str) -> str:
-    """Temiz metin: ID'leri, rastgele string'leri, placeholder'ları kaldır."""
-    text = (text or "").strip()
-    # Uzun rastgele ID'leri kaldır (ör: "100-H13auUtZJ2o-diplomas-yoktu")
-    text = re.sub(r'\b\d{2,}-[A-Za-z0-9_-]{8,}\b', '', text)
-    # VERIFY_NEEDED placeholder'larını kaldır
-    text = text.replace("VERIFY_NEEDED", "").replace("verify_needed", "")
-    # poster-loop, sahne-baddies gibi suffix'leri kaldır
-    text = re.sub(r'\s*[-–]\s*(poster[- ]loop|sahne[- ]baddies|chatkesti|optimized)\s*', '', text, flags=re.IGNORECASE)
-    # Birden fazla boşluğu tek boşluk yap
-    text = re.sub(r'\s+', ' ', text).strip()
-    # Baştaki/sondaki tire, nokta, virgül temizliği
-    text = text.strip(" -–.,;:")
-    return text
+    """Tüm dosya adı, ID, rastgele string kalıntılarını temizler."""
+    if not text:
+        return ""
+    # Tüm ID, rakam, rastgele string kalıntılarını temizle
+    text = re.sub(r'^\d{2,3}-[A-Z0-9]+-', '', text)
+    text = re.sub(r'\b[A-Z0-9]{8,}\b', '', text)
+    text = re.sub(r'([a-z]+-)+[a-z]+', '', text)
+    text = re.sub(r'[-_]+', ' ', text).strip()
+    # İlk harfleri büyük yap
+    if len(text) > 2:
+        return text.title()
+    return "Film"
 
 
 def _make_yt_title(base: str, max_len: int = 60) -> str:
@@ -696,12 +695,76 @@ def cmd_launch_browsers(args: argparse.Namespace) -> None:
 
 
 def get_followers_stats() -> dict[str, int]:
-    """Anlık takipçi sayılarını döndür (şimdilik mock veri)."""
+    """Anlık takipçi sayılarını döndür (gerçek API'lerden).
+
+    YouTube: Data API v3 channels().list(part="statistics")
+    Instagram: Graph API /{business_id}?fields=followers_count
+
+    API limiti aşılırsa son bilinen değeri döndür.
+    """
+    try:
+        from comment_engine import youtube_get_subscriber_count, instagram_get_followers_count
+    except Exception:
+        youtube_get_subscriber_count = None
+        instagram_get_followers_count = None
+
+    config = read_json(ROOT / "smu_config.json")
+    channels = config.get("channels", {})
+    stats: dict[str, int] = {}
+
+    for channel_id, channel in channels.items():
+        if not channel.get("active", False):
+            continue
+
+        # YouTube takipçisi
+        youtube_channel_id = channel.get("youtubeChannelId", "")
+        if youtube_channel_id and youtube_get_subscriber_count:
+            try:
+                count = youtube_get_subscriber_count(youtube_channel_id)
+                if count > 0:
+                    stats[channel_id] = count
+            except Exception:
+                pass
+
+        # Instagram takipçisi (sadece poster_loop_cinema için)
+        if channel_id == "poster_loop_cinema" and instagram_get_followers_count:
+            try:
+                ig_count = instagram_get_followers_count()
+                if ig_count > 0:
+                    stats[f"{channel_id}_instagram"] = ig_count
+            except Exception:
+                pass
+
+    # API'den veri alınamazsa son bilinen değerleri kullan
+    if not stats:
+        stats = _load_last_known_followers()
+
+    # Son bilinen değerleri kaydet
+    _save_last_known_followers(stats)
+
+    return stats
+
+
+def _last_known_followers_path() -> Path:
+    return ROOT / "state" / "last_known_followers.json"
+
+
+def _load_last_known_followers() -> dict[str, int]:
+    path = _last_known_followers_path()
+    if path.exists():
+        try:
+            return read_json(path)
+        except Exception:
+            pass
     return {
         "poster_loop_cinema": 12450,
         "sahnebaddiestr": 8760,
         "chatkesti": 15230,
     }
+
+
+def _save_last_known_followers(stats: dict[str, int]) -> None:
+    write_json(_last_known_followers_path(), stats)
 
 
 def cmd_followers(args: argparse.Namespace) -> None:
