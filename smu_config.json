@@ -9,9 +9,16 @@
   "publishCadence": {
     "mode": "hourly_fixed_minutes",
     "minutes": [
-      5,
-      25,
-      40
+      0,
+      6,
+      12,
+      18,
+      24,
+      30,
+      36,
+      42,
+      48,
+      54
     ]
   },
   "morningPrepWindow": {
@@ -28,7 +35,7 @@
     "poster_loop_cinema": {
       "active": true,
       "browser": "Chrome",
-      "dailyPostTarget": 30,
+      "dailyPostTarget": 80,
       "dailyAccountDiscoveryTarget": 10,
       "dailyCommentDraftTarget": 10,
       "slotOffsetMinutes": 0,
@@ -43,7 +50,7 @@
     "sahnebaddiestr": {
       "active": true,
       "browser": "Edge",
-      "dailyPostTarget": 30,
+      "dailyPostTarget": 80,
       "dailyAccountDiscoveryTarget": 10,
       "dailyCommentDraftTarget": 10,
       "slotOffsetMinutes": 9,
@@ -58,7 +65,7 @@
     "chatkesti": {
       "active": true,
       "browser": "Firefox",
-      "dailyPostTarget": 30,
+      "dailyPostTarget": 80,
       "dailyAccountDiscoveryTarget": 10,
       "dailyCommentDraftTarget": 10,
       "slotOffsetMinutes": 18,
