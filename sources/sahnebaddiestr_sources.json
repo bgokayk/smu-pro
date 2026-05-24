@@ -1,0 +1,36 @@
+{
+  "channel": "sahnebaddiestr",
+  "strategy": "ytdlp_search",
+  "sources": [
+    {
+      "label": "magazin-sahne-genel",
+      "url": "ytsearch20:türk magazin sahne viral klip 2025 kısa",
+      "active": true, "maxItems": 10,
+      "personHint": "", "programHint": "magazin", "noPlaylist": true
+    },
+    {
+      "label": "dizi-sahne",
+      "url": "ytsearch20:türk dizi komedi sahne 2025 kısa klip",
+      "active": true, "maxItems": 10,
+      "personHint": "", "programHint": "dizi", "noPlaylist": true
+    },
+    {
+      "label": "unlu-tv-sahneleri",
+      "url": "ytsearch15:ünlü tv programı sahne aura 2025 türkçe",
+      "active": true, "maxItems": 10,
+      "personHint": "", "programHint": "tv programı", "noPlaylist": true
+    },
+    {
+      "label": "reality-show",
+      "url": "ytsearch15:survivor türk magazin reality show sahne 2025",
+      "active": true, "maxItems": 10,
+      "personHint": "", "programHint": "reality show", "noPlaylist": true
+    },
+    {
+      "label": "kadin-unluler",
+      "url": "ytsearch15:türk kadın ünlü sahne program aura viral 2025",
+      "active": true, "maxItems": 10,
+      "personHint": "", "programHint": "", "noPlaylist": true
+    }
+  ]
+}

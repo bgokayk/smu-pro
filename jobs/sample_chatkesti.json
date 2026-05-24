@@ -1,0 +1,19 @@
+{
+  "today": "2026-05-21",
+  "mode": "batch",
+  "platform": "all",
+  "source_rights": "confirmed",
+  "batch": "sample",
+  "items": [
+    {
+      "id": "chatkesti-sample-001",
+      "source_path": "C:/Users/User/.codex/yayinci-kesitleri-auto/source-clips/sample.mp4",
+      "platform": "twitch",
+      "streamer": "OrnekYayinci",
+      "game": "Ornek Oyun",
+      "hook": "Yayin burada koptu.",
+      "clip_description": "Ustte yayincinin reaksiyonu, altta olay aninin tamamlandigi kisim var.",
+      "question": "Bir sonraki hangi yayinci gelsin?"
+    }
+  ]
+}

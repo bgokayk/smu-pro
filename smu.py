@@ -268,35 +268,69 @@ def infer_item(channel_id: str, channel: dict[str, Any], source_path: Path, righ
     if "sidecar_error" in meta:
         item["metadata_error"] = meta["sidecar_error"]
 
+    # Sidecar'daki raw_title ve uploader'ı da taşı (template'lerde kullanılabilir)
+    raw_title = meta.get("raw_title", "")
+    uploader = meta.get("uploader", "")
+
     if channel_id == "poster_loop_cinema":
+        # Öncelik: sidecar'daki film_hint > film > raw_title'dan çıkarılan film adı > source_path.stem
+        film = (meta.get("film_hint") or meta.get("film") or "")
+        if not film and raw_title:
+            # "Film Name (2023) | 4K" → "Film Name"
+            film = re.sub(r'\s*[\(\[].*?[\)\]]\s*', '', raw_title).split('|')[0].split('-')[0].strip()
+        if not film:
+            film = source_path.stem
         item.update(
             {
-                "film_hint": meta.get("film") or meta.get("film_hint") or meta.get("title") or source_path.stem,
-                "year_hint": meta.get("year", ""),
-                "director_hint": meta.get("director", ""),
-                "summary_hint": meta.get("summary") or meta.get("plot") or meta.get("description") or "",
-                "scene_hint": meta.get("scene") or meta.get("scene_hint") or "",
+                "film_hint": film,
+                "year_hint": meta.get("year_hint") or meta.get("year") or "",
+                "director_hint": meta.get("director_hint") or meta.get("director") or "",
+                "summary_hint": meta.get("summary_hint") or meta.get("summary") or meta.get("plot") or meta.get("description") or "",
+                "scene_hint": meta.get("scene_hint") or meta.get("scene") or "",
             }
         )
     elif channel_id == "sahnebaddiestr":
+        # Öncelik: sidecar'daki person_hint > person > raw_title'dan çıkarılan kişi adı > source_path.stem
+        person = (meta.get("person_hint") or meta.get("person") or meta.get("celebrity") or "")
+        if not person and raw_title:
+            # "Ad Soyad | Program Adı" → "Ad Soyad"
+            person = raw_title.split('|')[0].split('-')[0].strip()
+        if not person:
+            person = source_path.stem
+        program = (meta.get("program_hint") or meta.get("program") or meta.get("context") or "")
+        if not program and raw_title:
+            # "Ad Soyad | Program Adı" → "Program Adı"
+            parts = raw_title.split('|')
+            if len(parts) > 1:
+                program = parts[1].strip()
         item.update(
             {
-                "person_hint": meta.get("person") or meta.get("celebrity") or meta.get("person_hint") or source_path.stem,
-                "program_hint": meta.get("program") or meta.get("context") or meta.get("program_hint") or "",
-                "hook": meta.get("hook") or meta.get("title") or "Bu sahnenin enerjisi ayri.",
+                "person_hint": person,
+                "program_hint": program,
+                "hook": meta.get("hook") or "",
                 "scene_description": meta.get("scene_description") or meta.get("description") or "",
-                "question": meta.get("question") or "Sence bu anin aurasi kac/10?",
+                "question": meta.get("question") or "Sence bu anın aurası kaç/10?",
             }
         )
     elif channel_id == "chatkesti":
+        # Öncelik: sidecar'daki streamer > uploader > raw_title'dan çıkarılan > source_path.stem
+        streamer = (meta.get("streamer") or meta.get("creator") or "")
+        if not streamer and uploader:
+            streamer = uploader
+        if not streamer:
+            streamer = source_path.stem
+        game = meta.get("game") or meta.get("context") or ""
+        hook = meta.get("hook") or ""
+        if not hook and raw_title:
+            hook = raw_title[:80]
         item.update(
             {
                 "platform": meta.get("platform") or "",
-                "streamer": meta.get("streamer") or meta.get("creator") or source_path.stem,
-                "game": meta.get("game") or meta.get("context") or "",
-                "hook": meta.get("hook") or meta.get("title") or "Yayin burada koptu.",
+                "streamer": streamer,
+                "game": game,
+                "hook": hook,
                 "clip_description": meta.get("clip_description") or meta.get("description") or "",
-                "question": meta.get("question") or "Bir sonraki hangi yayinci gelsin?",
+                "question": meta.get("question") or "Bir sonraki hangi yayıncı gelsin?",
             }
         )
     return item

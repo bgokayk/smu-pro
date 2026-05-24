@@ -1,0 +1,51 @@
+{
+  "id": "chatkesti",
+  "displayName": "ChatKesti",
+  "kind": "stream_clip",
+  "projectRoot": "C:/Users/User/.codex/yayinci-kesitleri-auto",
+  "defaultBatch": "batch-001",
+  "exportPattern": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/{batch}/{id}-chatkesti.mp4",
+  "browser": {
+    "name": "Firefox",
+    "engine": "firefox",
+    "profileDir": "C:/Users/User/.codex/browser-profiles/chatkesti-firefox",
+    "executableCandidates": [
+      "C:/Program Files/Mozilla Firefox/firefox.exe",
+      "C:/Program Files (x86)/Mozilla Firefox/firefox.exe"
+    ],
+    "urls": [
+      "https://studio.youtube.com/",
+      "https://www.instagram.com/chatkesti/"
+    ]
+  },
+  "hashtags": {
+    "youtube": [
+      "#shorts",
+      "#chatkesti",
+      "#twitch",
+      "#kick",
+      "#streamerclips",
+      "#yayinkesitleri",
+      "#gaming",
+      "#reels"
+    ],
+    "instagram": [
+      "#reels",
+      "#chatkesti",
+      "#twitchturkiye",
+      "#kickturkiye",
+      "#yayinkesiti",
+      "#kesfet",
+      "#gamingclips"
+    ],
+    "tiktok": [
+      "#chatkesti",
+      "#yayinkesiti",
+      "#twitchclips",
+      "#kickclips",
+      "#gamingtok",
+      "#fyp"
+    ]
+  },
+  "handoffPrompt": "Brand: ChatKesti. Kick/Twitch stream clips. Layout: streamer facecam top, main event/game/react content bottom. Tone is fast, chat-native and respectful. Sell the feeling that the stream moment broke open. No drama-bait, insults, ifsa, private-life hints or unverified accusations. Output clip identity, render brief, YouTube/Instagram/TikTok captions and safety flags."
+}

@@ -1,0 +1,18 @@
+{
+  "today": "2026-05-21",
+  "mode": "batch",
+  "platform": "dual",
+  "source_rights": "confirmed",
+  "batch": "sample",
+  "items": [
+    {
+      "id": "baddies-sample-001",
+      "source_path": "C:/Users/User/.codex/sahne-baddies-auto/source-videos/sample.mp4",
+      "person_hint": "Ornek Isim",
+      "program_hint": "Ornek Program",
+      "hook": "Bu sahnenin enerjisi ayri.",
+      "scene_description": "Kisa edit, sahnedeki mimik, stil ve ekran durusunu one cikarir.",
+      "question": "Sence bu anin aurasi kac/10?"
+    }
+  ]
+}

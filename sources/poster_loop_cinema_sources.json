@@ -1,0 +1,16 @@
+{
+  "channel": "poster_loop_cinema",
+  "strategy": "filmmax_only",
+  "sources": [
+    {
+      "label": "filmmax-shorts",
+      "url": "https://www.youtube.com/@Filmmax-/shorts",
+      "active": true,
+      "maxItems": 30,
+      "filmHint": "",
+      "yearHint": "",
+      "sceneHint": "Filmmax short",
+      "noPlaylist": false
+    }
+  ]
+}

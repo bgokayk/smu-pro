@@ -1,0 +1,78 @@
+{
+  "channel": "sahnebaddiestr",
+  "displayName": "SahneBaddiesTR",
+  "batch": "sample",
+  "createdAt": "2026-05-21T00:24:32.880425+00:00",
+  "providers": [
+    "template"
+  ],
+  "providerCounts": {
+    "template": 1
+  },
+  "items": [
+    {
+      "id": "baddies-sample-001",
+      "channel": "sahnebaddiestr",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/sahne-baddies-auto/exports/sample/baddies-sample-001-sahne-baddies.mp4",
+      "sourcePath": "C:/Users/User/.codex/sahne-baddies-auto/source-videos/sample.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "sample",
+      "youtubeTitle": "Ornek Isim | Bu sahnenin enerjisi ayri. #shorts",
+      "youtubeDescription": "Ornek Isim - Ornek Program\n\nBu sahnenin enerjisi ayri.\n\nKisa edit, sahnedeki mimik, stil ve ekran durusunu one cikarir.\n\nSence bu anin aurasi kac/10?\n\n#shorts #sahnebaddies #baddies #reels #unluler #magazin #aura #edit",
+      "instagramCaption": "Ornek Isim\n\nBu sahnenin enerjisi ayri.\n\nSence bu anin aurasi kac/10?\n\n#reels #sahnebaddies #baddies #kesfet #unluler #magazin #auraedit",
+      "tiktokCaption": "",
+      "metadata": {
+        "id": "baddies-sample-001",
+        "status": "ready",
+        "clean_identity": {
+          "person": "Ornek Isim",
+          "program_or_context": "Ornek Program",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "crop_rule": "no black bars; scale/crop cleanly",
+          "watermark": "bottom-right, visible but not covering the scene",
+          "style_notes": [
+            "cherry pop",
+            "bright",
+            "clean magazine energy"
+          ]
+        },
+        "youtube": {
+          "title": "Ornek Isim | Bu sahnenin enerjisi ayri. #shorts",
+          "description": "Ornek Isim - Ornek Program\n\nBu sahnenin enerjisi ayri.\n\nKisa edit, sahnedeki mimik, stil ve ekran durusunu one cikarir.\n\nSence bu anin aurasi kac/10?\n\n#shorts #sahnebaddies #baddies #reels #unluler #magazin #aura #edit",
+          "hashtags": [
+            "#shorts",
+            "#sahnebaddies",
+            "#baddies",
+            "#reels",
+            "#unluler",
+            "#magazin",
+            "#aura",
+            "#edit"
+          ]
+        },
+        "instagram": {
+          "caption": "Ornek Isim\n\nBu sahnenin enerjisi ayri.\n\nSence bu anin aurasi kac/10?\n\n#reels #sahnebaddies #baddies #kesfet #unluler #magazin #auraedit",
+          "hashtags": [
+            "#reels",
+            "#sahnebaddies",
+            "#baddies",
+            "#kesfet",
+            "#unluler",
+            "#magazin",
+            "#auraedit"
+          ]
+        },
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; avoid private-life claims and body/age comments."
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>SMU Pro Dashboard</title>
+    <style>
+        body { background: #0a0c0f; font-family: system-ui; color: #eee; margin: 0; padding: 20px; }
+        .card { background: #1a1c23; border-radius: 16px; padding: 16px; margin-bottom: 16px; }
+        .stats { display: flex; gap: 16px; flex-wrap: wrap; }
+        .stat-card { background: #252836; padding: 16px; border-radius: 12px; flex: 1; text-align: center; }
+        .stat-number { font-size: 32px; font-weight: bold; color: #60a5fa; }
+        .channels { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+        .channel-card { background: #252836; padding: 12px; border-radius: 12px; flex: 1; text-align: center; }
+        .progress-bar { background: #1e1e2a; border-radius: 20px; height: 8px; margin-top: 8px; overflow: hidden; }
+        .progress-fill { background: #3b82f6; height: 100%; width: 0%; border-radius: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid #333; }
+        th { background: #1e1e2a; }
+        .badge { background: #2e7d32; padding: 2px 8px; border-radius: 20px; font-size: 12px; display: inline-block; }
+        .time-slot { font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>SMU Pro Dashboard</h1>
+    <div id="stats" class="card stats">Yükleniyor...</div>
+    <div id="channels" class="channels">Yükleniyor...</div>
+    <div class="card">
+        <h2>Bugünün Yayın Takvimi</h2>
+        <div style="overflow-x: auto;">
+            <table id="schedule">
+                <thead><tr><th>Saat</th><th>Kanal</th><th>Kalan Süre</th><th>çerik</th><th>Durum</th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        async function loadData() {
+            try {
+                // Dinamik olarak bugünün tarihini kullan
+                const today = new Date().toISOString().slice(0,10);
+                const response = await fetch(`schedules/${today}_smu_schedule.json`);
+                if (!response.ok) throw new Error('Schedule dosyası bulunamadı');
+                const data = await response.json();
+                const slots = data.slots || [];
+                const now = new Date();
+                const published = slots.filter(s => new Date(s.publishAtLocal) < now).length;
+                const planned = slots.filter(s => new Date(s.publishAtLocal) >= now).length;
+                document.getElementById('stats').innerHTML = `
+                    <div class="stat-card"><div class="stat-number">${published}</div><div>Yayınlanan</div></div>
+                    <div class="stat-card"><div class="stat-number">${planned}</div><div>Planlanan</div></div>
+                    <div class="stat-card"><div class="stat-number">${slots.length}</div><div>Toplam Slot</div></div>
+                `;
+                const channels = ['poster_loop_cinema','sahnebaddiestr','chatkesti'];
+                const titles = {'poster_loop_cinema':'Poster Loop','sahnebaddiestr':'Sahne Baddies','chatkesti':'ChatKesti'};
+                const colors = {'poster_loop_cinema':'#3b82f6','sahnebaddiestr':'#f97316','chatkesti':'#10b981'};
+                const channelsHtml = channels.map(ch => {
+                    let done = slots.filter(s => s.channel === ch && new Date(s.publishAtLocal) < now).length;
+                    let total = 30;
+                    let percent = (done/total)*100;
+                    return `<div class="channel-card"><h3>${titles[ch]}</h3><div class="stat-number">${done}/${total}</div><div class="progress-bar"><div class="progress-fill" style="width:${percent}%; background:${colors[ch]}"></div></div></div>`;
+                }).join('');
+                document.getElementById('channels').innerHTML = channelsHtml;
+                const tbody = slots.map(slot => {
+                    let slotTime = new Date(slot.publishAtLocal);
+                    let diff = Math.floor((slotTime - now) / 60000);
+                    let timeText = diff > 0 ? `${diff} dk sonra` : `${-diff} dk önce`;
+                    let channelName = slot.channel === 'poster_loop_cinema' ? 'Poster' : (slot.channel === 'sahnebaddiestr' ? 'Baddies' : 'Chat');
+                    let content = (slot.youtubeTitle || slot.file || '-').slice(0, 30);
+                    return `<tr><td class="time-slot">${slot.publishAtLocal.slice(11,16)}</td><td>${channelName}</td><td>${timeText}</td><td>${content}</td><td><span class="badge">Planlı</span></td></tr>`;
+                }).join('');
+                document.querySelector('#schedule tbody').innerHTML = tbody || '<tr><td colspan="5">Henüz takvim oluşturulmamış</td></tr>';
+            } catch(e) {
+                console.error(e);
+                document.getElementById('stats').innerHTML = '<div class="stat-card">Takvim dosyası bulunamadı. Sabah hazırlığı bekleniyor.</div>';
+                document.querySelector('#schedule tbody').innerHTML = '<tr><td colspan="5">Takvim dosyası yok. Daemon sabah 07:00\'de oluşturacak.</td></tr>';
+            }
+        }
+        loadData();
+        setInterval(loadData, 30000);
+    </script>
+</body>
+</html>

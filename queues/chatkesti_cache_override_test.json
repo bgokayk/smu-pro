@@ -1,0 +1,66 @@
+{
+  "channel": "chatkesti",
+  "displayName": "ChatKesti",
+  "batch": "sample",
+  "createdAt": "2026-05-21T00:13:56.109336+00:00",
+  "providers": [
+    "cache",
+    "template"
+  ],
+  "providerCounts": {
+    "cache": 1
+  },
+  "items": [
+    {
+      "id": "chatkesti-sample-001",
+      "channel": "chatkesti",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/sample/chatkesti-sample-001-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/source-clips/sample.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "sample",
+      "youtubeTitle": "OrnekYayinci | Chat bunu beklemiyordu #shorts",
+      "youtubeDescription": "Chat bunu beklemiyordu.\n\nYayinci: OrnekYayinci\nPlatform: twitch\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips",
+      "instagramCaption": "Chat bunu beklemiyordu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye",
+      "tiktokCaption": "Chat bunu beklemiyordu. #chatkesti #twitchclips #kickclips",
+      "metadata": {
+        "id": "chatkesti-sample-001",
+        "status": "ready",
+        "youtube": {
+          "title": "OrnekYayinci | Chat bunu beklemiyordu #shorts",
+          "description": "Chat bunu beklemiyordu.\n\nYayinci: OrnekYayinci\nPlatform: twitch\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips"
+          ]
+        },
+        "instagram": {
+          "caption": "Chat bunu beklemiyordu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye"
+          ]
+        },
+        "tiktok": {
+          "caption": "Chat bunu beklemiyordu. #chatkesti #twitchclips #kickclips",
+          "hashtags": [
+            "#chatkesti",
+            "#twitchclips",
+            "#kickclips"
+          ]
+        },
+        "safety_flags": [],
+        "assumptions": [
+          "Fake import test."
+        ]
+      }
+    }
+  ]
+}

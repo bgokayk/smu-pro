@@ -1,0 +1,64 @@
+{
+  "cached_at": "2026-05-23T22:55:13.003434+00:00",
+  "channel": "chatkesti",
+  "item_id": "048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10",
+  "result": {
+    "id": "048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10",
+    "status": "ready",
+    "clip_identity": {
+      "streamer": "048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10-chatkesti",
+      "platform": "twitch/kick",
+      "game_or_context": "",
+      "confidence": "medium"
+    },
+    "render_brief": {
+      "format": "1080x1920 vertical",
+      "layout": "streamer facecam top, main event/game/react content bottom",
+      "separator": "thin black/green divider",
+      "watermark": "small bottom-right",
+      "manual_review_rule": "review if facecam confidence is below 0.45"
+    },
+    "youtube": {
+      "title": "048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10-chatkesti | Yayin burada k #shorts",
+      "description": "048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "hashtags": [
+        "#shorts",
+        "#chatkesti",
+        "#twitch",
+        "#kick",
+        "#streamerclips",
+        "#yayinkesitleri",
+        "#gaming",
+        "#reels"
+      ]
+    },
+    "instagram": {
+      "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "hashtags": [
+        "#reels",
+        "#chatkesti",
+        "#twitchturkiye",
+        "#kickturkiye",
+        "#yayinkesiti",
+        "#kesfet",
+        "#gamingclips"
+      ]
+    },
+    "tiktok": {
+      "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "hashtags": [
+        "#chatkesti",
+        "#yayinkesiti",
+        "#twitchclips",
+        "#kickclips",
+        "#gamingtok",
+        "#fyp"
+      ]
+    },
+    "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+    "safety_flags": [],
+    "assumptions": [
+      "Template fallback used; keep the clip about the moment, not personal attacks."
+    ]
+  }
+}

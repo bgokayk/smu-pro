@@ -1,0 +1,27 @@
+{
+  "channel": "chatkesti",
+  "run_decision": "proceed",
+  "global_blockers": [],
+  "items": [
+    {
+      "id": "chatkesti-sample-001",
+      "status": "ready",
+      "youtube": {
+        "title": "OrnekYayinci | Chat bunu beklemiyordu #shorts",
+        "description": "Chat bunu beklemiyordu.\n\nYayinci: OrnekYayinci\nPlatform: twitch\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips",
+        "hashtags": ["#shorts", "#chatkesti", "#twitch", "#kick", "#streamerclips"]
+      },
+      "instagram": {
+        "caption": "Chat bunu beklemiyordu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye",
+        "hashtags": ["#reels", "#chatkesti", "#twitchturkiye", "#kickturkiye"]
+      },
+      "tiktok": {
+        "caption": "Chat bunu beklemiyordu. #chatkesti #twitchclips #kickclips",
+        "hashtags": ["#chatkesti", "#twitchclips", "#kickclips"]
+      },
+      "safety_flags": [],
+      "assumptions": ["Fake import test."]
+    }
+  ],
+  "next_actions": []
+}

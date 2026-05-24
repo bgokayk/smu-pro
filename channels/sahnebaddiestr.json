@@ -1,0 +1,44 @@
+{
+  "id": "sahnebaddiestr",
+  "displayName": "SahneBaddiesTR",
+  "kind": "baddies",
+  "projectRoot": "C:/Users/User/.codex/sahne-baddies-auto",
+  "defaultBatch": "batch-001",
+  "exportPattern": "C:/Users/User/.codex/sahne-baddies-auto/exports/{batch}/{id}-sahne-baddies.mp4",
+  "browser": {
+    "name": "Edge",
+    "engine": "chromium",
+    "debugPort": 9223,
+    "profileDir": "C:/Users/User/.codex/browser-profiles/sahnebaddies-edge",
+    "executableCandidates": [
+      "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+      "C:/Program Files/Microsoft/Edge/Application/msedge.exe"
+    ],
+    "urls": [
+      "https://studio.youtube.com/",
+      "https://www.instagram.com/sahnebaddiestr/"
+    ]
+  },
+  "hashtags": {
+    "youtube": [
+      "#shorts",
+      "#sahnebaddies",
+      "#baddies",
+      "#reels",
+      "#unluler",
+      "#magazin",
+      "#aura",
+      "#edit"
+    ],
+    "instagram": [
+      "#reels",
+      "#sahnebaddies",
+      "#baddies",
+      "#kesfet",
+      "#unluler",
+      "#magazin",
+      "#auraedit"
+    ]
+  },
+  "handoffPrompt": "Brand: SahneBaddiesTR. Pop, bright, cherry/pink, Y2K, clean magazine energy. Talk about aura, screen energy, style, stance and vibe. Never use ifsa, scandal, humiliation, unverified claims, body/age comments or private-life hints. Output clean identity, render brief, YouTube title/description, Instagram caption and safety flags."
+}

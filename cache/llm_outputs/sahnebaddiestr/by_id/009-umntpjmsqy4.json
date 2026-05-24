@@ -1,0 +1,54 @@
+{
+  "cached_at": "2026-05-23T22:55:12.789060+00:00",
+  "channel": "sahnebaddiestr",
+  "item_id": "009-umntpjmsqy4",
+  "result": {
+    "id": "009-umntpjmsqy4",
+    "status": "ready",
+    "clean_identity": {
+      "person": "009-umntpjmsqy4-sahne-baddies",
+      "program_or_context": "ekran ani",
+      "confidence": "medium"
+    },
+    "render_brief": {
+      "format": "1080x1920 vertical",
+      "crop_rule": "no black bars; scale/crop cleanly",
+      "watermark": "bottom-right, visible but not covering the scene",
+      "style_notes": [
+        "cherry pop",
+        "bright",
+        "clean magazine energy"
+      ]
+    },
+    "youtube": {
+      "title": "009-umntpjmsqy4-sahne-baddies | Bu sahnenin enerjisi ayri. #shorts",
+      "description": "009-umntpjmsqy4-sahne-baddies - ekran ani\n\nBu sahnenin enerjisi ayri.\n\nekran ani icinden ekran enerjisi, stil ve durus odakli kisa edit.\n\nSence bu anin aurasi kac/10?\n\n#shorts #sahnebaddies #baddies #reels #unluler #magazin #aura #edit",
+      "hashtags": [
+        "#shorts",
+        "#sahnebaddies",
+        "#baddies",
+        "#reels",
+        "#unluler",
+        "#magazin",
+        "#aura",
+        "#edit"
+      ]
+    },
+    "instagram": {
+      "caption": "009-umntpjmsqy4-sahne-baddies\n\nBu sahnenin enerjisi ayri.\n\nSence bu anin aurasi kac/10?\n\n#reels #sahnebaddies #baddies #kesfet #unluler #magazin #auraedit",
+      "hashtags": [
+        "#reels",
+        "#sahnebaddies",
+        "#baddies",
+        "#kesfet",
+        "#unluler",
+        "#magazin",
+        "#auraedit"
+      ]
+    },
+    "safety_flags": [],
+    "assumptions": [
+      "Template fallback used; avoid private-life claims and body/age comments."
+    ]
+  }
+}

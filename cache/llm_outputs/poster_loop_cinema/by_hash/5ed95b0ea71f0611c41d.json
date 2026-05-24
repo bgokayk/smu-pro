@@ -1,0 +1,80 @@
+{
+  "cached_at": "2026-05-23T22:55:12.513243+00:00",
+  "channel": "poster_loop_cinema",
+  "item_id": "098-phx-bwamb6a-sadece-testi-gecti-ve-bir-anda-en-zeki-kisi-oldu",
+  "result": {
+    "id": "098-phx-bwamb6a-sadece-testi-gecti-ve-bir-anda-en-zeki-kisi-oldu",
+    "status": "ready",
+    "film_identity": {
+      "title": "098-PhX_BWAMb6A-sadece-testi-gecti-ve-bir-anda-en-zeki-kisi-oldu-poster-loop",
+      "year": "",
+      "director": "VERIFY_NEEDED",
+      "screenplay": "",
+      "cast": [],
+      "confidence": "medium"
+    },
+    "poster_brief": {
+      "canvas": "9:16 vertical",
+      "background": "#f2f2f0",
+      "title_treatment": "huge clean bold title",
+      "credits_block": "",
+      "year_position": "top-right",
+      "swatches": [
+        "#252826",
+        "#3e9a9b",
+        "#71883f",
+        "#d5bd49",
+        "#c65d35"
+      ],
+      "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+      "export_note": "scene inside poster frame; no black bars; no crop damage"
+    },
+    "youtube": {
+      "title": "098-PhX_BWAMb6A-sadece-testi-gecti-ve-bir-anda-en-zeki-kisi-oldu-poster-loop moving poster. #shorts",
+      "description": "098-PhX_BWAMb6A-sadece-testi-gecti-ve-bir-anda-en-zeki-kisi-oldu-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #098phxbwamb6asadecetestigectivebirandaenzekikisiolduposterloop",
+      "hashtags": [
+        "#MovingPoster",
+        "#MoviePoster",
+        "#Cinema",
+        "#FilmEdit",
+        "#MovieEdit",
+        "#CultCinema",
+        "#FilmTok",
+        "#PosterDesign",
+        "#AnalogNeo",
+        "#098phxbwamb6asadecetestigectivebirandaenzekikisiolduposterloop"
+      ]
+    },
+    "instagram": {
+      "caption": "098-PhX_BWAMb6A-sadece-testi-gecti-ve-bir-anda-en-zeki-kisi-oldu-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #098phxbwamb6asadecetestigectivebirandaenzekikisiolduposterloop",
+      "hashtags": [
+        "#MovingPoster",
+        "#MoviePoster",
+        "#Cinema",
+        "#FilmEdit",
+        "#MovieEdit",
+        "#CultCinema",
+        "#FilmTok",
+        "#PosterDesign",
+        "#AnalogNeo",
+        "#098phxbwamb6asadecetestigectivebirandaenzekikisiolduposterloop"
+      ]
+    },
+    "tiktok": {
+      "caption": "098-PhX_BWAMb6A-sadece-testi-gecti-ve-bir-anda-en-zeki-kisi-oldu-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "hashtags": [
+        "#MovingPoster",
+        "#MoviePoster",
+        "#Cinema",
+        "#FilmEdit",
+        "#MovieEdit",
+        "#CultCinema"
+      ]
+    },
+    "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+    "safety_flags": [],
+    "assumptions": [
+      "Template fallback used; verify identity before publishing if confidence is not high."
+    ]
+  }
+}

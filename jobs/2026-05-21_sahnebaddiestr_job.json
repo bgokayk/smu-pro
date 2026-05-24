@@ -1,0 +1,18 @@
+{
+  "today": "2026-05-21",
+  "mode": "batch",
+  "platform": "all",
+  "source_rights": "confirmed",
+  "batch": "2026-05-21",
+  "channel": "sahnebaddiestr",
+  "sourceBucket": "C:/Users/User/.codex/sahne-baddies-auto/source-videos",
+  "sourceStats": {
+    "found": 0,
+    "selected": 0,
+    "confirmed": 0,
+    "unknown_or_hold": 0,
+    "skippedPublished": 0,
+    "missingBuckets": 0
+  },
+  "items": []
+}

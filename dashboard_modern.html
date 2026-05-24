@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMU Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background: #0f0f12; }
+        .card { transition: all 0.2s ease; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 20px 25px -12px rgba(0,0,0,0.3); }
+        .slot-row:hover { background: rgba(59,130,246,0.1); }
+    </style>
+</head>
+<body class="text-gray-200">
+    <div class="container mx-auto px-4 py-6 max-w-7xl">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6 border-b border-gray-800 pb-4">
+            <div>
+                <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">SMU</h1>
+                <p class="text-gray-400 text-sm">Social Media Unit • 7/24 Otomasyon</p>
+            </div>
+            <div class="text-right">
+                <div id="clock" class="text-xl font-mono text-blue-400"></div>
+                <div class="text-xs text-gray-500">Son güncelleme: <span id="lastUpdate">-</span></div>
+            </div>
+        </div>
+
+        <!-- 3 Kanal Kartı -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8" id="channelCards">
+            <!-- JS dolduracak -->
+        </div>
+
+        <!-- Yayın Takvimi -->
+        <div class="bg-gray-900/50 rounded-xl border border-gray-800 overflow-hidden mb-8">
+            <div class="px-5 py-3 bg-gray-800/50 border-b border-gray-700">
+                <h2 class="font-semibold text-lg flex items-center gap-2">📅 Bugünün Yayın Takvimi</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-800/70 text-gray-300">
+                        <tr>
+                            <th class="px-4 py-2 text-left">Kanal</th>
+                            <th class="px-4 py-2 text-left">Saat</th>
+                            <th class="px-4 py-2 text-left">Kalan Süre</th>
+                            <th class="px-4 py-2 text-left">Dosya</th>
+                            <th class="px-4 py-2 text-left">YouTube Başlık</th>
+                            <th class="px-4 py-2 text-left">Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleTableBody">
+                        <tr><td colspan="6" class="text-center py-8 text-gray-500">Yükleniyor...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Yorum Planı -->
+        <div class="bg-gray-900/50 rounded-xl border border-gray-800 p-4">
+            <h2 class="font-semibold text-lg mb-3 flex items-center gap-2">💬 Bugünkü Yorum Planı</h2>
+            <div id="commentPlan" class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+                <!-- JS dolduracak -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchData() {
+            try {
+                const res = await fetch('/api/data');
+                const data = await res.json();
+                updateUI(data);
+                document.getElementById('lastUpdate').innerText = new Date().toLocaleTimeString('tr-TR');
+            } catch(e) { console.error(e); }
+        }
+
+        function updateUI(data) {
+            // Kanal kartları
+            const channels = data.schedule?.channels || {};
+            const cardsHtml = Object.entries(channels).map(([id, ch]) => {
+                let done = 0, total = ch.dailyPostTarget || 30;
+                const slots = data.schedule?.slots?.filter(s => s.channel === id) || [];
+                done = slots.filter(s => s.status === 'scheduled' && new Date(s.publishAtLocal) < new Date()).length;
+                let percent = total ? (done/total*100) : 0;
+                let color = id === 'poster_loop_cinema' ? 'blue' : (id === 'sahnebaddiestr' ? 'orange' : 'green');
+                return `
+                    <div class="card bg-gray-800/40 rounded-xl p-4 border border-gray-700">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="font-bold text-${color}-400">${id === 'poster_loop_cinema' ? 'Poster Loop Cinema' : (id === 'sahnebaddiestr' ? 'Sahne Baddies TR' : 'ChatKesti')}</div>
+                                <div class="text-2xl font-bold mt-1">${done}/${total}</div>
+                                <div class="text-xs text-gray-400">yayınlandı</div>
+                            </div>
+                            <div class="text-right text-xs text-gray-400">${ch.sourceBucket?.split('/').pop() || ''}</div>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-1.5 mt-3"><div class="bg-${color}-500 h-1.5 rounded-full" style="width: ${percent}%"></div></div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('channelCards').innerHTML = cardsHtml;
+
+            // Tablo satırları
+            const slots = data.schedule?.slots || [];
+            const now = new Date();
+            const tbody = slots.map(slot => {
+                let slotTime = new Date(slot.publishAtLocal);
+                let diff = Math.floor((slotTime - now) / 1000);
+                let timeText = diff > 0 ? `${Math.floor(diff/60)}dk sonra` : `${Math.abs(Math.floor(diff/60))}dk önce`;
+                let statusBadge = slot.status === 'scheduled' ? '<span class="text-green-400">● Planlı</span>' : '<span class="text-yellow-400">● Bekliyor</span>';
+                let channelIcon = slot.channel === 'poster_loop_cinema' ? '🎬' : (slot.channel === 'sahnebaddiestr' ? '✨' : '🎮');
+                return `
+                    <tr class="slot-row border-t border-gray-800 hover:bg-gray-800/30">
+                        <td class="px-4 py-2">${channelIcon} ${slot.channel === 'poster_loop_cinema' ? 'Poster' : (slot.channel === 'sahnebaddiestr' ? 'Baddies' : 'ChatKesti')}</td>
+                        <td class="px-4 py-2 font-mono">${slot.publishAtLocal.slice(11,16)}</td>
+                        <td class="px-4 py-2 text-${diff>0?'blue':'gray'}-400">${timeText}</td>
+                        <td class="px-4 py-2 text-xs text-gray-400 truncate max-w-[150px]">${slot.file?.split('/').pop() || '-'}</td>
+                        <td class="px-4 py-2 text-xs truncate max-w-[200px]">${slot.youtubeTitle?.slice(0,40) || '-'}</td>
+                        <td class="px-4 py-2">${statusBadge}</td>
+                    </tr>
+                `;
+            }).join('');
+            document.getElementById('scheduleTableBody').innerHTML = tbody || '<tr><td colspan="6" class="text-center py-8 text-gray-500">Takvim boş, sabah hazırlığı bekleniyor</td></tr>';
+
+            // Yorum planı (placeholder)
+            const comments = data.comments?.channels || {};
+            const commentHtml = Object.entries(comments).map(([id, val]) => `
+                <div class="bg-gray-800/30 rounded-lg p-3 border border-gray-700">
+                    <div class="font-semibold text-sm">${id === 'poster_loop_cinema' ? 'Poster Loop' : (id === 'sahnebaddiestr' ? 'Baddies' : 'ChatKesti')}</div>
+                    <div class="text-xs text-gray-400 mt-1">${val.drafts?.length || 0} yorum taslağı</div>
+                    <div class="text-xs text-gray-500 mt-1 truncate">${val.drafts?.[0]?.comment || 'Henüz taslak yok'}</div>
+                </div>
+            `).join('');
+            document.getElementById('commentPlan').innerHTML = commentHtml || '<div class="text-gray-500 col-span-3 text-center">Yorum planı oluşturulmamış</div>';
+        }
+
+        function updateClock() {
+            document.getElementById('clock').innerText = new Date().toLocaleTimeString('tr-TR');
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+        fetchData();
+        setInterval(fetchData, 30000);
+    </script>
+</body>
+</html>

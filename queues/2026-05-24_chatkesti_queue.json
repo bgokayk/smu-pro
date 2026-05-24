@@ -1,0 +1,2235 @@
+{
+  "channel": "chatkesti",
+  "displayName": "ChatKesti",
+  "batch": "2026-05-24",
+  "createdAt": "2026-05-23T22:55:13.055110+00:00",
+  "providers": [
+    "cache",
+    "template"
+  ],
+  "providerCounts": {
+    "template": 30
+  },
+  "items": [
+    {
+      "id": "055-zzlvk97g7fc",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/055-zzlvk97g7fc-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/055-zzlvk97g7fc-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "055-zzlvk97g7fc-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "055-zzlvk97g7fc-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "055-zzlvk97g7fc",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "055-zzlvk97g7fc-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "055-zzlvk97g7fc-chatkesti | Yayin burada koptu. #shorts",
+          "description": "055-zzlvk97g7fc-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "054-ypyhc0djaca",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/054-ypyhc0djaca-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/054-ypyhc0djaca-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "054-ypyhc0djaca-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "054-ypyhc0djaca-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "054-ypyhc0djaca",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "054-ypyhc0djaca-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "054-ypyhc0djaca-chatkesti | Yayin burada koptu. #shorts",
+          "description": "054-ypyhc0djaca-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "053-xhvvexxm0hy",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/053-xhvvexxm0hy-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/053-xhvvexxm0hy-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "053-xhvvexxm0hy-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "053-xhvvexxm0hy-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "053-xhvvexxm0hy",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "053-xhvvexxm0hy-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "053-xhvvexxm0hy-chatkesti | Yayin burada koptu. #shorts",
+          "description": "053-xhvvexxm0hy-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "052-wocpnkx1lxs",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/052-wocpnkx1lxs-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/052-wocpnkx1lxs-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "052-wocpnkx1lxs-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "052-wocpnkx1lxs-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "052-wocpnkx1lxs",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "052-wocpnkx1lxs-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "052-wocpnkx1lxs-chatkesti | Yayin burada koptu. #shorts",
+          "description": "052-wocpnkx1lxs-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "051-vrkgguywclw",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/051-vrkgguywclw-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/051-vrkgguywclw-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "051-vrkgguywclw-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "051-vrkgguywclw-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "051-vrkgguywclw",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "051-vrkgguywclw-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "051-vrkgguywclw-chatkesti | Yayin burada koptu. #shorts",
+          "description": "051-vrkgguywclw-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "050-vfaqvsx2y4e",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/050-vfaqvsx2y4e-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/050-vfaqvsx2y4e-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "050-vfaqvsx2y4e-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "050-vfaqvsx2y4e-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "050-vfaqvsx2y4e",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "050-vfaqvsx2y4e-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "050-vfaqvsx2y4e-chatkesti | Yayin burada koptu. #shorts",
+          "description": "050-vfaqvsx2y4e-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "049-udcw5m-r9yg",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/049-udcw5m-r9yg-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/049-udcw5m-r9yg-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "049-udcw5m-r9yg-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "049-udcw5m-r9yg-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "049-udcw5m-r9yg",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "049-udcw5m-r9yg-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "049-udcw5m-r9yg-chatkesti | Yayin burada koptu. #shorts",
+          "description": "049-udcw5m-r9yg-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10-chatkesti | Yayin burada k #shorts",
+      "youtubeDescription": "048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10-chatkesti | Yayin burada k #shorts",
+          "description": "048-twitch-elraenn-yayinda-video-izlerken-kizip-ozur-gjjrxdlyh10-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "047-tphsqnl5hwa",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/047-tphsqnl5hwa-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/047-tphsqnl5hwa-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "047-tphsqnl5hwa-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "047-tphsqnl5hwa-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "047-tphsqnl5hwa",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "047-tphsqnl5hwa-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "047-tphsqnl5hwa-chatkesti | Yayin burada koptu. #shorts",
+          "description": "047-tphsqnl5hwa-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "046-tdldfaahpvq",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/046-tdldfaahpvq-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/046-tdldfaahpvq-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "046-tdldfaahpvq-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "046-tdldfaahpvq-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "046-tdldfaahpvq",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "046-tdldfaahpvq-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "046-tdldfaahpvq-chatkesti | Yayin burada koptu. #shorts",
+          "description": "046-tdldfaahpvq-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "045-s9eldn8f7km",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/045-s9eldn8f7km-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/045-s9eldn8f7km-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "045-s9eldn8f7km-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "045-s9eldn8f7km-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "045-s9eldn8f7km",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "045-s9eldn8f7km-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "045-s9eldn8f7km-chatkesti | Yayin burada koptu. #shorts",
+          "description": "045-s9eldn8f7km-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "044-rurocnwtqru",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/044-rurocnwtqru-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/044-rurocnwtqru-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "044-rurocnwtqru-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "044-rurocnwtqru-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "044-rurocnwtqru",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "044-rurocnwtqru-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "044-rurocnwtqru-chatkesti | Yayin burada koptu. #shorts",
+          "description": "044-rurocnwtqru-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "043-rpz6vtmw4b8",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/043-rpz6vtmw4b8-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/043-rpz6vtmw4b8-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "043-rpz6vtmw4b8-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "043-rpz6vtmw4b8-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "043-rpz6vtmw4b8",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "043-rpz6vtmw4b8-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "043-rpz6vtmw4b8-chatkesti | Yayin burada koptu. #shorts",
+          "description": "043-rpz6vtmw4b8-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "042-ro7qmtpwdj8",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/042-ro7qmtpwdj8-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/042-ro7qmtpwdj8-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "042-ro7qmtpwdj8-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "042-ro7qmtpwdj8-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "042-ro7qmtpwdj8",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "042-ro7qmtpwdj8-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "042-ro7qmtpwdj8-chatkesti | Yayin burada koptu. #shorts",
+          "description": "042-ro7qmtpwdj8-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "041-rl7jxlpan5u",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/041-rl7jxlpan5u-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/041-rl7jxlpan5u-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "041-rl7jxlpan5u-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "041-rl7jxlpan5u-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "041-rl7jxlpan5u",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "041-rl7jxlpan5u-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "041-rl7jxlpan5u-chatkesti | Yayin burada koptu. #shorts",
+          "description": "041-rl7jxlpan5u-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "040-pjpqxi0pvzc",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/040-pjpqxi0pvzc-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/040-pjpqxi0pvzc-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "040-pjpqxi0pvzc-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "040-pjpqxi0pvzc-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "040-pjpqxi0pvzc",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "040-pjpqxi0pvzc-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "040-pjpqxi0pvzc-chatkesti | Yayin burada koptu. #shorts",
+          "description": "040-pjpqxi0pvzc-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "039-pigyfmngxqs",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/039-pigyfmngxqs-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/039-pigyfmngxqs-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "039-pigyfmngxqs-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "039-pigyfmngxqs-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "039-pigyfmngxqs",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "039-pigyfmngxqs-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "039-pigyfmngxqs-chatkesti | Yayin burada koptu. #shorts",
+          "description": "039-pigyfmngxqs-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "038-nnz-nyprh4w",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/038-nnz-nyprh4w-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/038-nnz-nyprh4w-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "038-nnz-nyprh4w-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "038-nnz-nyprh4w-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "038-nnz-nyprh4w",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "038-nnz-nyprh4w-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "038-nnz-nyprh4w-chatkesti | Yayin burada koptu. #shorts",
+          "description": "038-nnz-nyprh4w-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "037-nixr-itidqo",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/037-nixr-itidqo-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/037-nixr-itidqo-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "037-nixr-itidqo-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "037-nixr-itidqo-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "037-nixr-itidqo",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "037-nixr-itidqo-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "037-nixr-itidqo-chatkesti | Yayin burada koptu. #shorts",
+          "description": "037-nixr-itidqo-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "036-me2iliif3x4",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/036-me2iliif3x4-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/036-me2iliif3x4-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "036-me2iliif3x4-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "036-me2iliif3x4-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "036-me2iliif3x4",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "036-me2iliif3x4-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "036-me2iliif3x4-chatkesti | Yayin burada koptu. #shorts",
+          "description": "036-me2iliif3x4-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "035-m8yubzltlrm",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/035-m8yubzltlrm-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/035-m8yubzltlrm-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "035-m8yubzltlrm-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "035-m8yubzltlrm-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "035-m8yubzltlrm",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "035-m8yubzltlrm-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "035-m8yubzltlrm-chatkesti | Yayin burada koptu. #shorts",
+          "description": "035-m8yubzltlrm-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "034-lbzec9qqxji",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/034-lbzec9qqxji-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/034-lbzec9qqxji-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "034-lbzec9qqxji-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "034-lbzec9qqxji-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "034-lbzec9qqxji",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "034-lbzec9qqxji-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "034-lbzec9qqxji-chatkesti | Yayin burada koptu. #shorts",
+          "description": "034-lbzec9qqxji-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "033-kygyniod8ac",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/033-kygyniod8ac-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/033-kygyniod8ac-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "033-kygyniod8ac-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "033-kygyniod8ac-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "033-kygyniod8ac",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "033-kygyniod8ac-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "033-kygyniod8ac-chatkesti | Yayin burada koptu. #shorts",
+          "description": "033-kygyniod8ac-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "032-kiazf7in-b8",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/032-kiazf7in-b8-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/032-kiazf7in-b8-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "032-kiazf7in-b8-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "032-kiazf7in-b8-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "032-kiazf7in-b8",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "032-kiazf7in-b8-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "032-kiazf7in-b8-chatkesti | Yayin burada koptu. #shorts",
+          "description": "032-kiazf7in-b8-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "031-jx6viyhp-ty",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/031-jx6viyhp-ty-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/031-jx6viyhp-ty-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "031-jx6viyhp-ty-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "031-jx6viyhp-ty-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "031-jx6viyhp-ty",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "031-jx6viyhp-ty-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "031-jx6viyhp-ty-chatkesti | Yayin burada koptu. #shorts",
+          "description": "031-jx6viyhp-ty-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "030-jtyarrswmek",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/030-jtyarrswmek-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/030-jtyarrswmek-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "030-jtyarrswmek-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "030-jtyarrswmek-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "030-jtyarrswmek",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "030-jtyarrswmek-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "030-jtyarrswmek-chatkesti | Yayin burada koptu. #shorts",
+          "description": "030-jtyarrswmek-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "029-jtge0vhek2s",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/029-jtge0vhek2s-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/029-jtge0vhek2s-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "029-jtge0vhek2s-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "029-jtge0vhek2s-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "029-jtge0vhek2s",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "029-jtge0vhek2s-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "029-jtge0vhek2s-chatkesti | Yayin burada koptu. #shorts",
+          "description": "029-jtge0vhek2s-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "028-ifxl7qsh7de",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/028-ifxl7qsh7de-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/028-ifxl7qsh7de-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "028-ifxl7qsh7de-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "028-ifxl7qsh7de-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "028-ifxl7qsh7de",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "028-ifxl7qsh7de-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "028-ifxl7qsh7de-chatkesti | Yayin burada koptu. #shorts",
+          "description": "028-ifxl7qsh7de-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "027-htdikevv-le",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/027-htdikevv-le-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/027-htdikevv-le-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "027-htdikevv-le-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "027-htdikevv-le-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "027-htdikevv-le",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "027-htdikevv-le-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "027-htdikevv-le-chatkesti | Yayin burada koptu. #shorts",
+          "description": "027-htdikevv-le-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    },
+    {
+      "id": "026-h7kym4y-znk",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/026-h7kym4y-znk-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/batch-20260523-235008/026-h7kym4y-znk-chatkesti.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-24",
+      "youtubeTitle": "026-h7kym4y-znk-chatkesti | Yayin burada koptu. #shorts",
+      "youtubeDescription": "026-h7kym4y-znk-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "026-h7kym4y-znk",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "026-h7kym4y-znk-chatkesti",
+          "platform": "twitch/kick",
+          "game_or_context": "",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "026-h7kym4y-znk-chatkesti | Yayin burada koptu. #shorts",
+          "description": "026-h7kym4y-znk-chatkesti | twitch/kick\n\nYayin burada koptu.\n\nUstte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    }
+  ]
+}

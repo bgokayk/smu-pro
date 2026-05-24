@@ -1,0 +1,88 @@
+{
+  "channel": "chatkesti",
+  "displayName": "ChatKesti",
+  "batch": "sample",
+  "createdAt": "2026-05-21T00:24:32.873885+00:00",
+  "providers": [
+    "template"
+  ],
+  "providerCounts": {
+    "template": 1
+  },
+  "items": [
+    {
+      "id": "chatkesti-sample-001",
+      "channel": "chatkesti",
+      "provider": "template",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/yayinci-kesitleri-auto/exports/sample/chatkesti-sample-001-chatkesti.mp4",
+      "sourcePath": "C:/Users/User/.codex/yayinci-kesitleri-auto/source-clips/sample.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "sample",
+      "youtubeTitle": "OrnekYayinci | Yayin burada koptu. #shorts",
+      "youtubeDescription": "OrnekYayinci | twitch\n\nYayin burada koptu.\n\nUstte yayincinin reaksiyonu, altta olay aninin tamamlandigi kisim var.\n\nOyun/Konu: Ornek Oyun\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+      "instagramCaption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+      "tiktokCaption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+      "metadata": {
+        "id": "chatkesti-sample-001",
+        "status": "ready",
+        "clip_identity": {
+          "streamer": "OrnekYayinci",
+          "platform": "twitch",
+          "game_or_context": "Ornek Oyun",
+          "confidence": "medium"
+        },
+        "render_brief": {
+          "format": "1080x1920 vertical",
+          "layout": "streamer facecam top, main event/game/react content bottom",
+          "separator": "thin black/green divider",
+          "watermark": "small bottom-right",
+          "manual_review_rule": "review if facecam confidence is below 0.45"
+        },
+        "youtube": {
+          "title": "OrnekYayinci | Yayin burada koptu. #shorts",
+          "description": "OrnekYayinci | twitch\n\nYayin burada koptu.\n\nUstte yayincinin reaksiyonu, altta olay aninin tamamlandigi kisim var.\n\nOyun/Konu: Ornek Oyun\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips #yayinkesitleri #gaming #reels",
+          "hashtags": [
+            "#shorts",
+            "#chatkesti",
+            "#twitch",
+            "#kick",
+            "#streamerclips",
+            "#yayinkesitleri",
+            "#gaming",
+            "#reels"
+          ]
+        },
+        "instagram": {
+          "caption": "Yayin burada koptu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye #yayinkesiti #kesfet #gamingclips",
+          "hashtags": [
+            "#reels",
+            "#chatkesti",
+            "#twitchturkiye",
+            "#kickturkiye",
+            "#yayinkesiti",
+            "#kesfet",
+            "#gamingclips"
+          ]
+        },
+        "tiktok": {
+          "caption": "Yayin burada koptu. #chatkesti #yayinkesiti #twitchclips #kickclips #gamingtok #fyp",
+          "hashtags": [
+            "#chatkesti",
+            "#yayinkesiti",
+            "#twitchclips",
+            "#kickclips",
+            "#gamingtok",
+            "#fyp"
+          ]
+        },
+        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; keep the clip about the moment, not personal attacks."
+        ]
+      }
+    }
+  ]
+}

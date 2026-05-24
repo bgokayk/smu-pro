@@ -1,0 +1,41 @@
+{
+  "cached_at": "2026-05-21T00:13:34.491513+00:00",
+  "channel": "chatkesti",
+  "item_id": "chatkesti-sample-001",
+  "result": {
+    "id": "chatkesti-sample-001",
+    "status": "ready",
+    "youtube": {
+      "title": "OrnekYayinci | Chat bunu beklemiyordu #shorts",
+      "description": "Chat bunu beklemiyordu.\n\nYayinci: OrnekYayinci\nPlatform: twitch\n\nBir sonraki hangi yayinci gelsin?\n\n#shorts #chatkesti #twitch #kick #streamerclips",
+      "hashtags": [
+        "#shorts",
+        "#chatkesti",
+        "#twitch",
+        "#kick",
+        "#streamerclips"
+      ]
+    },
+    "instagram": {
+      "caption": "Chat bunu beklemiyordu.\n\nBir sonraki hangi yayinci gelsin?\n\n#reels #chatkesti #twitchturkiye #kickturkiye",
+      "hashtags": [
+        "#reels",
+        "#chatkesti",
+        "#twitchturkiye",
+        "#kickturkiye"
+      ]
+    },
+    "tiktok": {
+      "caption": "Chat bunu beklemiyordu. #chatkesti #twitchclips #kickclips",
+      "hashtags": [
+        "#chatkesti",
+        "#twitchclips",
+        "#kickclips"
+      ]
+    },
+    "safety_flags": [],
+    "assumptions": [
+      "Fake import test."
+    ]
+  }
+}

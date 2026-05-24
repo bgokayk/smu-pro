@@ -1,0 +1,39 @@
+{
+  "id": "poster_loop_cinema",
+  "displayName": "Poster Loop Cinema",
+  "kind": "poster",
+  "projectRoot": "C:/Users/User/.codex/analog-neo-moving-poster",
+  "defaultBatch": "batch-001",
+  "exportPattern": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/{batch}/{id}-poster-loop.mp4",
+  "browser": {
+    "name": "Chrome",
+    "engine": "chromium",
+    "debugPort": 9222,
+    "profileDir": "C:/Users/User/.codex/browser-profiles/poster-loop-chrome",
+    "executableCandidates": [
+      "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+    ],
+    "urls": [
+      "https://studio.youtube.com/",
+      "https://www.instagram.com/posterloopcinema/"
+    ]
+  },
+  "visual": {
+    "swatches": ["#252826", "#3e9a9b", "#71883f", "#d5bd49", "#c65d35"]
+  },
+  "hashtags": {
+    "base": [
+      "#MovingPoster",
+      "#MoviePoster",
+      "#Cinema",
+      "#FilmEdit",
+      "#MovieEdit",
+      "#CultCinema",
+      "#FilmTok",
+      "#PosterDesign",
+      "#AnalogNeo"
+    ]
+  },
+  "handoffPrompt": "Brand: Poster Loop Cinema, @posterloopcinema. Minimal film posters with scenes moving inside them. Clean museum poster, cult cinema archive, quiet premium. Output film identity, poster brief, YouTube title/description, Instagram caption, TikTok caption. Do not invent film year/director/cast; use VERIFY_NEEDED if unsure. Keep captions minimal."
+}

@@ -1,0 +1,80 @@
+{
+  "cached_at": "2026-05-21T18:34:52.208494+00:00",
+  "channel": "poster_loop_cinema",
+  "item_id": "big-shot-2021",
+  "result": {
+    "id": "big-shot-2021",
+    "status": "ready",
+    "film_identity": {
+      "title": "big-shot-2021-poster-loop",
+      "year": "",
+      "director": "VERIFY_NEEDED",
+      "screenplay": "",
+      "cast": [],
+      "confidence": "medium"
+    },
+    "poster_brief": {
+      "canvas": "9:16 vertical",
+      "background": "#f2f2f0",
+      "title_treatment": "huge clean bold title",
+      "credits_block": "",
+      "year_position": "top-right",
+      "swatches": [
+        "#252826",
+        "#3e9a9b",
+        "#71883f",
+        "#d5bd49",
+        "#c65d35"
+      ],
+      "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+      "export_note": "scene inside poster frame; no black bars; no crop damage"
+    },
+    "youtube": {
+      "title": "big-shot-2021-poster-loop moving poster. Which film next? #shorts",
+      "description": "big-shot-2021-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bigshot2021posterloop",
+      "hashtags": [
+        "#MovingPoster",
+        "#MoviePoster",
+        "#Cinema",
+        "#FilmEdit",
+        "#MovieEdit",
+        "#CultCinema",
+        "#FilmTok",
+        "#PosterDesign",
+        "#AnalogNeo",
+        "#bigshot2021posterloop"
+      ]
+    },
+    "instagram": {
+      "caption": "big-shot-2021-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bigshot2021posterloop",
+      "hashtags": [
+        "#MovingPoster",
+        "#MoviePoster",
+        "#Cinema",
+        "#FilmEdit",
+        "#MovieEdit",
+        "#CultCinema",
+        "#FilmTok",
+        "#PosterDesign",
+        "#AnalogNeo",
+        "#bigshot2021posterloop"
+      ]
+    },
+    "tiktok": {
+      "caption": "big-shot-2021-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "hashtags": [
+        "#MovingPoster",
+        "#MoviePoster",
+        "#Cinema",
+        "#FilmEdit",
+        "#MovieEdit",
+        "#CultCinema"
+      ]
+    },
+    "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+    "safety_flags": [],
+    "assumptions": [
+      "Template fallback used; verify identity before publishing if confidence is not high."
+    ]
+  }
+}

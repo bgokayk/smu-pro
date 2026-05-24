@@ -175,6 +175,46 @@ def build_ydl_args(
     return args
 
 
+def _extract_year(title: str) -> str:
+    """Başlıktan yıl çıkar: 'Film Adı (2023)' → '2023'"""
+    match = re.search(r'[\(\[](\d{4})[\)\]]', title)
+    return match.group(1) if match else ""
+
+
+def _extract_film_hint(title: str) -> str:
+    """Başlıktan film adı çıkar:
+    - 'Film Name (2023) 4K HDR' → 'Film Name'
+    - 'Film Name | 4K' → 'Film Name'
+    """
+    # Önce yıl parantezini kaldır
+    text = re.sub(r'\s*[\(\[].*?[\)\]]\s*', ' ', title)
+    # | veya - ile ayrılmış kısımlardan ilkini al
+    text = text.split('|')[0].split('–')[0].split('—')[0].strip()
+    # Fazla boşlukları temizle
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
+
+
+def _extract_person_hint(title: str) -> str:
+    """Başlıktan kişi adı çıkar:
+    - 'Ad Soyad | Program' → 'Ad Soyad'
+    - 'Ad Soyad - Program' → 'Ad Soyad'
+    """
+    text = title.split('|')[0].split('–')[0].split('—')[0].strip()
+    return text
+
+
+def _extract_program_hint(title: str) -> str:
+    """Başlıktan program adı çıkar:
+    - 'Ad Soyad | Program Adı' → 'Program Adı'
+    """
+    for sep in ['|', '–', '—', '-']:
+        parts = title.split(sep)
+        if len(parts) > 1:
+            return parts[1].strip()
+    return ""
+
+
 def write_sidecar(
     channel_id: str,
     source: dict[str, Any],
@@ -188,6 +228,7 @@ def write_sidecar(
     webpage_url = video_meta.get("webpage_url", "") or video_meta.get("url", "")
     duration = video_meta.get("duration", 0)
     upload_date = video_meta.get("upload_date", "")
+    description = video_meta.get("description", "")
 
     sidecar: dict[str, Any] = {
         "id": slugify(video_path.stem),
@@ -204,42 +245,44 @@ def write_sidecar(
     }
 
     if channel_id == "poster_loop_cinema":
-        # film ipuçlarını çıkar
-        sidecar["film_hint"] = source.get("filmHint") or _extract_film_hint(title)
-        sidecar["year_hint"] = source.get("yearHint", "")
-        sidecar["director_hint"] = source.get("directorHint", "")
-        sidecar["scene_hint"] = source.get("sceneHint", "")
-        sidecar["summary_hint"] = video_meta.get("description", "")[:400]
+        # Film metadata'sını çıkar
+        film_hint = source.get("filmHint") or _extract_film_hint(title)
+        year_hint = source.get("yearHint") or _extract_year(title)
+        director_hint = source.get("directorHint", "")
+        scene_hint = source.get("sceneHint", "")
+        summary_hint = description[:400]
+
+        sidecar["film_hint"] = film_hint
+        sidecar["year_hint"] = year_hint
+        sidecar["director_hint"] = director_hint
+        sidecar["scene_hint"] = scene_hint
+        sidecar["summary_hint"] = summary_hint
 
     elif channel_id == "sahnebaddiestr":
-        sidecar["person_hint"] = source.get("personHint") or _extract_person_hint(title)
-        sidecar["program_hint"] = source.get("programHint", "")
-        sidecar["hook"] = "Bu sahnenin enerjisi ayrı."
+        # Kişi ve program metadata'sını çıkar
+        person_hint = source.get("personHint") or _extract_person_hint(title)
+        program_hint = source.get("programHint") or _extract_program_hint(title)
+
+        sidecar["person_hint"] = person_hint
+        sidecar["program_hint"] = program_hint
+        sidecar["hook"] = ""
         sidecar["question"] = "Sence bu anın aurası kaç/10?"
 
     elif channel_id == "chatkesti":
-        sidecar["streamer"] = source.get("streamer") or uploader
-        sidecar["platform"] = source.get("platform", "")
-        sidecar["game"] = source.get("game", "")
-        sidecar["hook"] = "Yayın burada koptu."
+        # Yayıncı metadata'sını çıkar
+        streamer = source.get("streamer") or uploader
+        platform = source.get("platform", "")
+        game = source.get("game", "")
+
+        sidecar["streamer"] = streamer
+        sidecar["platform"] = platform
+        sidecar["game"] = game
+        sidecar["hook"] = ""
         sidecar["question"] = "Bir sonraki hangi yayıncı gelsin?"
 
     sidecar_path = video_path.with_suffix(".json")
     write_json(sidecar_path, sidecar)
     return sidecar_path
-
-
-def _extract_film_hint(title: str) -> str:
-    # "Film Name (2023)" → "Film Name"
-    match = re.match(r"^(.+?)\s*[\(\[]\d{4}[\)\]]", title)
-    if match:
-        return match.group(1).strip()
-    return title.split("|")[0].split("-")[0].strip()
-
-
-def _extract_person_hint(title: str) -> str:
-    # "Ad Soyad | Program" → "Ad Soyad"
-    return title.split("|")[0].split("-")[0].strip()
 
 
 def download_channel(

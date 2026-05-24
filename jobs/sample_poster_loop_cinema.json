@@ -1,0 +1,18 @@
+{
+  "today": "2026-05-21",
+  "mode": "batch",
+  "platform": "all",
+  "source_rights": "confirmed",
+  "batch": "sample",
+  "items": [
+    {
+      "id": "fight-club-1999",
+      "source_path": "C:/Users/User/.codex/analog-neo-moving-poster/source-videos/fight-club.mp4",
+      "film_hint": "Fight Club",
+      "year_hint": "1999",
+      "director_hint": "David Fincher",
+      "summary_hint": "Kimliksiz bir ofis calisani, karizmatik Tyler Durden ile tanistiktan sonra yer alti dovus kulubu kurar. Kulup buyudukce isyan, tuketim kulturu ve benlik krizi kontrolden cikar.",
+      "scene_hint": "Use the most iconic readable movement inside the poster frame."
+    }
+  ]
+}

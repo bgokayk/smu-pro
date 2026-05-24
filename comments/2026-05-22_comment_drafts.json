@@ -1,0 +1,302 @@
+{
+  "system": "SMU",
+  "date": "2026-05-22",
+  "timezone": "Europe/Istanbul",
+  "mode": "manual_drafts_only",
+  "rules": [
+    "No links.",
+    "No copy-paste spam.",
+    "Do not insult, harass, or target private life.",
+    "Post manually after checking the account and context."
+  ],
+  "channels": {
+    "poster_loop_cinema": {
+      "browser": "Chrome",
+      "accountDiscoveryTarget": 10,
+      "commentDraftTarget": 10,
+      "targetAccounts": [
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        }
+      ],
+      "drafts": [
+        {
+          "comment": "Bu sahne poster formatinda direkt calisir.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu filmden secilecek baska sahne de var.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu kadraj tam moving posterlik.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Renk paleti bu filmde ayri guzel durur.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu sahnenin sessiz hali bile yetiyor.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu film minimal poster diline cok yakisir.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu an tek kareyle bile hatirlaniyor.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu sahnenin atmosferi posterin kendisi gibi.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu filmi tekrar actiran sahnelerden.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu kadrajin hareketli poster hali merak ettirir.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        }
+      ]
+    },
+    "sahnebaddiestr": {
+      "browser": "Edge",
+      "accountDiscoveryTarget": 10,
+      "commentDraftTarget": 15,
+      "targetAccounts": [
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        },
+        {
+          "account": "",
+          "url": "",
+          "topic": "",
+          "status": "find_manually"
+        }
+      ],
+      "drafts": [
+        {
+          "comment": "Bu sahnenin enerjisi ayri.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Ekran durusu burada net belli oluyor.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu anin aurasini tasiyan sey mimik.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu vibe direkt editlik.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Sahne enerjisi tek basina yetmis.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu anin durusu direkt akilda kaliyor.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Kamera enerjiyi yakalamis.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu sahnede stil ve tavir ayni anda geliyor.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu editin ana duygusu tam burada.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Ekran enerjisi sakin ama net.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu tarz anlar kesitte daha iyi parliyor.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Sahnenin ritmi direkt tasiyor.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu goruntu tek basina vibe veriyor.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Bu anin paylasilabilirligi cok net.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        },
+        {
+          "comment": "Aura yorumu burada kendiliginden geliyor.",
+          "status": "draft",
+          "usedOn": "",
+          "note": "Use only if it fits the actual post."
+        }
+      ]
+    }
+  }
+}

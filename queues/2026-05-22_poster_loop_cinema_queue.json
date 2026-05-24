@@ -1,0 +1,2715 @@
+{
+  "channel": "poster_loop_cinema",
+  "displayName": "Poster Loop Cinema",
+  "batch": "2026-05-22",
+  "createdAt": "2026-05-21T20:00:18.060236+00:00",
+  "providers": [
+    "cache",
+    "template"
+  ],
+  "providerCounts": {
+    "cache": 30
+  },
+  "items": [
+    {
+      "id": "idiocracy-2006",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/idiocracy-2006-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/idiocracy-2006-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "idiocracy-2006-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "idiocracy-2006-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #idiocracy2006posterloop",
+      "instagramCaption": "idiocracy-2006-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #idiocracy2006posterloop",
+      "tiktokCaption": "idiocracy-2006-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "idiocracy-2006",
+        "status": "ready",
+        "film_identity": {
+          "title": "idiocracy-2006-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "idiocracy-2006-poster-loop moving poster. Which film next? #shorts",
+          "description": "idiocracy-2006-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #idiocracy2006posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#idiocracy2006posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "idiocracy-2006-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #idiocracy2006posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#idiocracy2006posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "idiocracy-2006-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "torque-2004",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/torque-2004-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/torque-2004-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "torque-2004-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "torque-2004-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #torque2004posterloop",
+      "instagramCaption": "torque-2004-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #torque2004posterloop",
+      "tiktokCaption": "torque-2004-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "torque-2004",
+        "status": "ready",
+        "film_identity": {
+          "title": "torque-2004-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "torque-2004-poster-loop moving poster. Which film next? #shorts",
+          "description": "torque-2004-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #torque2004posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#torque2004posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "torque-2004-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #torque2004posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#torque2004posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "torque-2004-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "waterworld-1995",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/waterworld-1995-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/waterworld-1995-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "waterworld-1995-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "waterworld-1995-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #waterworld1995posterloop",
+      "instagramCaption": "waterworld-1995-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #waterworld1995posterloop",
+      "tiktokCaption": "waterworld-1995-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "waterworld-1995",
+        "status": "ready",
+        "film_identity": {
+          "title": "waterworld-1995-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "waterworld-1995-poster-loop moving poster. Which film next? #shorts",
+          "description": "waterworld-1995-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #waterworld1995posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#waterworld1995posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "waterworld-1995-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #waterworld1995posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#waterworld1995posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "waterworld-1995-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "misfits-2009",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/misfits-2009-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/misfits-2009-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "misfits-2009-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "misfits-2009-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #misfits2009posterloop",
+      "instagramCaption": "misfits-2009-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #misfits2009posterloop",
+      "tiktokCaption": "misfits-2009-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "misfits-2009",
+        "status": "ready",
+        "film_identity": {
+          "title": "misfits-2009-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "misfits-2009-poster-loop moving poster. Which film next? #shorts",
+          "description": "misfits-2009-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #misfits2009posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#misfits2009posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "misfits-2009-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #misfits2009posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#misfits2009posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "misfits-2009-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "the-gentlemen-2019",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/the-gentlemen-2019-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/the-gentlemen-2019-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "the-gentlemen-2019-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "the-gentlemen-2019-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #thegentlemen2019posterloop",
+      "instagramCaption": "the-gentlemen-2019-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #thegentlemen2019posterloop",
+      "tiktokCaption": "the-gentlemen-2019-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "the-gentlemen-2019",
+        "status": "ready",
+        "film_identity": {
+          "title": "the-gentlemen-2019-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "the-gentlemen-2019-poster-loop moving poster. Which film next? #shorts",
+          "description": "the-gentlemen-2019-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #thegentlemen2019posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#thegentlemen2019posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "the-gentlemen-2019-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #thegentlemen2019posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#thegentlemen2019posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "the-gentlemen-2019-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "the-proposal-2009",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/the-proposal-2009-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/the-proposal-2009-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "the-proposal-2009-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "the-proposal-2009-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #theproposal2009posterloop",
+      "instagramCaption": "the-proposal-2009-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #theproposal2009posterloop",
+      "tiktokCaption": "the-proposal-2009-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "the-proposal-2009",
+        "status": "ready",
+        "film_identity": {
+          "title": "the-proposal-2009-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "the-proposal-2009-poster-loop moving poster. Which film next? #shorts",
+          "description": "the-proposal-2009-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #theproposal2009posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#theproposal2009posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "the-proposal-2009-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #theproposal2009posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#theproposal2009posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "the-proposal-2009-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "little-man-2006",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/little-man-2006-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/little-man-2006-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "little-man-2006-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "little-man-2006-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #littleman2006posterloop",
+      "instagramCaption": "little-man-2006-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #littleman2006posterloop",
+      "tiktokCaption": "little-man-2006-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "little-man-2006",
+        "status": "ready",
+        "film_identity": {
+          "title": "little-man-2006-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "little-man-2006-poster-loop moving poster. Which film next? #shorts",
+          "description": "little-man-2006-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #littleman2006posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#littleman2006posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "little-man-2006-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #littleman2006posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#littleman2006posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "little-man-2006-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "pirates-at-worlds-end-2007",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/pirates-at-worlds-end-2007-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/pirates-at-worlds-end-2007-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "pirates-at-worlds-end-2007-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "pirates-at-worlds-end-2007-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #piratesatworldsend2007posterloop",
+      "instagramCaption": "pirates-at-worlds-end-2007-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #piratesatworldsend2007posterloop",
+      "tiktokCaption": "pirates-at-worlds-end-2007-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "pirates-at-worlds-end-2007",
+        "status": "ready",
+        "film_identity": {
+          "title": "pirates-at-worlds-end-2007-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "pirates-at-worlds-end-2007-poster-loop moving poster. Which film next? #shorts",
+          "description": "pirates-at-worlds-end-2007-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #piratesatworldsend2007posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#piratesatworldsend2007posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "pirates-at-worlds-end-2007-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #piratesatworldsend2007posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#piratesatworldsend2007posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "pirates-at-worlds-end-2007-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "old-dads-2023",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/old-dads-2023-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/old-dads-2023-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "old-dads-2023-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "old-dads-2023-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #olddads2023posterloop",
+      "instagramCaption": "old-dads-2023-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #olddads2023posterloop",
+      "tiktokCaption": "old-dads-2023-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "old-dads-2023",
+        "status": "ready",
+        "film_identity": {
+          "title": "old-dads-2023-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "old-dads-2023-poster-loop moving poster. Which film next? #shorts",
+          "description": "old-dads-2023-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #olddads2023posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#olddads2023posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "old-dads-2023-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #olddads2023posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#olddads2023posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "old-dads-2023-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "the-fifth-element-1997",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/the-fifth-element-1997-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/the-fifth-element-1997-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "the-fifth-element-1997-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "the-fifth-element-1997-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #thefifthelement1997posterloop",
+      "instagramCaption": "the-fifth-element-1997-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #thefifthelement1997posterloop",
+      "tiktokCaption": "the-fifth-element-1997-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "the-fifth-element-1997",
+        "status": "ready",
+        "film_identity": {
+          "title": "the-fifth-element-1997-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "the-fifth-element-1997-poster-loop moving poster. Which film next? #shorts",
+          "description": "the-fifth-element-1997-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #thefifthelement1997posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#thefifthelement1997posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "the-fifth-element-1997-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #thefifthelement1997posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#thefifthelement1997posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "the-fifth-element-1997-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "were-the-millers-2013",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/were-the-millers-2013-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/were-the-millers-2013-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "were-the-millers-2013-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "were-the-millers-2013-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #werethemillers2013posterloop",
+      "instagramCaption": "were-the-millers-2013-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #werethemillers2013posterloop",
+      "tiktokCaption": "were-the-millers-2013-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "were-the-millers-2013",
+        "status": "ready",
+        "film_identity": {
+          "title": "were-the-millers-2013-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "were-the-millers-2013-poster-loop moving poster. Which film next? #shorts",
+          "description": "were-the-millers-2013-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #werethemillers2013posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#werethemillers2013posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "were-the-millers-2013-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #werethemillers2013posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#werethemillers2013posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "were-the-millers-2013-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "warrior-2019",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/warrior-2019-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/warrior-2019-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "warrior-2019-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "warrior-2019-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #warrior2019posterloop",
+      "instagramCaption": "warrior-2019-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #warrior2019posterloop",
+      "tiktokCaption": "warrior-2019-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "warrior-2019",
+        "status": "ready",
+        "film_identity": {
+          "title": "warrior-2019-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "warrior-2019-poster-loop moving poster. Which film next? #shorts",
+          "description": "warrior-2019-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #warrior2019posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#warrior2019posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "warrior-2019-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #warrior2019posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#warrior2019posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "warrior-2019-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "taxi-2004",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/taxi-2004-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/taxi-2004-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "taxi-2004-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "taxi-2004-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #taxi2004posterloop",
+      "instagramCaption": "taxi-2004-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #taxi2004posterloop",
+      "tiktokCaption": "taxi-2004-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "taxi-2004",
+        "status": "ready",
+        "film_identity": {
+          "title": "taxi-2004-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "taxi-2004-poster-loop moving poster. Which film next? #shorts",
+          "description": "taxi-2004-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #taxi2004posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#taxi2004posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "taxi-2004-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #taxi2004posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#taxi2004posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "taxi-2004-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "prison-break-2005",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/prison-break-2005-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/prison-break-2005-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "prison-break-2005-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "prison-break-2005-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #prisonbreak2005posterloop",
+      "instagramCaption": "prison-break-2005-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #prisonbreak2005posterloop",
+      "tiktokCaption": "prison-break-2005-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "prison-break-2005",
+        "status": "ready",
+        "film_identity": {
+          "title": "prison-break-2005-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "prison-break-2005-poster-loop moving poster. Which film next? #shorts",
+          "description": "prison-break-2005-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #prisonbreak2005posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#prisonbreak2005posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "prison-break-2005-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #prisonbreak2005posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#prisonbreak2005posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "prison-break-2005-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "the-flash-2014",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/the-flash-2014-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/the-flash-2014-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "the-flash-2014-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "the-flash-2014-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #theflash2014posterloop",
+      "instagramCaption": "the-flash-2014-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #theflash2014posterloop",
+      "tiktokCaption": "the-flash-2014-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "the-flash-2014",
+        "status": "ready",
+        "film_identity": {
+          "title": "the-flash-2014-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "the-flash-2014-poster-loop moving poster. Which film next? #shorts",
+          "description": "the-flash-2014-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #theflash2014posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#theflash2014posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "the-flash-2014-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #theflash2014posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#theflash2014posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "the-flash-2014-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "get-smart-2008",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/get-smart-2008-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/get-smart-2008-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "get-smart-2008-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "get-smart-2008-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #getsmart2008posterloop",
+      "instagramCaption": "get-smart-2008-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #getsmart2008posterloop",
+      "tiktokCaption": "get-smart-2008-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "get-smart-2008",
+        "status": "ready",
+        "film_identity": {
+          "title": "get-smart-2008-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "get-smart-2008-poster-loop moving poster. Which film next? #shorts",
+          "description": "get-smart-2008-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #getsmart2008posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#getsmart2008posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "get-smart-2008-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #getsmart2008posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#getsmart2008posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "get-smart-2008-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "big-shot-2021",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/big-shot-2021-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/big-shot-2021-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "big-shot-2021-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "big-shot-2021-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bigshot2021posterloop",
+      "instagramCaption": "big-shot-2021-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bigshot2021posterloop",
+      "tiktokCaption": "big-shot-2021-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "big-shot-2021",
+        "status": "ready",
+        "film_identity": {
+          "title": "big-shot-2021-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "big-shot-2021-poster-loop moving poster. Which film next? #shorts",
+          "description": "big-shot-2021-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bigshot2021posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#bigshot2021posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "big-shot-2021-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bigshot2021posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#bigshot2021posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "big-shot-2021-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "young-sheldon-2017",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/young-sheldon-2017-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/young-sheldon-2017-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "young-sheldon-2017-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "young-sheldon-2017-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #youngsheldon2017posterloop",
+      "instagramCaption": "young-sheldon-2017-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #youngsheldon2017posterloop",
+      "tiktokCaption": "young-sheldon-2017-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "young-sheldon-2017",
+        "status": "ready",
+        "film_identity": {
+          "title": "young-sheldon-2017-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "young-sheldon-2017-poster-loop moving poster. Which film next? #shorts",
+          "description": "young-sheldon-2017-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #youngsheldon2017posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#youngsheldon2017posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "young-sheldon-2017-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #youngsheldon2017posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#youngsheldon2017posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "young-sheldon-2017-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "the-flintstones-1994",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/the-flintstones-1994-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/the-flintstones-1994-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "the-flintstones-1994-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "the-flintstones-1994-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #theflintstones1994posterloop",
+      "instagramCaption": "the-flintstones-1994-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #theflintstones1994posterloop",
+      "tiktokCaption": "the-flintstones-1994-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "the-flintstones-1994",
+        "status": "ready",
+        "film_identity": {
+          "title": "the-flintstones-1994-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "the-flintstones-1994-poster-loop moving poster. Which film next? #shorts",
+          "description": "the-flintstones-1994-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #theflintstones1994posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#theflintstones1994posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "the-flintstones-1994-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #theflintstones1994posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#theflintstones1994posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "the-flintstones-1994-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "rush-hour-1998",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/rush-hour-1998-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/filmmax-last20/rush-hour-1998-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "rush-hour-1998-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "rush-hour-1998-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #rushhour1998posterloop",
+      "instagramCaption": "rush-hour-1998-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #rushhour1998posterloop",
+      "tiktokCaption": "rush-hour-1998-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "rush-hour-1998",
+        "status": "ready",
+        "film_identity": {
+          "title": "rush-hour-1998-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "rush-hour-1998-poster-loop moving poster. Which film next? #shorts",
+          "description": "rush-hour-1998-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #rushhour1998posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#rushhour1998posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "rush-hour-1998-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #rushhour1998posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#rushhour1998posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "rush-hour-1998-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "blade-runner-2049-2017-5",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/blade-runner-2049-2017-5-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/blade-runner-2049-2017-5-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "blade-runner-2049-2017-5-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "blade-runner-2049-2017-5-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920175posterloop",
+      "instagramCaption": "blade-runner-2049-2017-5-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920175posterloop",
+      "tiktokCaption": "blade-runner-2049-2017-5-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "blade-runner-2049-2017-5",
+        "status": "ready",
+        "film_identity": {
+          "title": "blade-runner-2049-2017-5-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "blade-runner-2049-2017-5-poster-loop moving poster. Which film next? #shorts",
+          "description": "blade-runner-2049-2017-5-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920175posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#bladerunner204920175posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "blade-runner-2049-2017-5-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920175posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#bladerunner204920175posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "blade-runner-2049-2017-5-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "blade-runner-2049-2017-4",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/blade-runner-2049-2017-4-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/blade-runner-2049-2017-4-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "blade-runner-2049-2017-4-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "blade-runner-2049-2017-4-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920174posterloop",
+      "instagramCaption": "blade-runner-2049-2017-4-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920174posterloop",
+      "tiktokCaption": "blade-runner-2049-2017-4-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "blade-runner-2049-2017-4",
+        "status": "ready",
+        "film_identity": {
+          "title": "blade-runner-2049-2017-4-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "blade-runner-2049-2017-4-poster-loop moving poster. Which film next? #shorts",
+          "description": "blade-runner-2049-2017-4-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920174posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#bladerunner204920174posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "blade-runner-2049-2017-4-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920174posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#bladerunner204920174posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "blade-runner-2049-2017-4-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "blade-runner-2049-2017-3",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/blade-runner-2049-2017-3-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/blade-runner-2049-2017-3-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "blade-runner-2049-2017-3-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "blade-runner-2049-2017-3-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920173posterloop",
+      "instagramCaption": "blade-runner-2049-2017-3-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920173posterloop",
+      "tiktokCaption": "blade-runner-2049-2017-3-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "blade-runner-2049-2017-3",
+        "status": "ready",
+        "film_identity": {
+          "title": "blade-runner-2049-2017-3-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "blade-runner-2049-2017-3-poster-loop moving poster. Which film next? #shorts",
+          "description": "blade-runner-2049-2017-3-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920173posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#bladerunner204920173posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "blade-runner-2049-2017-3-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920173posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#bladerunner204920173posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "blade-runner-2049-2017-3-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "blade-runner-2049-2017-2",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/blade-runner-2049-2017-2-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/blade-runner-2049-2017-2-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "blade-runner-2049-2017-2-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "blade-runner-2049-2017-2-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920172posterloop",
+      "instagramCaption": "blade-runner-2049-2017-2-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920172posterloop",
+      "tiktokCaption": "blade-runner-2049-2017-2-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "blade-runner-2049-2017-2",
+        "status": "ready",
+        "film_identity": {
+          "title": "blade-runner-2049-2017-2-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "blade-runner-2049-2017-2-poster-loop moving poster. Which film next? #shorts",
+          "description": "blade-runner-2049-2017-2-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920172posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#bladerunner204920172posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "blade-runner-2049-2017-2-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920172posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#bladerunner204920172posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "blade-runner-2049-2017-2-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "blade-runner-2049-2017-1",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/blade-runner-2049-2017-1-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/blade-runner-2049-2017-1-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "blade-runner-2049-2017-1-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "blade-runner-2049-2017-1-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920171posterloop",
+      "instagramCaption": "blade-runner-2049-2017-1-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920171posterloop",
+      "tiktokCaption": "blade-runner-2049-2017-1-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "blade-runner-2049-2017-1",
+        "status": "ready",
+        "film_identity": {
+          "title": "blade-runner-2049-2017-1-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "blade-runner-2049-2017-1-poster-loop moving poster. Which film next? #shorts",
+          "description": "blade-runner-2049-2017-1-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920171posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#bladerunner204920171posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "blade-runner-2049-2017-1-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #bladerunner204920171posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#bladerunner204920171posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "blade-runner-2049-2017-1-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "dune-part-two-2024-5",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/dune-part-two-2024-5-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/dune-part-two-2024-5-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "dune-part-two-2024-5-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "dune-part-two-2024-5-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20245posterloop",
+      "instagramCaption": "dune-part-two-2024-5-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20245posterloop",
+      "tiktokCaption": "dune-part-two-2024-5-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "dune-part-two-2024-5",
+        "status": "ready",
+        "film_identity": {
+          "title": "dune-part-two-2024-5-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "dune-part-two-2024-5-poster-loop moving poster. Which film next? #shorts",
+          "description": "dune-part-two-2024-5-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20245posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#duneparttwo20245posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "dune-part-two-2024-5-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20245posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#duneparttwo20245posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "dune-part-two-2024-5-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "dune-part-two-2024-4",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/dune-part-two-2024-4-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/dune-part-two-2024-4-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "dune-part-two-2024-4-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "dune-part-two-2024-4-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20244posterloop",
+      "instagramCaption": "dune-part-two-2024-4-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20244posterloop",
+      "tiktokCaption": "dune-part-two-2024-4-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "dune-part-two-2024-4",
+        "status": "ready",
+        "film_identity": {
+          "title": "dune-part-two-2024-4-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "dune-part-two-2024-4-poster-loop moving poster. Which film next? #shorts",
+          "description": "dune-part-two-2024-4-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20244posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#duneparttwo20244posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "dune-part-two-2024-4-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20244posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#duneparttwo20244posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "dune-part-two-2024-4-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "dune-part-two-2024-3",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/dune-part-two-2024-3-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/dune-part-two-2024-3-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "dune-part-two-2024-3-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "dune-part-two-2024-3-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20243posterloop",
+      "instagramCaption": "dune-part-two-2024-3-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20243posterloop",
+      "tiktokCaption": "dune-part-two-2024-3-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "dune-part-two-2024-3",
+        "status": "ready",
+        "film_identity": {
+          "title": "dune-part-two-2024-3-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "dune-part-two-2024-3-poster-loop moving poster. Which film next? #shorts",
+          "description": "dune-part-two-2024-3-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20243posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#duneparttwo20243posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "dune-part-two-2024-3-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20243posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#duneparttwo20243posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "dune-part-two-2024-3-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "dune-part-two-2024-2",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/dune-part-two-2024-2-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/dune-part-two-2024-2-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "dune-part-two-2024-2-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "dune-part-two-2024-2-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20242posterloop",
+      "instagramCaption": "dune-part-two-2024-2-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20242posterloop",
+      "tiktokCaption": "dune-part-two-2024-2-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "dune-part-two-2024-2",
+        "status": "ready",
+        "film_identity": {
+          "title": "dune-part-two-2024-2-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "dune-part-two-2024-2-poster-loop moving poster. Which film next? #shorts",
+          "description": "dune-part-two-2024-2-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20242posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#duneparttwo20242posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "dune-part-two-2024-2-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20242posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#duneparttwo20242posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "dune-part-two-2024-2-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    },
+    {
+      "id": "dune-part-two-2024-1",
+      "channel": "poster_loop_cinema",
+      "provider": "cache",
+      "status": "ready",
+      "file": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/dune-part-two-2024-1-poster-loop.mp4",
+      "sourcePath": "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video/trailer-51-100/dune-part-two-2024-1-poster-loop.mp4",
+      "sourceLink": "",
+      "rightsNote": "",
+      "batch": "2026-05-22",
+      "youtubeTitle": "dune-part-two-2024-1-poster-loop moving poster. Which film next? #shorts",
+      "youtubeDescription": "dune-part-two-2024-1-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20241posterloop",
+      "instagramCaption": "dune-part-two-2024-1-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20241posterloop",
+      "tiktokCaption": "dune-part-two-2024-1-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+      "metadata": {
+        "id": "dune-part-two-2024-1",
+        "status": "ready",
+        "film_identity": {
+          "title": "dune-part-two-2024-1-poster-loop",
+          "year": "",
+          "director": "VERIFY_NEEDED",
+          "screenplay": "",
+          "cast": [],
+          "confidence": "medium"
+        },
+        "poster_brief": {
+          "canvas": "9:16 vertical",
+          "background": "#f2f2f0",
+          "title_treatment": "huge clean bold title",
+          "credits_block": "",
+          "year_position": "top-right",
+          "swatches": [
+            "#252826",
+            "#3e9a9b",
+            "#71883f",
+            "#d5bd49",
+            "#c65d35"
+          ],
+          "moving_scene_note": "Use the strongest readable scene moment inside the poster frame.",
+          "export_note": "scene inside poster frame; no black bars; no crop damage"
+        },
+        "youtube": {
+          "title": "dune-part-two-2024-1-poster-loop moving poster. Which film next? #shorts",
+          "description": "dune-part-two-2024-1-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nMinimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.\n\nHangi film gelsin?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20241posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#duneparttwo20241posterloop"
+          ]
+        },
+        "instagram": {
+          "caption": "dune-part-two-2024-1-poster-loop\n\nVERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.\n\nWhich film next?\n\n#MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema #FilmTok #PosterDesign #AnalogNeo #duneparttwo20241posterloop",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema",
+            "#FilmTok",
+            "#PosterDesign",
+            "#AnalogNeo",
+            "#duneparttwo20241posterloop"
+          ]
+        },
+        "tiktok": {
+          "caption": "dune-part-two-2024-1-poster-loop moving poster. Which film next? #MovingPoster #MoviePoster #Cinema #FilmEdit #MovieEdit #CultCinema",
+          "hashtags": [
+            "#MovingPoster",
+            "#MoviePoster",
+            "#Cinema",
+            "#FilmEdit",
+            "#MovieEdit",
+            "#CultCinema"
+          ]
+        },
+        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
+        "safety_flags": [],
+        "assumptions": [
+          "Template fallback used; verify identity before publishing if confidence is not high."
+        ]
+      }
+    }
+  ]
+}

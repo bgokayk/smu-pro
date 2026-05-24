@@ -174,179 +174,161 @@ def export_path(config: dict[str, Any], item: dict[str, Any], batch: str) -> str
     return pattern.format(batch=batch, id=item_id) if pattern else first_present(item, "source_path", "source_file")
 
 
+def _clean_text(text: str) -> str:
+    """Temiz metin: ID'leri, rastgele string'leri, placeholder'ları kaldır."""
+    text = (text or "").strip()
+    # Uzun rastgele ID'leri kaldır (ör: "100-H13auUtZJ2o-diplomas-yoktu")
+    text = re.sub(r'\b\d{2,}-[A-Za-z0-9_-]{8,}\b', '', text)
+    # VERIFY_NEEDED placeholder'larını kaldır
+    text = text.replace("VERIFY_NEEDED", "").replace("verify_needed", "")
+    # poster-loop, sahne-baddies gibi suffix'leri kaldır
+    text = re.sub(r'\s*[-–]\s*(poster[- ]loop|sahne[- ]baddies|chatkesti|optimized)\s*', '', text, flags=re.IGNORECASE)
+    # Birden fazla boşluğu tek boşluk yap
+    text = re.sub(r'\s+', ' ', text).strip()
+    # Baştaki/sondaki tire, nokta, virgül temizliği
+    text = text.strip(" -–.,;:")
+    return text
+
+
+def _make_yt_title(base: str, max_len: int = 60) -> str:
+    """YouTube Shorts başlığı: max 60 karakter, #shorts ile biter."""
+    base = _clean_text(base)
+    suffix = " #shorts"
+    if not base:
+        return "Shorts" + suffix
+    if len(base) + len(suffix) <= max_len:
+        return base + suffix
+    return base[:max_len - len(suffix) - 1].rstrip() + suffix
+
+
 def poster_template(config: dict[str, Any], job: dict[str, Any], item: dict[str, Any]) -> dict[str, Any]:
-    status, flags = rights_status(job, item)
-    film = first_present(item, "film_hint", "film", "title", default="VERIFY_NEEDED")
-    year = first_present(item, "year_hint", "year")
-    director = first_present(item, "director_hint", "director")
-    screenplay = first_present(item, "screenplay_hint", "screenplay")
-    cast_raw = item.get("cast_hint") or item.get("cast") or []
-    cast = cast_raw if isinstance(cast_raw, list) else [part.strip() for part in str(cast_raw).split(",") if part.strip()]
-    if film == "VERIFY_NEEDED":
-        status = "verify_needed"
-        flags.append("film_identity_missing")
-    title_year = f"{film} ({year})" if year else film
-    summary = first_present(
-        item,
-        "summary_hint",
-        "plot_hint",
-        "film_description",
-        "description_hint",
-        default="VERIFY_NEEDED: Film aciklamasi eksik; Claude/cache veya manuel metadata ile doldur.",
-    )
-    director_tag = "#" + slugify(director).replace("-", "") if director else ""
-    film_tag = "#" + slugify(film).replace("-", "")
-    hashtags = dedupe(config["hashtags"]["base"] + [film_tag, director_tag])
-    short_caption = f"{title_year} moving poster. Which film next?"
-    youtube_description = clean_paragraphs(
-        f"{title_year}",
-        summary,
-        "Minimal moving poster edit. Film atmosferi tek sahne ve poster sablonu icinde yeniden kuruldu.",
-        "Hangi film gelsin?",
-        " ".join(hashtags),
-    )
-    instagram_caption = clean_paragraphs(
-        f"{title_year}",
-        summary,
-        "Which film next?",
-        " ".join(hashtags),
-    )
+    # SADECE anlamlı metadata kullan
+    film = _clean_text(item.get("film_hint") or item.get("film") or item.get("title") or "")
+    year = str(item.get("year_hint") or item.get("year") or "")
+    director = _clean_text(item.get("director_hint") or item.get("director") or "")
+
+    # Film adı + yıl
+    title_base = f"{film} ({year})" if year and film else film or "Film"
+    # YouTube başlık: "Film Adı (2023) #shorts"
+    yt_title = _make_yt_title(title_base)
+
+    # YouTube açıklama: max 150 karakter, 1-2 cümle
+    desc_parts = [f"{title_base} moving poster."]
+    if director:
+        desc_parts.append(f"Yönetmen: {director}.")
+    desc_parts.append("Which film next? #MovingPoster")
+    desc = " ".join(desc_parts)[:150]
+
+    # Instagram caption: max 100 karakter
+    ig_caption = f"{title_base} moving poster. Which film next?"[:100]
+
+    # TikTok caption: max 100 karakter
+    tt_caption = f"{title_base} moving poster"[:100]
+
     return {
-        "id": first_present(item, "id", default=slugify(film)),
-        "status": status,
-        "film_identity": {
-            "title": film,
-            "year": year,
-            "director": director or "VERIFY_NEEDED",
-            "screenplay": screenplay,
-            "cast": cast,
-            "confidence": "medium" if film != "VERIFY_NEEDED" else "low",
-        },
-        "poster_brief": {
-            "canvas": "9:16 vertical",
-            "background": "#f2f2f0",
-            "title_treatment": "huge clean bold title",
-            "credits_block": clean_lines(
-                f"Director: {director}" if director else "",
-                f"Screenplay: {screenplay}" if screenplay else "",
-                f"Cast: {', '.join(cast)}" if cast else "",
-            ),
-            "year_position": "top-right",
-            "swatches": config["visual"]["swatches"],
-            "moving_scene_note": first_present(item, "scene_hint", "visual_notes", default="Use the strongest readable scene moment inside the poster frame."),
-            "export_note": "scene inside poster frame; no black bars; no crop damage",
-        },
-        "youtube": {
-            "title": fit_youtube_title(short_caption),
-            "description": youtube_description,
-            "hashtags": hashtags,
-        },
-        "instagram": {"caption": instagram_caption, "hashtags": hashtags},
-        "tiktok": {"caption": f"{short_caption} {' '.join(hashtags[:6])}", "hashtags": hashtags[:6]},
-        "pinned_comment": "Next poster: Interstellar, Joker, Whiplash or Blade Runner 2049?",
-        "safety_flags": dedupe(flags),
-        "assumptions": ["Template fallback used; verify identity before publishing if confidence is not high."],
+        "id": item.get("id"),
+        "status": "ready",
+        "youtube": {"title": yt_title, "description": desc},
+        "instagram": {"caption": ig_caption},
+        "tiktok": {"caption": tt_caption},
     }
 
 
 def baddies_template(config: dict[str, Any], job: dict[str, Any], item: dict[str, Any]) -> dict[str, Any]:
-    status, flags = rights_status(job, item)
-    person = first_present(item, "person_hint", "person", default="Bu sahne")
-    context = first_present(item, "program_hint", "context", "series", default="ekran ani")
-    hook = first_present(item, "hook", "title_hint", default="Bu sahnenin enerjisi ayri.")
-    scene_description = first_present(
-        item,
-        "scene_description",
-        "description_hint",
-        "context_description",
-        default=f"{context} icinden ekran enerjisi, stil ve durus odakli kisa edit.",
-    )
-    question = first_present(item, "question", default="Sence bu anin aurasi kac/10?")
-    tags = dedupe(item.get("tags", []) + config["hashtags"]["youtube"])
-    ig_tags = dedupe(item.get("tags", []) + config["hashtags"]["instagram"])
+    # SADECE anlamlı metadata kullan
+    person = _clean_text(item.get("person_hint") or item.get("person") or "")
+    program = _clean_text(item.get("program_hint") or item.get("program") or item.get("context") or "")
+    hook = _clean_text(item.get("hook") or "")
+
+    # Kişi adı yoksa varsayılan
+    if not person:
+        person = "Bu sahne"
+
+    # YouTube başlık: "Kişi Adı #shorts"
+    title_base = person
+    if hook and len(f"{person} | {hook}") <= 55:
+        title_base = f"{person} | {hook}"
+    yt_title = _make_yt_title(title_base)
+
+    # YouTube açıklama: max 150 karakter
+    desc_parts = [f"{person}."]
+    if hook:
+        desc_parts.append(hook)
+    if program:
+        desc_parts.append(f"({program})")
+    desc_parts.append("Sence bu anın aurası kaç/10? #Baddies #Aura")
+    desc = " ".join(desc_parts)[:150]
+
+    # Instagram caption: max 100 karakter
+    ig_parts = [f"{person}."]
+    if hook:
+        ig_parts.append(hook)
+    ig_parts.append("Sence bu anın aurası kaç/10?")
+    ig_caption = " ".join(ig_parts)[:100]
+
+    # TikTok caption: max 100 karakter
+    tt_parts = [person]
+    if hook:
+        tt_parts.append(hook)
+    tt_caption = " ".join(tt_parts)[:100]
+
     return {
-        "id": first_present(item, "id", default=slugify(person)),
-        "status": status,
-        "clean_identity": {
-            "person": person,
-            "program_or_context": context,
-            "confidence": "medium" if person != "Bu sahne" else "low",
-        },
-        "render_brief": {
-            "format": "1080x1920 vertical",
-            "crop_rule": "no black bars; scale/crop cleanly",
-            "watermark": "bottom-right, visible but not covering the scene",
-            "style_notes": ["cherry pop", "bright", "clean magazine energy"],
-        },
-        "youtube": {
-            "title": fit_youtube_title(f"{person} | {hook}"),
-            "description": clean_paragraphs(
-                f"{person} - {context}",
-                hook,
-                scene_description,
-                question,
-                " ".join(tags),
-            ),
-            "hashtags": tags,
-        },
-        "instagram": {
-            "caption": clean_paragraphs(f"{person}", hook, question, " ".join(ig_tags)),
-            "hashtags": ig_tags,
-        },
-        "safety_flags": flags,
-        "assumptions": ["Template fallback used; avoid private-life claims and body/age comments."],
+        "id": item.get("id"),
+        "status": "ready",
+        "youtube": {"title": yt_title, "description": desc},
+        "instagram": {"caption": ig_caption},
+        "tiktok": {"caption": tt_caption},
     }
 
 
 def chatkesti_template(config: dict[str, Any], job: dict[str, Any], item: dict[str, Any]) -> dict[str, Any]:
-    status, flags = rights_status(job, item)
-    streamer = first_present(item, "streamer", "streamer_hint", default="Yayinci")
-    platform = first_present(item, "platform", "platform_hint", default="twitch/kick")
-    game = first_present(item, "game", "game_hint")
-    hook = first_present(item, "hook", "title_hint", default="Yayin burada koptu.")
-    clip_description = first_present(
-        item,
-        "clip_description",
-        "description_hint",
-        default="Ustte yayinci, altta olay. Klibin kirildigi an dikey kesit formatinda.",
-    )
-    question = first_present(item, "question", default="Bir sonraki hangi yayinci gelsin?")
-    tags = dedupe(item.get("tags", []) + config["hashtags"]["youtube"])
-    ig_tags = dedupe(item.get("tags", []) + config["hashtags"]["instagram"])
-    tiktok_tags = dedupe(item.get("tags", []) + config["hashtags"]["tiktok"])
+    # SADECE anlamlı metadata kullan
+    streamer = _clean_text(item.get("streamer") or "")
+    game = _clean_text(item.get("game") or "")
+    hook = _clean_text(item.get("hook") or "")
+
+    # Yayıncı adı yoksa varsayılan
+    if not streamer:
+        streamer = "Yayıncı"
+
+    # YouTube başlık: "Yayıncı Adı #shorts"
+    title_base = streamer
+    if hook and len(f"{streamer} | {hook}") <= 55:
+        title_base = f"{streamer} | {hook}"
+    yt_title = _make_yt_title(title_base)
+
+    # YouTube açıklama: max 150 karakter
+    desc_parts = [f"{streamer}."]
+    if hook:
+        desc_parts.append(hook)
+    if game:
+        desc_parts.append(f"{game} anında koptu.")
+    desc_parts.append("Bir sonraki hangi yayıncı gelsin? #shorts")
+    desc = " ".join(desc_parts)[:150]
+
+    # Instagram caption: max 100 karakter
+    ig_parts = []
+    if hook:
+        ig_parts.append(hook)
+    if game:
+        ig_parts.append(f"{game} anında koptu.")
+    ig_parts.append("Bir sonraki hangi yayıncı gelsin?")
+    ig_caption = " ".join(ig_parts)[:100]
+
+    # TikTok caption: max 100 karakter
+    tt_parts = []
+    if hook:
+        tt_parts.append(hook)
+    if game:
+        tt_parts.append(game)
+    tt_caption = " ".join(tt_parts)[:100]
+
     return {
-        "id": first_present(item, "id", default=slugify(streamer)),
-        "status": status,
-        "clip_identity": {
-            "streamer": streamer,
-            "platform": platform,
-            "game_or_context": game,
-            "confidence": "medium" if streamer != "Yayinci" else "low",
-        },
-        "render_brief": {
-            "format": "1080x1920 vertical",
-            "layout": "streamer facecam top, main event/game/react content bottom",
-            "separator": "thin black/green divider",
-            "watermark": "small bottom-right",
-            "manual_review_rule": "review if facecam confidence is below 0.45",
-        },
-        "youtube": {
-            "title": fit_youtube_title(f"{streamer} | {hook}"),
-            "description": clean_paragraphs(
-                f"{streamer} | {platform}",
-                hook,
-                clip_description,
-                f"Oyun/Konu: {game}" if game else "",
-                question,
-                " ".join(tags),
-            ),
-            "hashtags": tags,
-        },
-        "instagram": {"caption": clean_paragraphs(hook, question, " ".join(ig_tags)), "hashtags": ig_tags},
-        "tiktok": {"caption": f"{hook} {' '.join(tiktok_tags)}", "hashtags": tiktok_tags},
-        "pinned_comment": "Bir sonraki hangi yayinci gelsin?",
-        "safety_flags": flags,
-        "assumptions": ["Template fallback used; keep the clip about the moment, not personal attacks."],
+        "id": item.get("id"),
+        "status": "ready",
+        "youtube": {"title": yt_title, "description": desc},
+        "instagram": {"caption": ig_caption},
+        "tiktok": {"caption": tt_caption},
     }
 
 
