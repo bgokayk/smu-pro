@@ -8,6 +8,7 @@ import time
 import webbrowser
 import datetime as dt
 import socket
+import re
 from pathlib import Path
 from threading import Thread
 from flask import Flask, jsonify, render_template_string
@@ -19,6 +20,10 @@ DAEMON_SCRIPT = ROOT / "smu_daemon.py"
 COMMENT_FILE = ROOT / "comments" / f"{time.strftime('%Y-%m-%d')}_comment_drafts.json"
 LOG_FILE = ROOT / "logs" / "smu_daemon.log"
 CONFIG_FILE = ROOT / "smu_config.json"
+PUBLISHED_REGISTRY_FILE = ROOT / "published_registry.json"
+PUBLISHED_LEDGER_FILE = ROOT / "state" / "published_ledger.json"
+COMMENT_STATE_FILE = ROOT / "state" / "comment_state.json"
+FIREFOX_PROFILE = Path(r"C:\Users\User\.codex\browser-profiles\chatkesti-firefox")
 MODERN_TEMPLATE = (ROOT / "dashboard_template.html").read_text(encoding="utf-8")
 
 # ---------- Flask Uygulaması ----------
@@ -30,6 +35,35 @@ def _today_istanbul() -> str:
         return dt.datetime.now(tz=ZoneInfo("Europe/Istanbul")).date().isoformat()
     except Exception:
         return (dt.datetime.utcnow() + dt.timedelta(hours=3)).date().isoformat()
+
+
+def _istanbul_tz():
+    try:
+        from zoneinfo import ZoneInfo
+        return ZoneInfo("Europe/Istanbul")
+    except Exception:
+        return None
+
+
+def _now_local() -> dt.datetime:
+    tz = _istanbul_tz()
+    if tz:
+        return dt.datetime.now(tz=tz)
+    return dt.datetime.utcnow() + dt.timedelta(hours=3)
+
+
+def _parse_local_datetime(value: str | None) -> dt.datetime | None:
+    if not value:
+        return None
+    text = str(value).strip().replace("Z", "+00:00")
+    try:
+        parsed = dt.datetime.fromisoformat(text)
+    except ValueError:
+        return None
+    tz = _istanbul_tz()
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=tz) if tz else parsed
+    return parsed.astimezone(tz) if tz else parsed
 
 
 def _read_json(path: Path, default):
@@ -63,6 +97,64 @@ def _follower_counts():
         for key, value in data.items()
     }
 
+
+def _public_slot(slot: dict) -> dict:
+    title = slot.get("youtubeTitle") or slot.get("title") or ""
+    publish_at = slot.get("publishAtLocal") or ""
+    return {
+        "slot": slot.get("slot"),
+        "time": publish_at[11:16] if len(publish_at) >= 16 else "",
+        "channel": slot.get("channel", ""),
+        "title": title,
+        "youtubeTitle": title,
+        "publishAtLocal": publish_at,
+        "status": slot.get("status", ""),
+        "queueItemId": slot.get("queueItemId", ""),
+    }
+
+
+def _read_published_ledger() -> list[dict]:
+    data = _read_json(PUBLISHED_LEDGER_FILE, [])
+    if isinstance(data, list):
+        return data
+    if isinstance(data, dict):
+        return data.get("entries", [])
+    return []
+
+
+def _count_by_channel(items: list[dict]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for item in items:
+        channel = item.get("channel") or "unknown"
+        counts[channel] = counts.get(channel, 0) + 1
+    return counts
+
+
+def _port_open(port: int) -> bool:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.settimeout(0.25)
+        return sock.connect_ex(("127.0.0.1", port)) == 0
+
+
+def _firefox_profile_running(profile_path: Path) -> bool:
+    try:
+        result = subprocess.run(
+            [
+                "powershell",
+                "-NoProfile",
+                "-Command",
+                "Get-CimInstance Win32_Process | "
+                "Where-Object { $_.Name -like 'firefox*' -and $_.CommandLine -like '*chatkesti-firefox*' } | "
+                "Select-Object -First 1 -ExpandProperty ProcessId",
+            ],
+            capture_output=True,
+            text=True,
+            timeout=3,
+        )
+        return bool(result.stdout.strip())
+    except Exception:
+        return False
+
 # ---------- Örnek Takipçi Verileri (şimdilik statik, gerçek API ile değiştirilebilir) ----------
 def get_follower_data():
     # Bu kısmı Instagram ve YouTube API ile değiştirebiliriz.
@@ -72,6 +164,52 @@ def get_follower_data():
         "sahnebaddiestr": {"name": "Sahne Baddies TR", "handle": "@sahnebaddiestr", "followers": 8760, "weekly_growth": 320, "history": [8320, 8410, 8500, 8590, 8650, 8700, 8760]},
         "chatkesti": {"name": "ChatKesti", "handle": "@chatkesti", "followers": 15230, "weekly_growth": 1210, "history": [13800, 14100, 14450, 14780, 14990, 15120, 15230]}
     }
+
+# ---------- Yardımcı: Stock sayıları ----------
+def _count_files(directory: Path, pattern: str = "*.mp4") -> int:
+    """Belirtilen dizindeki dosya sayısını döndür."""
+    try:
+        return len(list(directory.glob(pattern)))
+    except Exception:
+        return 0
+
+def _get_stock_data():
+    """Her kanal için kaynak/render/queue sayılarını döndür."""
+    config = _read_json(CONFIG_FILE, {})
+    channels = config.get('channels', {})
+    stock = {}
+    for ch_id, ch_cfg in channels.items():
+        source_dir = Path(ch_cfg.get('sourceBucket', ''))
+        ready_dirs = ch_cfg.get('readyBuckets', [])
+        source_count = _count_files(source_dir)
+        render_count = sum(_count_files(Path(d)) for d in ready_dirs)
+        # Queue sayısı
+        queue_file = ROOT / "queues" / f"{_today_istanbul()}_{ch_id}_queue.json"
+        queue_data = _read_json(queue_file, {})
+        queue_count = len(queue_data.get('queue', [])) if isinstance(queue_data, dict) else 0
+        stock[ch_id] = {
+            "source": source_count,
+            "render": render_count,
+            "queue": queue_count
+        }
+    return stock
+
+def _get_pipeline_status():
+    """Pipeline durumunu döndür (hangi kanal hangi aşamada)."""
+    # Basit mantık: queue'su olan kanal "publish" aşamasında
+    # source'u olan "download", render'ı olan "render"
+    stock = _get_stock_data()
+    status = {}
+    for ch_id, data in stock.items():
+        if data["queue"] > 0:
+            status[ch_id] = "publish"
+        elif data["render"] > 0:
+            status[ch_id] = "render"
+        elif data["source"] > 0:
+            status[ch_id] = "download"
+        else:
+            status[ch_id] = "idle"
+    return status
 
 # ---------- API Uç Noktaları ----------
 @app.route('/api/schedule')
@@ -101,6 +239,231 @@ def api_data():
     schedule = _read_json(_schedule_path(), {})
     comments = _read_json(_comment_path(), {})
     return jsonify({'schedule': schedule, 'comments': comments})
+
+@app.route('/api/stock')
+def api_stock():
+    """Kaynak/render/queue sayıları"""
+    return jsonify(_get_stock_data())
+
+@app.route('/api/pipeline')
+def api_pipeline():
+    """Pipeline durumu"""
+    stock = _get_stock_data()
+    status = _get_pipeline_status()
+    return jsonify({"stock": stock, "status": status})
+
+@app.route('/api/cline-log')
+def api_cline_log():
+    """Cline pipeline log içeriği"""
+    cline_log = ROOT / "logs" / "cline_pipeline.md"
+    if cline_log.exists():
+        return jsonify({"content": cline_log.read_text(encoding="utf-8")})
+    return jsonify({"content": "Cline log bulunamadı."})
+
+@app.route('/api/codex-log')
+def api_codex_log():
+    """Codex pipeline log içeriği"""
+    codex_log = ROOT / "logs" / "codex_pipeline.md"
+    if codex_log.exists():
+        return jsonify({"content": codex_log.read_text(encoding="utf-8")})
+    return jsonify({"content": "Codex log bulunamadı."})
+
+@app.route('/api/next-slots')
+def api_next_slots():
+    """Sıradaki 5 slot"""
+    schedule = _read_json(_schedule_path(), {})
+    slots = schedule.get('slots', [])
+    now = _now_local()
+    
+    future_slots = []
+    for s in slots:
+        t = _parse_local_datetime(s.get('publishAtLocal'))
+        if t and t > now:
+            future_slots.append(s)
+    
+    future_slots.sort(key=lambda x: x.get('publishAtLocal', ''))
+    return jsonify([_public_slot(slot) for slot in future_slots[:5]])
+
+
+@app.route('/api/today-stats')
+def api_today_stats():
+    """Bugunku hedef vs gercek + sonraki paylasim."""
+    target_total = 30  # 10/kanal x 3
+    now = _now_local()
+    today = _today_istanbul()
+    sched_path = ROOT / "schedules" / f"{today}_smu_schedule.json"
+    slots = []
+    try:
+        if sched_path.exists():
+            slots = json.loads(sched_path.read_text(encoding="utf-8-sig")).get("slots", [])
+    except Exception:
+        pass
+
+    now_str = now.strftime("%Y-%m-%d %H:%M")
+    future = [s for s in slots if s.get("publishAtLocal", "") >= now_str]
+    past = [s for s in slots if s.get("publishAtLocal", "") < now_str]
+    next_slot = future[0] if future else None
+
+    # Bugun yayinlanan (ledger)
+    entries = _read_published_ledger()
+    today_pub = sum(1 for e in entries
+                    if _parse_local_datetime(e.get("publishedAt"))
+                    and _parse_local_datetime(e.get("publishedAt")).date().isoformat() == today)
+
+    by_ch_today = {}
+    for s in slots:
+        ch = s.get("channel", "?")
+        by_ch_today[ch] = by_ch_today.get(ch, 0) + 1
+
+    return jsonify({
+        "targetTotal": target_total,
+        "scheduledSlots": len(slots),
+        "passedSlots": len(past),
+        "futureSlots": len(future),
+        "todayPublished": today_pub,
+        "remainingTarget": max(target_total - today_pub, 0),
+        "byChannel": by_ch_today,
+        "nextSlot": {
+            "time": next_slot.get("publishAtLocal") if next_slot else None,
+            "channel": next_slot.get("channel") if next_slot else None,
+            "title": (next_slot.get("youtubeTitle", "")[:80]) if next_slot else None,
+        } if next_slot else None,
+    })
+
+
+@app.route('/api/cadence-stats')
+def api_cadence_stats():
+    """Son 1 saat yayin cadence metrigi."""
+    target_per_hour = 5
+    now = _now_local()
+    window_start = now - dt.timedelta(hours=1)
+    entries = _read_published_ledger()
+
+    recent = []
+    today_entries = []
+    for entry in entries:
+        published_at = _parse_local_datetime(entry.get("publishedAt"))
+        if not published_at:
+            continue
+        if published_at.date().isoformat() == _today_istanbul():
+            today_entries.append(entry)
+        if window_start <= published_at <= now:
+            recent.append(entry)
+
+    registry = _read_json(PUBLISHED_REGISTRY_FILE, {})
+    registry_counts = {
+        channel: len(ids) for channel, ids in registry.items() if isinstance(ids, list)
+    } if isinstance(registry, dict) else {}
+    actual = len(recent)
+
+    return jsonify({
+        "targetPerHour": target_per_hour,
+        "actualLastHour": actual,
+        "remainingToTarget": max(target_per_hour - actual, 0),
+        "status": "ok" if actual >= target_per_hour else "behind",
+        "windowStart": window_start.isoformat(timespec="seconds"),
+        "windowEnd": now.isoformat(timespec="seconds"),
+        "todayPublished": len(today_entries),
+        "byChannelLastHour": _count_by_channel(recent),
+        "publishedRegistryTotal": sum(registry_counts.values()),
+        "publishedRegistryByChannel": registry_counts,
+        "source": "state/published_ledger.json",
+    })
+
+
+@app.route('/api/comment-stats')
+def api_comment_stats():
+    """Yorum motoru state metrigi."""
+    target_per_hour = 5
+    now = _now_local()
+    window_start = now - dt.timedelta(hours=1)
+    state = _read_json(COMMENT_STATE_FILE, {})
+    comments = state.get("posted_comments", []) if isinstance(state, dict) else []
+
+    recent = []
+    for comment in comments:
+        posted_at = _parse_local_datetime(comment.get("posted_at"))
+        if posted_at and window_start <= posted_at <= now:
+            recent.append(comment)
+
+    return jsonify({
+        "targetPerHour": target_per_hour,
+        "postedLastHour": len(recent),
+        "remainingToTarget": max(target_per_hour - len(recent), 0),
+        "totalPosted": len(comments),
+        "lastPostTime": state.get("last_post_time", "") if isinstance(state, dict) else "",
+        "byChannelLastHour": _count_by_channel(recent),
+        "stateExists": COMMENT_STATE_FILE.exists(),
+        "windowStart": window_start.isoformat(timespec="seconds"),
+        "windowEnd": now.isoformat(timespec="seconds"),
+    })
+
+
+@app.route('/api/dedup-stats')
+def api_dedup_stats():
+    """Bugunku global dedup engel sayisi."""
+    today = _today_istanbul()
+    events = []
+    if LOG_FILE.exists():
+        for line in LOG_FILE.read_text(encoding="utf-8", errors="replace").splitlines():
+            if "GLOBAL DEDUP engellendi" not in line or not line.startswith(f"[{today}"):
+                continue
+            match = re.search(
+                r"^\[(?P<ts>[^\]]+)\].*GLOBAL DEDUP engellendi: (?P<item>.*?) zaten .*?\(kanal: (?P<channel>.*?)\)",
+                line,
+            )
+            if match:
+                events.append(match.groupdict())
+            else:
+                events.append({"ts": line[1:20], "item": "", "channel": "unknown"})
+
+    by_channel: dict[str, int] = {}
+    for event in events:
+        channel = event.get("channel") or "unknown"
+        by_channel[channel] = by_channel.get(channel, 0) + 1
+
+    return jsonify({
+        "today": today,
+        "globalDedupBlockedToday": len(events),
+        "byChannel": by_channel,
+        "lastEvents": events[-5:],
+        "source": "logs/smu_daemon.log",
+    })
+
+
+@app.route('/api/browser-health')
+def api_browser_health():
+    """Browser debug port ve Firefox profile sagligi."""
+    chrome_online = _port_open(9222)
+    edge_online = _port_open(9223)
+    firefox_exists = FIREFOX_PROFILE.exists()
+    firefox_running = _firefox_profile_running(FIREFOX_PROFILE)
+
+    def badge(ok: bool) -> str:
+        return "online" if ok else "offline"
+
+    return jsonify({
+        "chrome9222": {
+            "label": "Chrome 9222",
+            "port": 9222,
+            "ok": chrome_online,
+            "status": badge(chrome_online),
+        },
+        "edge9223": {
+            "label": "Edge 9223",
+            "port": 9223,
+            "ok": edge_online,
+            "status": badge(edge_online),
+        },
+        "firefox": {
+            "label": "Firefox chatkesti",
+            "profile": str(FIREFOX_PROFILE),
+            "profileExists": firefox_exists,
+            "running": firefox_running,
+            "ok": firefox_exists,
+            "status": "running" if firefox_running else ("profile-ready" if firefox_exists else "missing"),
+        },
+    })
 
 @app.route('/')
 def index():

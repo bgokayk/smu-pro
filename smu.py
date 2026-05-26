@@ -20,6 +20,7 @@ import re
 import subprocess
 import sys
 import time
+import unicodedata
 from pathlib import Path
 from typing import Any
 
@@ -34,10 +35,43 @@ JOB_DIR = ROOT / "jobs"
 QUEUE_DIR = ROOT / "queues"
 MEDIA_EXTENSIONS = {".mp4", ".mov", ".m4v", ".webm", ".mkv"}
 DEFAULT_SLOT_MINUTES = [5, 25, 40]
+DEFAULT_MAX_PUBLISH_FILE_MB = 49
+
+BLOCKED_SOURCE_TERMS = {
+    "poster_loop_cinema": [
+        "posterloop-now20-20260522",
+        "posterloop_queue_now20_20260522",
+        "posterloop_queue_51_100",
+        "trailer-51-100",
+    ],
+    "sahnebaddiestr": [
+        "+18",
+        "ciplak",
+        "dekolte",
+        "frikik",
+        "gogus",
+        "ic camasir",
+        "ifsa",
+        "meme",
+        "sutyen",
+    ],
+    "chatkesti": [
+        "+18",
+        "ciplak",
+        "dekolte",
+        "frikik",
+        "gogus",
+        "ic camasir",
+        "ifsa",
+        "meme",
+        "sutyen",
+        "twerk",
+    ],
+}
 
 
 def read_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
 def write_json(path: Path, data: Any) -> None:
@@ -88,6 +122,14 @@ def publication_window(config: dict[str, Any], day: dt.date) -> tuple[dt.datetim
     return start, end
 
 
+def current_day_start(day: dt.date, start: dt.datetime, end: dt.datetime) -> dt.datetime:
+    """For same-day recovery runs, avoid creating slots that are already gone."""
+    now = dt.datetime.now()
+    if day == now.date() and start < now < end:
+        return now + dt.timedelta(minutes=1)
+    return start
+
+
 def fixed_hourly_minutes(config: dict[str, Any], channel: dict[str, Any]) -> list[int]:
     cadence = channel.get("publishCadence") or config.get("publishCadence") or {}
     if cadence.get("mode") != "hourly_fixed_minutes":
@@ -99,6 +141,7 @@ def fixed_hourly_minutes(config: dict[str, Any], channel: dict[str, Any]) -> lis
 
 def make_slots(day: dt.date, config: dict[str, Any], channel_id: str, channel: dict[str, Any]) -> list[dict[str, Any]]:
     start, end = publication_window(config, day)
+    start = current_day_start(day, start, end)
     target = int(channel.get("dailyPostTarget", 10))
     minutes = fixed_hourly_minutes(config, channel)
     offset = dt.timedelta(minutes=int(channel.get("slotOffsetMinutes", 0)))
@@ -199,6 +242,71 @@ def canonical_media_id(path: Path) -> str:
                 value = value[: -len(suffix)].strip("-")
                 changed = True
     return value or slugify(path.stem)
+
+
+def fold_for_search(value: str) -> str:
+    value = unicodedata.normalize("NFKD", value or "")
+    value = "".join(ch for ch in value if not unicodedata.combining(ch))
+    value = value.lower()
+    value = value.replace("ı", "i").replace("ğ", "g").replace("ş", "s")
+    value = value.replace("ç", "c").replace("ö", "o").replace("ü", "u")
+    return re.sub(r"\s+", " ", value)
+
+
+def source_blocked(
+    channel_id: str,
+    source_path: Path,
+    meta: dict[str, Any] | None = None,
+    channel: dict[str, Any] | None = None,
+) -> bool:
+    terms = list(BLOCKED_SOURCE_TERMS.get(channel_id, []))
+    if channel:
+        terms.extend(str(term) for term in channel.get("blockedSourceTerms", []) if term)
+    if not terms:
+        return False
+    meta = meta or {}
+    haystack = " ".join(
+        [
+            source_path.as_posix(),
+            str(meta.get("raw_title", "")),
+            str(meta.get("title", "")),
+            str(meta.get("description", "")),
+            str(meta.get("uploader", "")),
+        ]
+    )
+    folded = fold_for_search(haystack)
+    return any(term in folded for term in terms)
+
+
+def max_publish_bytes(channel: dict[str, Any]) -> int:
+    raw = channel.get("maxPublishFileMB", DEFAULT_MAX_PUBLISH_FILE_MB)
+    try:
+        value = float(raw)
+    except (TypeError, ValueError):
+        value = DEFAULT_MAX_PUBLISH_FILE_MB
+    return int(max(0, value) * 1024 * 1024)
+
+
+def canonical_index_or_none():
+    try:
+        from canonical_published_index import get_index
+
+        index = get_index()
+        if not index.data.get("by_core"):
+            index.scan_and_rebuild()
+        return index
+    except Exception:
+        return None
+
+
+def canonical_core(value: str) -> str:
+    normalized = re.sub(r"^\d{1,3}-", "", slugify(value or ""))
+    try:
+        from canonical_published_index import get_core_id
+
+        return get_core_id(normalized)
+    except Exception:
+        return normalized
 
 
 def ready_buckets(channel: dict[str, Any]) -> list[Path]:
@@ -357,15 +465,49 @@ def scan_channel_sources(
             if path.is_file() and path.suffix.lower() in MEDIA_EXTENSIONS
         )
     published = published_ids_for_channel(channel)
+    canonical_index = canonical_index_or_none()
+    max_bytes = max_publish_bytes(channel)
     unique_files = {path.resolve(): path for path in files}.values()
     candidates = sorted(unique_files, key=lambda path: path.stat().st_mtime, reverse=True)
     selected: list[Path] = []
+    selected_ids: set[str] = set()
     skipped_published = 0
+    skipped_global_published = 0
+    skipped_duplicate_ready = 0
+    skipped_too_large = 0
+    skipped_blocked_source = 0
     for path in candidates:
-        if canonical_media_id(path) in published:
+        meta = load_sidecar(path, channel)
+        item_id = str(meta.get("id") or canonical_media_id(path))
+        media_id = canonical_media_id(path)
+        item_core = canonical_core(item_id or media_id or path.stem)
+        file_core = canonical_core(path.stem)
+
+        if source_blocked(channel_id, path, meta, channel):
+            skipped_blocked_source += 1
+            continue
+
+        if max_bytes and path.stat().st_size > max_bytes:
+            skipped_too_large += 1
+            continue
+
+        if item_id in selected_ids or media_id in selected_ids or item_core in selected_ids or file_core in selected_ids:
+            skipped_duplicate_ready += 1
+            continue
+
+        if media_id in published or item_id in published:
             skipped_published += 1
             continue
+
+        if canonical_index and canonical_index.is_published(item_id=item_id, file_path=str(path)):
+            skipped_global_published += 1
+            continue
+
         selected.append(path)
+        selected_ids.add(item_id)
+        selected_ids.add(media_id)
+        selected_ids.add(item_core)
+        selected_ids.add(file_core)
         if len(selected) >= limit:
             break
     items = [infer_item(channel_id, channel, path, rights) for path in selected]
@@ -376,6 +518,10 @@ def scan_channel_sources(
         "confirmed": confirmed,
         "unknown_or_hold": len(items) - confirmed,
         "skippedPublished": skipped_published,
+        "skippedGlobalPublished": skipped_global_published,
+        "skippedDuplicateReady": skipped_duplicate_ready,
+        "skippedTooLarge": skipped_too_large,
+        "skippedBlockedSource": skipped_blocked_source,
         "missingBuckets": missing,
     }
 
@@ -441,30 +587,44 @@ def cmd_attach_queue(args: argparse.Namespace) -> None:
     for slot in schedule["slots"]:
         if slot["channel"] == channel and slot.get("queueItemId"):
             existing_ids.add(slot["queueItemId"])
+            existing_ids.add(canonical_core(slot["queueItemId"]))
 
     # Duplicate file path kontrolÃ¼: aynÄ± kanalda daha Ã¶nce eklenmiÅŸ dosyalarÄ± bul
     existing_files: set[str] = set()
     for slot in schedule["slots"]:
         if slot["channel"] == channel and slot.get("file"):
             existing_files.add(slot["file"])
+            existing_files.add(canonical_core(Path(slot["file"]).stem))
 
+    canonical_index = canonical_index_or_none()
     attached = 0
     skipped_duplicate_id = 0
     skipped_duplicate_file = 0
-    for slot, item in zip(open_slots, queue_items):
+    skipped_global_published = 0
+    slot_index = 0
+    for item in queue_items:
+        if slot_index >= len(open_slots):
+            break
         item_id = item.get("id", "")
         item_file = item.get("file", "")
+        item_core = canonical_core(item_id or Path(item_file).stem)
+        file_core = canonical_core(Path(item_file).stem) if item_file else ""
 
-        # AynÄ± queueItemId daha Ã¶nce eklenmiÅŸse atla
-        if item_id and item_id in existing_ids:
+        if canonical_index and canonical_index.is_published(item_id=item_id, file_path=item_file):
+            skipped_global_published += 1
+            continue
+
+        # Ayni queueItemId daha once eklenmisse atla; bos slotu tuketme.
+        if item_id and (item_id in existing_ids or item_core in existing_ids):
             skipped_duplicate_id += 1
             continue
 
-        # AynÄ± dosya yolu daha Ã¶nce eklenmiÅŸse atla
-        if item_file and item_file in existing_files:
+        # Ayni dosya yolu daha once eklenmisse atla; bos slotu tuketme.
+        if item_file and (item_file in existing_files or file_core in existing_files):
             skipped_duplicate_file += 1
             continue
 
+        slot = open_slots[slot_index]
         slot["status"] = "scheduled"
         slot["queueItemId"] = item_id
         slot["file"] = item_file
@@ -473,17 +633,21 @@ def cmd_attach_queue(args: argparse.Namespace) -> None:
         slot["instagramCaption"] = item.get("instagramCaption", "")
         slot["tiktokCaption"] = item.get("tiktokCaption", "")
         attached += 1
+        slot_index += 1
         if item_id:
             existing_ids.add(item_id)
+            existing_ids.add(item_core)
         if item_file:
             existing_files.add(item_file)
+            existing_files.add(file_core)
 
     out = Path(args.out) if args.out else Path(args.schedule)
     write_json(out, schedule)
     print(out)
     print(f"attached={attached} channel={channel} force={force} "
           f"skipped_duplicate_id={skipped_duplicate_id} "
-          f"skipped_duplicate_file={skipped_duplicate_file}")
+          f"skipped_duplicate_file={skipped_duplicate_file} "
+          f"skipped_global_published={skipped_global_published}")
 
 
 

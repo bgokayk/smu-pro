@@ -2,25 +2,21 @@
   "name": "SMU",
   "timezone": "Europe/Istanbul",
   "noPostWindow": {
-    "start": "01:00",
-    "end": "07:00",
+    "start": "02:00",
+    "end": "08:00",
     "disabled": true
   },
   "publishCadence": {
-    "mode": "hourly_fixed_minutes",
-    "minutes": [
-      0,
-      6,
-      12,
-      18,
-      24,
-      30,
-      36,
-      42,
-      48,
-      54
-    ]
+    "mode": "v2_per_channel_interval",
+    "intervalMinutes": 36,
+    "staggerMinutes": 12,
+    "slotsPerChannel": 40
   },
+  "publishPlatforms": [
+    "youtube",
+    "instagram"
+  ],
+  "maxPublishFileMB": 49,
   "morningPrepWindow": {
     "start": "07:00",
     "end": "11:00"
@@ -35,7 +31,7 @@
     "poster_loop_cinema": {
       "active": true,
       "browser": "Chrome",
-      "dailyPostTarget": 80,
+      "dailyPostTarget": 10,
       "dailyAccountDiscoveryTarget": 10,
       "dailyCommentDraftTarget": 10,
       "slotOffsetMinutes": 0,
@@ -43,14 +39,25 @@
       "readyBuckets": [
         "C:/Users/User/.codex/analog-neo-moving-poster/exports-with-video"
       ],
+      "publishPlatforms": [
+        "youtube",
+        "instagram"
+      ],
+      "maxPublishFileMB": 49,
+      "blockedSourceTerms": [
+        "posterloop-now20-20260522",
+        "posterloop_queue_now20_20260522",
+        "posterloop_queue_51_100",
+        "trailer-51-100"
+      ],
       "notes": "Film clips only.",
-      "youtubeChannelId": "UC_poster_loop_cinema",
+      "youtubeChannelId": "UCf7Ls7Hlnpfn4eNClyHaQig",
       "instagramMediaId": ""
     },
     "sahnebaddiestr": {
       "active": true,
       "browser": "Edge",
-      "dailyPostTarget": 80,
+      "dailyPostTarget": 10,
       "dailyAccountDiscoveryTarget": 10,
       "dailyCommentDraftTarget": 10,
       "slotOffsetMinutes": 9,
@@ -58,14 +65,26 @@
       "readyBuckets": [
         "C:/Users/User/.codex/sahne-baddies-auto/exports"
       ],
+      "publishPlatforms": [
+        "youtube",
+        "instagram"
+      ],
+      "maxPublishFileMB": 49,
+      "blockedSourceTerms": [
+        "ifsa",
+        "frikik",
+        "+18",
+        "gogus",
+        "dekolte"
+      ],
       "notes": "Celebrity clips only.",
-      "youtubeChannelId": "UC_sahnebaddiestr",
+      "youtubeChannelId": "UCFDdRbF1OVvKZSvNB3ZP85A",
       "instagramMediaId": ""
     },
     "chatkesti": {
       "active": true,
       "browser": "Firefox",
-      "dailyPostTarget": 80,
+      "dailyPostTarget": 10,
       "dailyAccountDiscoveryTarget": 10,
       "dailyCommentDraftTarget": 10,
       "slotOffsetMinutes": 18,
@@ -73,10 +92,27 @@
       "readyBuckets": [
         "C:/Users/User/.codex/yayinci-kesitleri-auto/exports"
       ],
+      "publishPlatforms": [
+        "youtube",
+        "instagram"
+      ],
+      "maxPublishFileMB": 49,
+      "blockedSourceTerms": [
+        "ifsa",
+        "frikik",
+        "+18",
+        "gogus",
+        "dekolte",
+        "sutyen"
+      ],
       "notes": "Stream clips.",
-      "youtubeChannelId": "UC_chatkesti",
+      "youtubeChannelId": "UCYmRAiK1t7yXglvY0srhZSA",
       "instagramMediaId": ""
     }
+  },
+  "daemon": {
+    "catchUpWindowMinutes": 20,
+    "maxFailuresPerSlot": 2
   },
   "deepseek_api_key": "sk-5d6a12d37ffb4ef988e99a29bae7ba47",
   "youtube_api_key": "",
@@ -111,16 +147,16 @@
       "Ekran enerjisi sakin ama net."
     ],
     "chatkesti": [
-      "Bu an süper olmuş 😂",
-      "Koptum resmen 🤣",
-      "Chat bunu çok sevdi ❤️",
-      "Yayıncı burada kendini aştı 👏",
-      "Kaçırmayın, müthiş anlar ✨",
-      "Kesinlikle izlenmeli 🎮",
-      "Bu klip özet niteliğinde 🎬",
-      "O anı yakalamışsınız 🔥",
-      "Kesitlerin kralı 👑",
-      "Bir sonraki hangi yayıncı gelsin? 😉"
+      "Bu an yayinin ritmini bir anda degistirdi.",
+      "Chat burada neden koptu hemen belli oluyor.",
+      "Kisa ama tekrar izlemelik bir yayin kesiti.",
+      "Yayinci tepkisi tam kliplik olmus.",
+      "Bu anin zamanlamasi cok iyi yakalanmis.",
+      "Kesitin temposu direkt yorumluk.",
+      "Yayin burada beklenmedik sekilde acildi.",
+      "Bu tepkiyi kacirmamak lazimdi.",
+      "ChatKesti icin temiz ve net bir an.",
+      "Bir sonraki hangi yayinci gelsin?"
     ]
   }
 }

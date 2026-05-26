@@ -1,16 +1,47 @@
 {
   "channel": "poster_loop_cinema",
-  "strategy": "filmmax_only",
+  "strategy": "ytdlp_search",
   "sources": [
     {
-      "label": "filmmax-shorts",
+      "label": "filmmax-shorts-channel",
       "url": "https://www.youtube.com/@Filmmax-/shorts",
       "active": true,
-      "maxItems": 30,
+      "maxItems": 200,
       "filmHint": "",
       "yearHint": "",
-      "sceneHint": "Filmmax short",
+      "sceneHint": "Filmmax shorts",
       "noPlaylist": false
+    },
+    {
+      "label": "filmmax-search-genel",
+      "url": "ytsearch50:filmmax film sahnesi shorts",
+      "active": true,
+      "maxItems": 50,
+      "sceneHint": "Filmmax sinematik sahne",
+      "noPlaylist": true
+    },
+    {
+      "label": "turk-film-sahne",
+      "url": "ytsearch50:türk filmi unutulmaz sahne short klasik",
+      "active": true,
+      "maxItems": 50,
+      "sceneHint": "Türk film sahnesi",
+      "noPlaylist": true
+    },
+    {
+      "label": "hollywood-klasik",
+      "url": "ytsearch40:hollywood klasik film unutulmaz sahne shorts",
+      "active": true,
+      "maxItems": 40,
+      "sceneHint": "Hollywood klasik",
+      "noPlaylist": true
+    },
+    {
+      "label": "film-imkansiz",
+      "url": "ytsearch30:imkansız dediler ama başardı film sahnesi",
+      "active": true,
+      "maxItems": 30,
+      "noPlaylist": true
     }
   ]
 }

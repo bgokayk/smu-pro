@@ -305,29 +305,108 @@ def _make_yt_title(base: str, max_len: int = 60) -> str:
     return base[:max_len - len(suffix) - 1].rstrip() + suffix
 
 
+def _copy_variant(item: dict[str, Any], options: list[str]) -> str:
+    if not options:
+        return ""
+    return options[int(stable_hash(item), 16) % len(options)]
+
+
+def _clean_subject(value: str, fallback: str) -> str:
+    value = _clean_text(value)
+    if not value or value.lower() == "film":
+        return fallback
+    return value
+
+
+def _platform_copy(
+    channel: str,
+    subject: str,
+    context: str,
+    question: str,
+    item: dict[str, Any],
+) -> tuple[str, str, str]:
+    """Create distinct YouTube, Instagram and TikTok copy for the same clip."""
+    subject = subject.strip() or "Bu an"
+    context = context.strip() or "Kisa video icin secilen bu an, ritmi ve ekrandaki enerjisiyle one cikiyor."
+    question = question.strip() or "Sence bu an nasil?"
+
+    yt_openers = {
+        "poster_loop_cinema": [
+            "Bu sahne hareketli poster diline temiz bir sekilde tasindi.",
+            "Filmden secilen bu an, tek bakista atmosfer kuran karelerden biri.",
+            "Bu kesit, filmin tonunu kisa surede hissettiren ozel bir an.",
+        ],
+        "sahnebaddiestr": [
+            "Bu editte odak tamamen ekran durusu ve sahne enerjisinde.",
+            "Kisa ama etkili bir an: stil, mimik ve tavir ayni kadrajda.",
+            "Bu sahne, karakter enerjisini abartmadan one tasiyor.",
+        ],
+        "chatkesti": [
+            "Yayindaki tempo bir anda degisiyor ve klip tam orada basliyor.",
+            "Chat'in yakaladigi bu an kisa, net ve tekrar izlemelik.",
+            "Yayinci tepkisiyle klibin butun ritmi bir anda yukseliyor.",
+        ],
+    }
+    ig_openers = {
+        "poster_loop_cinema": [
+            "Bu kareyi hareketli poster gibi izleyince sahnenin havasi daha net geliyor.",
+            "Sinema tarafinda bazen tek bir an butun tonu anlatir; burada o duygu var.",
+            "Kisa, temiz ve atmosferli bir film ani. Bu seri icin guzel bir secim.",
+        ],
+        "sahnebaddiestr": [
+            "Bu editin derdi net: sahnedeki aura, mimik ve ekran enerjisi.",
+            "Kisa bir an ama durus guclu. Stil ve tavir ayni yerde bulusuyor.",
+            "Bu sahnede fazla soze gerek yok; ekran enerjisi kendi kendine calisiyor.",
+        ],
+        "chatkesti": [
+            "Yayinda boyle anlar gelince chat'in neden hemen klip aldigi belli oluyor.",
+            "Kisa surede bu kadar reaksiyon cikmasi zaten klibin olayi.",
+            "ChatKesti icin tam tadinda bir kesit: hizli, net ve yorumluk.",
+        ],
+    }
+    hashtags = {
+        "poster_loop_cinema": "#shorts #film #sinema #movieclips #posterloop #reels",
+        "sahnebaddiestr": "#shorts #sahne #edit #reels #style #vibe",
+        "chatkesti": "#shorts #chatkesti #yayinci #twitch #gaming #reels",
+    }
+    yt_desc = clean_paragraphs(
+        f"{subject}. {_copy_variant(item, yt_openers.get(channel, yt_openers['poster_loop_cinema']))}",
+        context,
+        f"{question} Yorumlara yaz, begen ve takipte kal.",
+        hashtags.get(channel, "#shorts #reels"),
+    )
+    ig_caption = clean_paragraphs(
+        _copy_variant(item, ig_openers.get(channel, ig_openers["poster_loop_cinema"])),
+        f"{subject}. {context}",
+        f"{question} Kaydet, paylas ve bir sonraki secimi yorumlara birak.",
+        hashtags.get(channel, "#shorts #reels"),
+    )
+    tt_caption = f"{subject}. {question} {hashtags.get(channel, '#shorts #reels')}"
+    return yt_desc[:1800], ig_caption[:2000], tt_caption[:220]
+
+
 def poster_template(config: dict[str, Any], job: dict[str, Any], item: dict[str, Any]) -> dict[str, Any]:
     # SADECE anlamlı metadata kullan
-    film = _clean_text(item.get("film_hint") or item.get("film") or item.get("title") or "")
+    film = _clean_subject(item.get("film_hint") or item.get("film") or item.get("title") or "", "Film sahnesi")
     year = str(item.get("year_hint") or item.get("year") or "")
     director = _clean_text(item.get("director_hint") or item.get("director") or "")
+    scene = _clean_text(item.get("scene_hint") or item.get("summary_hint") or item.get("summary") or "")
 
     # Film adı + yıl
     title_base = f"{film} ({year})" if year and film else film or "Film"
     # YouTube başlık: "Film Adı (2023) #shorts"
     yt_title = _make_yt_title(title_base)
 
-    # YouTube açıklama: max 150 karakter, 1-2 cümle
-    desc_parts = [f"{title_base} moving poster."]
+    context = scene or f"{title_base} icin secilen bu kisa kesit moving poster formatinda yeniden paketlendi."
     if director:
-        desc_parts.append(f"Yönetmen: {director}.")
-    desc_parts.append("Which film next? #MovingPoster")
-    desc = " ".join(desc_parts)[:150]
-
-    # Instagram caption: max 100 karakter
-    ig_caption = f"{title_base} moving poster. Which film next?"[:100]
-
-    # TikTok caption: max 100 karakter
-    tt_caption = f"{title_base} moving poster"[:100]
+        context += f" Yonetmen bilgisi: {director}."
+    desc, ig_caption, tt_caption = _platform_copy(
+        "poster_loop_cinema",
+        title_base,
+        context,
+        "Bir sonraki moving poster hangi filmden gelsin?",
+        item,
+    )
 
     return {
         "id": item.get("id"),
@@ -340,9 +419,10 @@ def poster_template(config: dict[str, Any], job: dict[str, Any], item: dict[str,
 
 def baddies_template(config: dict[str, Any], job: dict[str, Any], item: dict[str, Any]) -> dict[str, Any]:
     # SADECE anlamlı metadata kullan
-    person = _clean_text(item.get("person_hint") or item.get("person") or "")
+    person = _clean_subject(item.get("person_hint") or item.get("person") or "", "Bu sahne")
     program = _clean_text(item.get("program_hint") or item.get("program") or item.get("context") or "")
     hook = _clean_text(item.get("hook") or "")
+    scene = _clean_text(item.get("scene_description") or "")
 
     # Kişi adı yoksa varsayılan
     if not person:
@@ -354,27 +434,15 @@ def baddies_template(config: dict[str, Any], job: dict[str, Any], item: dict[str
         title_base = f"{person} | {hook}"
     yt_title = _make_yt_title(title_base)
 
-    # YouTube açıklama: max 150 karakter
-    desc_parts = [f"{person}."]
-    if hook:
-        desc_parts.append(hook)
-    if program:
-        desc_parts.append(f"({program})")
-    desc_parts.append("Sence bu anın aurası kaç/10? #Baddies #Aura")
-    desc = " ".join(desc_parts)[:150]
-
-    # Instagram caption: max 100 karakter
-    ig_parts = [f"{person}."]
-    if hook:
-        ig_parts.append(hook)
-    ig_parts.append("Sence bu anın aurası kaç/10?")
-    ig_caption = " ".join(ig_parts)[:100]
-
-    # TikTok caption: max 100 karakter
-    tt_parts = [person]
-    if hook:
-        tt_parts.append(hook)
-    tt_caption = " ".join(tt_parts)[:100]
+    context_bits = [part for part in [hook, scene, program] if part]
+    context = ". ".join(context_bits) or "Sahnedeki enerji, mimik ve durus kisa edit formatinda one cikarildi."
+    desc, ig_caption, tt_caption = _platform_copy(
+        "sahnebaddiestr",
+        person,
+        context,
+        item.get("question") or "Sence bu anin aurasi kac/10?",
+        item,
+    )
 
     return {
         "id": item.get("id"),
@@ -387,9 +455,10 @@ def baddies_template(config: dict[str, Any], job: dict[str, Any], item: dict[str
 
 def chatkesti_template(config: dict[str, Any], job: dict[str, Any], item: dict[str, Any]) -> dict[str, Any]:
     # SADECE anlamlı metadata kullan
-    streamer = _clean_text(item.get("streamer") or "")
+    streamer = _clean_subject(item.get("streamer") or "", "Yayinci")
     game = _clean_text(item.get("game") or "")
     hook = _clean_text(item.get("hook") or "")
+    clip_desc = _clean_text(item.get("clip_description") or "")
 
     # Yayıncı adı yoksa varsayılan
     if not streamer:
@@ -401,31 +470,15 @@ def chatkesti_template(config: dict[str, Any], job: dict[str, Any], item: dict[s
         title_base = f"{streamer} | {hook}"
     yt_title = _make_yt_title(title_base)
 
-    # YouTube açıklama: max 150 karakter
-    desc_parts = [f"{streamer}."]
-    if hook:
-        desc_parts.append(hook)
-    if game:
-        desc_parts.append(f"{game} anında koptu.")
-    desc_parts.append("Bir sonraki hangi yayıncı gelsin? #shorts")
-    desc = " ".join(desc_parts)[:150]
-
-    # Instagram caption: max 100 karakter
-    ig_parts = []
-    if hook:
-        ig_parts.append(hook)
-    if game:
-        ig_parts.append(f"{game} anında koptu.")
-    ig_parts.append("Bir sonraki hangi yayıncı gelsin?")
-    ig_caption = " ".join(ig_parts)[:100]
-
-    # TikTok caption: max 100 karakter
-    tt_parts = []
-    if hook:
-        tt_parts.append(hook)
-    if game:
-        tt_parts.append(game)
-    tt_caption = " ".join(tt_parts)[:100]
+    context_bits = [part for part in [hook, clip_desc, f"{game} aninda gelen reaksiyon" if game else ""] if part]
+    context = ". ".join(context_bits) or "Yayinda yakalanan bu kesit, chat tepkisi ve zamanlamasiyla one cikiyor."
+    desc, ig_caption, tt_caption = _platform_copy(
+        "chatkesti",
+        streamer,
+        context,
+        item.get("question") or "Bir sonraki hangi yayinci gelsin?",
+        item,
+    )
 
     return {
         "id": item.get("id"),
@@ -755,6 +808,16 @@ def build_browser_command(config: dict[str, Any]) -> tuple[list[str], list[str]]
     return [str(executable), *urls], tried
 
 
+def debug_endpoint_ready(port: int | str | None) -> bool:
+    if not port:
+        return False
+    try:
+        with urllib.request.urlopen(f"http://127.0.0.1:{int(port)}/json/version", timeout=2) as response:
+            return response.status == 200
+    except (TypeError, ValueError, OSError, urllib.error.URLError):
+        return False
+
+
 def cmd_browser_plan(args: argparse.Namespace) -> None:
     channels = load_channels()
     selected = DEFAULT_CHANNEL_ORDER if args.channel == "all" else [args.channel]
@@ -777,11 +840,17 @@ def cmd_launch_browsers(args: argparse.Namespace) -> None:
     channels = load_channels()
     selected = DEFAULT_CHANNEL_ORDER if args.channel == "all" else [args.channel]
     launched = []
+    already_running = []
     missing = []
     for channel_id in selected:
         config = channels.get(channel_id)
         if not config:
             raise SystemExit(f"Unknown channel: {channel_id}")
+        browser = config.get("browser") or {}
+        debug_port = browser.get("debugPort")
+        if debug_endpoint_ready(debug_port):
+            already_running.append(channel_id)
+            continue
         command, tried = build_browser_command(config)
         if not command:
             missing.append({"channel": channel_id, "tried": tried})
@@ -793,6 +862,8 @@ def cmd_launch_browsers(args: argparse.Namespace) -> None:
             launched.append(channel_id)
     if launched:
         print(f"launched={','.join(launched)}")
+    if already_running:
+        print(f"already_running={','.join(already_running)}")
     if missing:
         print("missing_browsers:")
         for item in missing:

@@ -2,104 +2,11 @@
   "channel": "chatkesti",
   "strategy": "ytdlp_search",
   "sources": [
-    {
-      "label": "elraenn-shorts",
-      "url": "ytsearch12:elraenn twitch klip shorts yayin kesiti",
-      "active": true,
-      "maxItems": 12,
-      "streamer": "Elraenn",
-      "platform": "twitch",
-      "noPlaylist": true
-    },
-    {
-      "label": "elraenn-komik",
-      "url": "ytsearch10:elraenn komik anlar twitch shorts",
-      "active": true,
-      "maxItems": 10,
-      "streamer": "Elraenn",
-      "platform": "twitch",
-      "noPlaylist": true
-    },
-    {
-      "label": "kendine-muzisyen",
-      "url": "ytsearch10:kendine muzisyen kick klip shorts yayin kesiti",
-      "active": true,
-      "maxItems": 10,
-      "streamer": "Kendine Muzisyen",
-      "platform": "kick",
-      "noPlaylist": true
-    },
-    {
-      "label": "rraenee",
-      "url": "ytsearch10:rraenee twitch klip shorts yayin kesiti",
-      "active": true,
-      "maxItems": 10,
-      "streamer": "RRaenee",
-      "platform": "twitch",
-      "noPlaylist": true
-    },
-    {
-      "label": "jahrein",
-      "url": "ytsearch10:jahrein twitch klip shorts yayin kesiti",
-      "active": true,
-      "maxItems": 10,
-      "streamer": "Jahrein",
-      "platform": "twitch",
-      "noPlaylist": true
-    },
-    {
-      "label": "wtcn",
-      "url": "ytsearch10:wtcn twitch klip shorts yayin kesiti",
-      "active": true,
-      "maxItems": 10,
-      "streamer": "wtcn",
-      "platform": "twitch",
-      "noPlaylist": true
-    },
-    {
-      "label": "batuhanfurkan5",
-      "url": "ytsearch8:batuhanfurkan5 kick klip shorts yayin kesiti",
-      "active": true,
-      "maxItems": 8,
-      "streamer": "BatuhanFurkan5",
-      "platform": "kick",
-      "noPlaylist": true
-    },
-    {
-      "label": "husam",
-      "url": "ytsearch8:husam kick klip shorts yayin kesiti",
-      "active": true,
-      "maxItems": 8,
-      "streamer": "Husam",
-      "platform": "kick",
-      "noPlaylist": true
-    },
-    {
-      "label": "mithrain",
-      "url": "ytsearch8:mithrain twitch klip shorts yayin kesiti",
-      "active": true,
-      "maxItems": 8,
-      "streamer": "Mithrain",
-      "platform": "twitch",
-      "noPlaylist": true
-    },
-    {
-      "label": "pqueen",
-      "url": "ytsearch8:pqueen twitch klip shorts yayin kesiti",
-      "active": true,
-      "maxItems": 8,
-      "streamer": "Pqueen",
-      "platform": "twitch",
-      "noPlaylist": true
-    },
-    {
-      "label": "turk-twitch-komik",
-      "url": "ytsearch12:turk twitch yayin kesiti komik klip shorts",
-      "active": true,
-      "maxItems": 12,
-      "streamer": "",
-      "platform": "twitch",
-      "noPlaylist": true
-    }
+    {"label": "elraenn", "url": "ytsearch40:elraenn twitch komik kesit shorts", "active": true, "maxItems": 40, "streamer": "Elraenn", "platform": "twitch"},
+    {"label": "kendine-muzisyen", "url": "ytsearch40:kendine muzisyen yayin komik shorts", "active": true, "maxItems": 40, "streamer": "Kendine Muzisyen", "platform": "kick"},
+    {"label": "wtcn", "url": "ytsearch30:wtcn cs2 komik kopma shorts", "active": true, "maxItems": 30, "streamer": "WTCN", "platform": "twitch"},
+    {"label": "jahrein", "url": "ytsearch30:jahrein yayin shorts kesit komik", "active": true, "maxItems": 30, "streamer": "Jahrein", "platform": "twitch"},
+    {"label": "twitch-genel", "url": "ytsearch50:türk twitch yayinci komik an shorts 2025", "active": true, "maxItems": 50},
+    {"label": "kick-genel", "url": "ytsearch30:kick yayin komik kopma shorts türkçe", "active": true, "maxItems": 30}
   ]
 }

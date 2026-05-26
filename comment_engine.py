@@ -38,6 +38,33 @@ CONFIG_FILE = ROOT / "smu_config.json"
 COMMENT_STATE_FILE = ROOT / "state" / "comment_state.json"
 LOG_FILE = ROOT / "logs" / "comment_engine.log"
 
+# smu-pro canonical runtime; eski content-ops .env'sini fallback olarak yukle.
+try:
+    from dotenv import load_dotenv
+    load_dotenv(ROOT / ".env")
+    legacy_env = Path(r"C:\Users\User\.codex\content-ops\.env")
+    if legacy_env.exists():
+        load_dotenv(legacy_env, override=False)
+except ImportError:
+    pass
+
+
+def _force_load_runtime_env() -> None:
+    try:
+        from dotenv import dotenv_values
+    except ImportError:
+        return
+
+    for env_file in (ROOT / ".env", Path(r"C:\Users\User\.codex\content-ops\.env")):
+        if not env_file.exists():
+            continue
+        for key, value in dotenv_values(env_file).items():
+            if value and not os.environ.get(key):
+                os.environ[key] = value
+
+
+_force_load_runtime_env()
+
 # ── logging ────────────────────────────────────────────────────────────────
 
 def _setup_logging() -> logging.Logger:
@@ -62,7 +89,7 @@ LOG = _setup_logging()
 # ── yardımcılar ────────────────────────────────────────────────────────────
 
 def read_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
 def write_json(path: Path, data: Any) -> None:
@@ -547,7 +574,7 @@ def select_comment(channel_id: str, state: dict[str, Any]) -> str | None:
 
 
 def is_rate_limited(state: dict[str, Any]) -> bool:
-    """Saatte max 2 yorum kontrolü."""
+    """Saatte max 5 yorum kontrolu."""
     last_time = state.get("last_post_time", "")
     if not last_time:
         return False
@@ -555,13 +582,13 @@ def is_rate_limited(state: dict[str, Any]) -> bool:
         last_dt = dt.datetime.fromisoformat(last_time)
     except (ValueError, TypeError):
         return False
-    # Son 1 saatte kaç yorum atılmış?
+    # Son 1 saatte kac yorum atilmis?
     one_hour_ago = dt.datetime.now() - dt.timedelta(hours=1)
     recent = sum(
         1 for c in state.get("posted_comments", [])
         if c.get("posted_at", "") >= one_hour_ago.isoformat()
     )
-    return recent >= 2
+    return recent >= 5
 
 
 def run_comment_engine(dry_run: bool = False) -> dict[str, Any]:
@@ -570,7 +597,7 @@ def run_comment_engine(dry_run: bool = False) -> dict[str, Any]:
     state = load_comment_state()
 
     if is_rate_limited(state):
-        LOG.info("Rate limit: saatte max 2 yorum, bekleniyor...")
+        LOG.info("Rate limit: saatte max 5 yorum, bekleniyor...")
         return {"status": "rate_limited", "posted": 0}
 
     channels = config.get("channels", {})

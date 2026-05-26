@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <style>
-        body { background: #0a0c0f; font-family: system-ui, sans-serif; }
+        body { background: #0a0c0f; font-family: system-ui, sans-serif; overflow-x: hidden; }
         .sidebar { background: #0f1115; border-right: 1px solid #1e2229; }
         .card { background: #13161c; border: 1px solid #1e2229; border-radius: 20px; transition: 0.2s; }
         .card:hover { border-color: #2d3748; }
@@ -56,6 +56,26 @@
         @media (min-width: 1500px) {
             .dashboard-grid { grid-template-columns: minmax(0, 3fr) 320px; }
         }
+        @media (min-width: 768px) {
+            main { max-width: calc(100vw - 16rem); }
+        }
+        .pipeline-bar { display: flex; align-items: center; gap: 4px; font-size: 11px; }
+        .pipeline-segment { height: 20px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 10px; min-width: 24px; transition: 0.3s; }
+        .pipeline-segment.source { background: #3b82f6; }
+        .pipeline-segment.render { background: #8b5cf6; }
+        .pipeline-segment.queue { background: #f97316; }
+        .pipeline-segment.published { background: #22c55e; }
+        .pipeline-arrow { color: #4a5568; font-size: 14px; }
+        .log-panel { max-height: 200px; overflow-y: auto; font-family: 'Courier New', monospace; font-size: 11px; }
+        .log-panel::-webkit-scrollbar { width: 4px; }
+        .log-panel::-webkit-scrollbar-thumb { background: #2d3748; border-radius: 4px; }
+        .next-slot-item { border-left: 3px solid; padding-left: 10px; margin-bottom: 8px; }
+        .metric-mini { height: 5px; border-radius: 999px; background: #1e2229; overflow: hidden; }
+        .metric-mini-fill { height: 100%; border-radius: 999px; transition: width 0.4s ease; }
+        .health-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 999px; font-size: 11px; }
+        .health-pill.ok { background: #14351f; color: #4ade80; }
+        .health-pill.warn { background: #3a2a1a; color: #fbbf24; }
+        .health-pill.bad { background: #3a1a1a; color: #f87171; }
     </style>
 </head>
 <body class="text-gray-200">
@@ -79,8 +99,11 @@
             <div class="menu-item px-4 py-2.5 flex items-center gap-3 text-sm text-gray-400" data-page="logs">
                 <i class="ri-pulse-line"></i> Log Kayitlari
             </div>
+            <div class="menu-item px-4 py-2.5 flex items-center gap-3 text-sm text-gray-400" data-page="pipeline-logs">
+                <i class="ri-terminal-line"></i> Pipeline Log
+            </div>
         </nav>
-        <div class="absolute bottom-6 text-xs text-gray-600">v3.0 . 7/24 Aktif</div>
+        <div class="absolute bottom-6 text-xs text-gray-600">v3.1 . 7/24 Aktif</div>
     </aside>
 
     <!-- ANA ICERIK -->
@@ -104,8 +127,63 @@
 
         <!-- DASHBOARD GORUNUMU -->
         <div id="dashboardView">
-            <!-- ISTATISTIK KARTLARI -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-7" id="stats"></div>
+            <!-- ISTATISTIK KARTLARI (6'li) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 mb-7" id="stats"></div>
+
+            <!-- YENI OPERASYON METRIKLERI -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-7">
+                <div class="card p-4">
+                    <h2 class="font-semibold mb-3 flex items-center gap-2 text-sm">
+                        <i class="ri-speed-line text-yellow-400"></i> Saatlik Cadence
+                    </h2>
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <div class="text-2xl font-bold text-yellow-400" id="cadenceActual">-</div>
+                            <div class="text-xs text-gray-500">hedef: 5/saat</div>
+                        </div>
+                        <div class="text-xs text-gray-400" id="cadenceStatus">-</div>
+                    </div>
+                    <div class="metric-mini mt-3"><div id="cadenceBar" class="metric-mini-fill bg-yellow-400" style="width:0%"></div></div>
+                    <div class="text-xs text-gray-500 mt-2" id="cadenceMeta">Son 1 saat</div>
+                </div>
+                <div class="card p-4">
+                    <h2 class="font-semibold mb-3 flex items-center gap-2 text-sm">
+                        <i class="ri-chat-check-line text-green-400"></i> Yorum Durumu
+                    </h2>
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <div class="text-2xl font-bold text-green-400" id="commentActual">-</div>
+                            <div class="text-xs text-gray-500">hedef: 5/saat</div>
+                        </div>
+                        <div class="text-xs text-gray-400" id="commentStatus">-</div>
+                    </div>
+                    <div class="metric-mini mt-3"><div id="commentBar" class="metric-mini-fill bg-green-400" style="width:0%"></div></div>
+                    <div class="text-xs text-gray-500 mt-2" id="commentMeta">state/comment_state.json</div>
+                </div>
+                <div class="card p-4">
+                    <h2 class="font-semibold mb-3 flex items-center gap-2 text-sm">
+                        <i class="ri-shield-check-line text-orange-400"></i> Global Dedup Sayaci
+                    </h2>
+                    <div class="text-2xl font-bold text-orange-400" id="dedupCount">-</div>
+                    <div class="text-xs text-gray-500">bugun engellenen duplicate slot</div>
+                    <div class="text-xs text-gray-400 mt-3" id="dedupBreakdown">-</div>
+                </div>
+                <div class="card p-4">
+                    <h2 class="font-semibold mb-3 flex items-center gap-2 text-sm">
+                        <i class="ri-pulse-line text-cyan-400"></i> Browser Health
+                    </h2>
+                    <div class="flex flex-wrap gap-2" id="browserHealthBadges"></div>
+                    <div class="text-xs text-gray-500 mt-3" id="browserHealthMeta">9222 / 9223 / Firefox profile</div>
+                </div>
+            </div>
+
+            <!-- PIPELINE BAR -->
+            <div class="card p-4 mb-7">
+                <h2 class="font-semibold mb-3 flex items-center gap-2">
+                    <i class="ri-bar-chart-grouped-line text-blue-400"></i> Pipeline Durumu
+                </h2>
+                <div id="pipelineBars" class="space-y-3"></div>
+            </div>
 
             <!-- KANAL KARTLARI -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-7" id="channels"></div>
@@ -178,6 +256,30 @@
                     <canvas id="growthChart" style="max-height:200px"></canvas>
                 </div>
             </div>
+
+            <!-- LOG PANELLERI -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-7">
+                <div class="card p-4">
+                    <h2 class="font-semibold mb-3 flex items-center gap-2">
+                        <i class="ri-terminal-box-line text-cyan-400"></i> Cline Pipeline Log
+                    </h2>
+                    <div id="clineLogPanel" class="log-panel"></div>
+                </div>
+                <div class="card p-4">
+                    <h2 class="font-semibold mb-3 flex items-center gap-2">
+                        <i class="ri-code-line text-purple-400"></i> Codex Pipeline Log
+                    </h2>
+                    <div id="codexLogPanel" class="log-panel"></div>
+                </div>
+            </div>
+
+            <!-- SONRAKI 5 SLOT -->
+            <div class="card p-4 mb-7">
+                <h2 class="font-semibold mb-3 flex items-center gap-2">
+                    <i class="ri-calendar-todo-line text-yellow-400"></i> Sonraki 5 Slot
+                </h2>
+                <div id="nextSlots" class="grid grid-cols-1 md:grid-cols-5 gap-3"></div>
+            </div>
         </div>
 
         <!-- DIGER SAYFALAR -->
@@ -203,18 +305,16 @@ const channelOrder = ['poster_loop_cinema', 'sahnebaddiestr', 'chatkesti'];
 let growthChart = null;
 let followerData = {};
 let commentData = {};
+let cadenceStats = {};
+let commentStats = {};
+let dedupStats = {};
+let browserHealth = {};
 
 // ========== YARDIMCILAR ==========
 function cleanTitle(text) {
     if (!text) return '-';
-    // Tum ID desenlerini temizle: "NNN-XXXXX-..." veya "NNN-XXXXX" formatindaki her seyi
-    // Ornek: "100-H13auUtZJ2o-diplomas-yoktu-belki-ama-onu-snayanlar-sasrtt-poster-loop moving poster. Wh #shorts"
-    // Ornek: "007-9pgyqqthwcq-sahne-baddies | Bu sahnenin enerjisi ayri. #shorts"
-    // Ornek: "055-zzlvk97g7fc-chatkesti | Yayin burada koptu. #shorts"
     text = text.replace(/^\d{2,3}-[A-Za-z0-9_-]{6,}[-_][A-Za-z0-9_-]+[-_].*?(?:poster[- ]loop|sahne[- ]baddies|chatkesti)?\s*[-|]?\s*/i, '');
-    // Kisa ID desenleri: "007-9pgyqqthwcq" gibi (tire yok)
     text = text.replace(/^\d{2,3}-[A-Za-z0-9]{6,}\s*[-|]?\s*/i, '');
-    // "moving poster. Which film n" gibi kesik metinleri duzelt
     text = text.replace(/\s+moving poster\.?\s*(?:Which|Wh).*$/i, '');
     text = text.replace(/\s+\|\s+Yayin burada koptu\.?\s*#shorts$/, '');
     text = text.replace(/\s+\|\s+Bu sahnenin enerjisi ayri\.?\s*#shorts$/, '');
@@ -225,15 +325,10 @@ function cleanTitle(text) {
 
 function cleanCaption(text) {
     if (!text) return '-';
-    // Tum ID desenlerini temizle
     text = text.replace(/^\d{2,3}-[A-Za-z0-9_-]{6,}[-_][A-Za-z0-9_-]+[-_].*?(?:poster[- ]loop|sahne[- ]baddies|chatkesti)?\s*[-|]?\s*/i, '');
-    // Kisa ID desenleri
     text = text.replace(/^\d{2,3}-[A-Za-z0-9]{6,}\s*[-|]?\s*/i, '');
-    // VERIFY_NEEDED satirlarini temizle
     text = text.replace(/^VERIFY_NEEDED.*$/gm, '').trim();
-    // Bos satirlari temizle
     text = text.replace(/\n{3,}/g, '\n\n');
-    // Bastaki bosluklari temizle
     text = text.replace(/^[\s-]+/, '').replace(/[\s-]+$/, '');
     return text || '-';
 }
@@ -258,13 +353,21 @@ function timeAgo(dateStr) {
 // ========== API'LERDEN VERI CEK ==========
 async function fetchAllData() {
     try {
-        const [followersRes, commentsRes, dataRes] = await Promise.all([
+        const [followersRes, commentsRes, dataRes, cadenceRes, commentStatsRes, dedupRes, browserHealthRes] = await Promise.all([
             fetch('/api/followers').then(r => r.json()).catch(() => ({})),
             fetch('/api/comments').then(r => r.json()).catch(() => ({})),
-            fetch('/api/data').then(r => r.json()).catch(() => ({}))
+            fetch('/api/data').then(r => r.json()).catch(() => ({})),
+            fetch('/api/cadence-stats').then(r => r.json()).catch(() => ({})),
+            fetch('/api/comment-stats').then(r => r.json()).catch(() => ({})),
+            fetch('/api/dedup-stats').then(r => r.json()).catch(() => ({})),
+            fetch('/api/browser-health').then(r => r.json()).catch(() => ({}))
         ]);
         followerData = followersRes;
         commentData = commentsRes;
+        cadenceStats = cadenceRes;
+        commentStats = commentStatsRes;
+        dedupStats = dedupRes;
+        browserHealth = browserHealthRes;
         if (dataRes && dataRes.schedule) {
             scheduleData = dataRes.schedule;
         }
@@ -279,10 +382,9 @@ async function fetchAllData() {
 function updateDashboard() {
     const now = new Date();
     const allSlots = scheduleData.slots || [];
-    // Sadece "scheduled" status'u olan slotlari goster
     const slots = allSlots.filter(function(s) { return s.status === 'scheduled'; });
 
-    // Istatistik kartlari
+    // --- 6'li Istatistik Kartlari ---
     const published = slots.filter(function(s) {
         return new Date(s.publishAtLocal.replace(' ', 'T') + '+03:00') < now;
     }).length;
@@ -291,14 +393,56 @@ function updateDashboard() {
     }).length;
     const total = slots.length;
     const successRate = total > 0 ? Math.round((published / total) * 100) : 0;
+    const dailyTarget = 360; // 120/kanal x 3
+    const cadenceText = 'Saat basi 5 paylasim (her 12dk)';
 
     document.getElementById('stats').innerHTML =
-        '<div class="card p-4"><div class="text-gray-400 text-sm flex items-center gap-2"><i class="ri-calendar-check-line text-green-400"></i> Yayinlanan</div><div class="stat-value text-green-400">'+published+'</div><div class="text-gray-500 text-xs mt-1">bugun</div></div>' +
-        '<div class="card p-4"><div class="text-gray-400 text-sm flex items-center gap-2"><i class="ri-time-line text-blue-400"></i> Planlanan</div><div class="stat-value text-blue-400">'+planned+'</div><div class="text-gray-500 text-xs mt-1">kalan</div></div>' +
-        '<div class="card p-4"><div class="text-gray-400 text-sm flex items-center gap-2"><i class="ri-checkbox-circle-line text-purple-400"></i> Basari Orani</div><div class="stat-value text-purple-400">'+successRate+'%</div><div class="text-gray-500 text-xs mt-1">bugun</div></div>' +
-        '<div class="card p-4"><div class="text-gray-400 text-sm flex items-center gap-2"><i class="ri-error-warning-line text-red-400"></i> Hata Sayisi</div><div class="stat-value text-red-400">0</div><div class="text-gray-500 text-xs mt-1">son 24s</div></div>';
+        '<div class="card p-3"><div class="text-gray-400 text-xs flex items-center gap-1"><i class="ri-calendar-check-line text-green-400"></i> Yayinlanan</div><div class="stat-value text-green-400 text-xl">'+published+'</div><div class="text-gray-500 text-xs mt-1">bugun</div></div>' +
+        '<div class="card p-3"><div class="text-gray-400 text-xs flex items-center gap-1"><i class="ri-time-line text-blue-400"></i> Planlanan</div><div class="stat-value text-blue-400 text-xl">'+planned+'</div><div class="text-gray-500 text-xs mt-1">kalan</div></div>' +
+        '<div class="card p-3"><div class="text-gray-400 text-xs flex items-center gap-1"><i class="ri-checkbox-circle-line text-purple-400"></i> Basari</div><div class="stat-value text-purple-400 text-xl">'+successRate+'%</div><div class="text-gray-500 text-xs mt-1">bugun</div></div>' +
+        '<div class="card p-3"><div class="text-gray-400 text-xs flex items-center gap-1"><i class="ri-error-warning-line text-red-400"></i> Hata</div><div class="stat-value text-red-400 text-xl">0</div><div class="text-gray-500 text-xs mt-1">son 24s</div></div>' +
+        '<div class="card p-3"><div class="text-gray-400 text-xs flex items-center gap-1"><i class="ri-speed-line text-yellow-400"></i> Cadence</div><div class="stat-value text-yellow-400 text-sm font-bold">5/saat</div><div class="text-gray-500 text-xs mt-1">her 12dk</div></div>' +
+        '<div class="card p-3"><div class="text-gray-400 text-xs flex items-center gap-1"><i class="ri-flag-line text-orange-400"></i> Daily Target</div><div class="stat-value text-orange-400 text-sm font-bold">'+dailyTarget+'/gun</div><div class="text-gray-500 text-xs mt-1">120x3 kanal</div></div>';
 
-    // Kanal kartlari
+    // --- Pipeline Bar ---
+    fetch('/api/pipeline')
+        .then(function(r) { return r.json(); })
+        .then(function(pipelineData) {
+            var stock = pipelineData.stock || {};
+            var status = pipelineData.status || {};
+            var pipeHtml = '';
+            for (var ci = 0; ci < channelOrder.length; ci++) {
+                var id = channelOrder[ci];
+                var name = channelNames[id] || id;
+                var colors = channelColors[id] || { text: '#ccc', bg: '#1e2229' };
+                var chStock = stock[id] || { source: 0, render: 0, queue: 0 };
+                var chStatus = status[id] || 'idle';
+                var maxVal = Math.max(chStock.source, chStock.render, chStock.queue, 1);
+                var srcPct = Math.round((chStock.source / maxVal) * 100);
+                var rndPct = Math.round((chStock.render / maxVal) * 100);
+                var quePct = Math.round((chStock.queue / maxVal) * 100);
+                var statusIcon = chStatus === 'publish' ? '<span class="pulse-dot green"></span>' :
+                    (chStatus === 'render' ? '<span class="pulse-dot orange"></span>' :
+                    (chStatus === 'download' ? '<span class="pulse-dot blue"></span>' : '<span class="text-gray-600">idle</span>'));
+
+                pipeHtml += '<div class="flex items-center gap-3">' +
+                    '<div class="w-28 text-xs" style="color:' + colors.text + '">' + statusIcon + ' ' + name + '</div>' +
+                    '<div class="flex-1 pipeline-bar">' +
+                    '<div class="pipeline-segment source" style="width:' + srcPct + '%" title="Kaynak: ' + chStock.source + '">' + chStock.source + '</div>' +
+                    '<span class="pipeline-arrow">→</span>' +
+                    '<div class="pipeline-segment render" style="width:' + rndPct + '%" title="Render: ' + chStock.render + '">' + chStock.render + '</div>' +
+                    '<span class="pipeline-arrow">→</span>' +
+                    '<div class="pipeline-segment queue" style="width:' + quePct + '%" title="Queue: ' + chStock.queue + '">' + chStock.queue + '</div>' +
+                    '</div>' +
+                    '<div class="text-xs text-gray-500 w-16 text-right">' + chStatus + '</div></div>';
+            }
+            document.getElementById('pipelineBars').innerHTML = pipeHtml;
+        })
+        .catch(function() {
+            document.getElementById('pipelineBars').innerHTML = '<div class="text-gray-500 text-xs">Pipeline verisi alinamadi</div>';
+        });
+
+    // --- Kanal kartlari ---
     var chHtml = '';
     for (var ci = 0; ci < channelOrder.length; ci++) {
         var id = channelOrder[ci];
@@ -318,7 +462,7 @@ function updateDashboard() {
     }
     document.getElementById('channels').innerHTML = chHtml;
 
-    // Tablo
+    // --- Tablo ---
     var sorted = slots.slice().sort(function(a, b) { return a.publishAtLocal.localeCompare(b.publishAtLocal); });
     var tbody = '';
     for (var si = 0; si < sorted.length; si++) {
@@ -348,7 +492,7 @@ function updateDashboard() {
     document.getElementById('scheduleBody').innerHTML = tbody || '<tr><td colspan="6" class="text-center py-6 text-gray-500">Bugun icin yayin takvimi bos</td></tr>';
     document.getElementById('scheduleCount').innerText = slots.length + ' slot';
 
-    // Yaklasan Yayinlar Widget
+    // --- Yaklasan Yayinlar Widget ---
     var upcoming = sorted.filter(function(s) {
         var t = new Date(s.publishAtLocal.replace(' ', 'T') + '+03:00');
         var diff = Math.floor((t - now) / 60000);
@@ -371,24 +515,138 @@ function updateDashboard() {
     }
     document.getElementById('upcomingWidget').innerHTML = upHtml;
 
-    // Genel Istatistik Widget
+    // --- Genel Istatistik Widget ---
     var totalPublished = slots.filter(function(s) { return new Date(s.publishAtLocal.replace(' ', 'T') + '+03:00') < now; }).length;
     var totalPlanned = slots.filter(function(s) { return new Date(s.publishAtLocal.replace(' ', 'T') + '+03:00') >= now; }).length;
     document.getElementById('generalStats').innerHTML =
         '<div class="flex justify-between items-center py-1 border-b border-gray-800/50"><span class="text-gray-400">Toplam Slot</span><span class="font-bold">' + slots.length + '</span></div>' +
         '<div class="flex justify-between items-center py-1 border-b border-gray-800/50"><span class="text-gray-400">Yayinlanan</span><span class="font-bold text-green-400">' + totalPublished + '</span></div>' +
         '<div class="flex justify-between items-center py-1 border-b border-gray-800/50"><span class="text-gray-400">Planlanan</span><span class="font-bold text-blue-400">' + totalPlanned + '</span></div>' +
-        '<div class="flex justify-between items-center py-1 border-b border-gray-800/50"><span class="text-gray-400">Basari</span><span class="font-bold text-green-400">' + totalPublished + '</span></div>' +
+        '<div class="flex justify-between items-center py-1 border-b border-gray-800/50"><span class="text-gray-400">Cadence</span><span class="font-bold text-yellow-400">5/saat</span></div>' +
+        '<div class="flex justify-between items-center py-1 border-b border-gray-800/50"><span class="text-gray-400">Daily Target</span><span class="font-bold text-orange-400">360/gun</span></div>' +
         '<div class="flex justify-between items-center py-1"><span class="text-gray-400">Hata</span><span class="font-bold text-red-400">0</span></div>';
 
-    // Yorum Plani Widget
+    // --- Yorum Plani Widget ---
     updateCommentWidget();
 
-    // Takipci Istatistikleri
+    // --- Yeni operasyon metrikleri ---
+    updateMetricCards();
+
+    // --- Takipci Istatistikleri ---
     updateFollowerStats();
 
-    // Grafik
+    // --- Grafik ---
     initGrowthChart();
+
+    // --- Pipeline Log Panelleri ---
+    fetch('/api/cline-log')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            var content = data.content || 'Log bulunamadi';
+            document.getElementById('clineLogPanel').innerHTML = '<pre class="text-xs text-gray-400">' + content.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>') + '</pre>';
+        })
+        .catch(function() {
+            document.getElementById('clineLogPanel').innerHTML = '<div class="text-gray-500 py-4">Cline log alinamadi</div>';
+        });
+
+    fetch('/api/codex-log')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            var content = data.content || 'Log bulunamadi';
+            document.getElementById('codexLogPanel').innerHTML = '<pre class="text-xs text-gray-400">' + content.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>') + '</pre>';
+        })
+        .catch(function() {
+            document.getElementById('codexLogPanel').innerHTML = '<div class="text-gray-500 py-4">Codex log alinamadi</div>';
+        });
+
+    // --- Sıradaki 5 Slot ---
+    fetch('/api/next-slots')
+        .then(function(r) { return r.json(); })
+        .then(function(slots) {
+            var html = '';
+            if (slots.length > 0) {
+                for (var si = 0; si < slots.length; si++) {
+                    var s = slots[si];
+                    var chName = channelNames[s.channel] || s.channel;
+                    var chColor = channelColors[s.channel] || { text: '#ccc' };
+                    var ytTitle = cleanTitle(s.youtubeTitle || '');
+                    html += '<div class="next-slot-item" style="border-color:' + chColor.text + '">' +
+                        '<div class="text-xs font-mono text-gray-500">' + s.publishAtLocal.slice(11,16) + '</div>' +
+                        '<div class="text-sm font-semibold" style="color:' + chColor.text + '">' + chName + '</div>' +
+                        '<div class="text-xs text-gray-400 truncate">' + ytTitle + '</div>' +
+                        '<div class="text-xs text-blue-400">' + timeAgo(s.publishAtLocal) + '</div></div>';
+                }
+            } else {
+                html = '<div class="text-gray-500 text-center py-4 col-span-5">Sıradaki yayin bulunamadi</div>';
+            }
+            document.getElementById('nextSlots').innerHTML = html;
+        })
+        .catch(function() {
+            document.getElementById('nextSlots').innerHTML = '<div class="text-gray-500 text-center py-4">Veri alinamadi</div>';
+        });
+}
+
+// ========== OPERASYON METRIKLERI ==========
+function setText(id, value) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = value;
+}
+
+function setHtml(id, value) {
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = value;
+}
+
+function metricPercent(actual, target) {
+    if (!target || target <= 0) return 0;
+    return Math.min(Math.round((actual / target) * 100), 100);
+}
+
+function healthBadge(label, ok, warn) {
+    var cls = ok ? 'ok' : (warn ? 'warn' : 'bad');
+    var dot = ok ? 'green' : (warn ? 'orange' : '');
+    var icon = ok ? '●' : (warn ? '●' : '×');
+    return '<span class="health-pill ' + cls + '"><span class="pulse-dot ' + dot + '"></span>' + label + ' ' + icon + '</span>';
+}
+
+function updateMetricCards() {
+    var cadenceTarget = cadenceStats.targetPerHour || 5;
+    var cadenceActual = cadenceStats.actualLastHour || 0;
+    var cadencePct = metricPercent(cadenceActual, cadenceTarget);
+    setText('cadenceActual', cadenceActual + '/' + cadenceTarget);
+    setText('cadenceStatus', cadenceStats.status === 'ok' ? 'hedefte' : 'geride');
+    setText('cadenceMeta', 'Bugun toplam: ' + (cadenceStats.todayPublished || 0));
+    var cadenceBar = document.getElementById('cadenceBar');
+    if (cadenceBar) cadenceBar.style.width = cadencePct + '%';
+
+    var commentTarget = commentStats.targetPerHour || 5;
+    var commentActual = commentStats.postedLastHour || 0;
+    var commentPct = metricPercent(commentActual, commentTarget);
+    setText('commentActual', commentActual + '/' + commentTarget);
+    setText('commentStatus', commentStats.stateExists ? 'aktif state' : 'state yok');
+    setText('commentMeta', 'Toplam yorum: ' + (commentStats.totalPosted || 0));
+    var commentBar = document.getElementById('commentBar');
+    if (commentBar) commentBar.style.width = commentPct + '%';
+
+    setText('dedupCount', dedupStats.globalDedupBlockedToday || 0);
+    var byChannel = dedupStats.byChannel || {};
+    var dedupParts = [];
+    for (var key in byChannel) {
+        if (Object.prototype.hasOwnProperty.call(byChannel, key)) {
+            dedupParts.push((channelNames[key] || key) + ': ' + byChannel[key]);
+        }
+    }
+    setText('dedupBreakdown', dedupParts.length ? dedupParts.join(' / ') : 'Bugun engel yok');
+
+    var chrome = browserHealth.chrome9222 || {};
+    var edge = browserHealth.edge9223 || {};
+    var firefox = browserHealth.firefox || {};
+    setHtml('browserHealthBadges',
+        healthBadge('9222', !!chrome.ok, false) +
+        healthBadge('9223', !!edge.ok, false) +
+        healthBadge('Firefox', !!firefox.running, !!firefox.profileExists)
+    );
+    setText('browserHealthMeta', 'Firefox: ' + (firefox.status || 'unknown'));
 }
 
 // ========== YORUM PLANI ==========
@@ -546,6 +804,10 @@ function setupMenu() {
                 document.getElementById('pageTitle').innerText = 'Log Kayitlari';
                 document.getElementById('pageDesc').innerText = 'Sistem loglari ve hata kayitlari.';
                 renderLogsView();
+            } else if (page === 'pipeline-logs') {
+                document.getElementById('pageTitle').innerText = 'Pipeline Log';
+                document.getElementById('pageDesc').innerText = 'Cline ve Codex pipeline loglari.';
+                renderPipelineLogsView();
             }
         });
     }
@@ -633,12 +895,39 @@ function renderLogsView() {
                 var cls = 'log-info';
                 if (line.toLowerCase().indexOf('error') >= 0 || line.toLowerCase().indexOf('hata') >= 0) cls = 'log-error';
                 else if (line.toLowerCase().indexOf('warn') >= 0 || line.toLowerCase().indexOf('uyari') >= 0) cls = 'log-warn';
-                logHtml += '<div class="log-line ' + cls + '">' + line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>';
+                logHtml += '<div class="log-line ' + cls + '">' + line.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>') + '</div>';
             }
             document.getElementById('logContent').innerHTML = logHtml || '<div class="text-gray-500 py-4">Log kaydi bulunamadi</div>';
         })
         .catch(function() {
             document.getElementById('logContent').innerHTML = '<div class="text-red-400 py-4">Log dosyasi okunamadi</div>';
+        });
+}
+
+function renderPipelineLogsView() {
+    var html = '<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">' +
+        '<div class="card p-4"><h3 class="font-semibold mb-3 flex items-center gap-2"><i class="ri-terminal-box-line text-cyan-400"></i> Cline Pipeline Log</h3>' +
+        '<div id="clineLogFull" class="text-xs" style="max-height:500px;overflow-y:auto;font-family:monospace;"></div></div>' +
+        '<div class="card p-4"><h3 class="font-semibold mb-3 flex items-center gap-2"><i class="ri-code-line text-purple-400"></i> Codex Pipeline Log</h3>' +
+        '<div id="codexLogFull" class="text-xs" style="max-height:500px;overflow-y:auto;font-family:monospace;"></div></div></div>';
+    document.getElementById('otherView').innerHTML = html;
+
+    fetch('/api/cline-log')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            document.getElementById('clineLogFull').innerHTML = '<pre class="text-gray-400">' + (data.content || 'Log bulunamadi').replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>') + '</pre>';
+        })
+        .catch(function() {
+            document.getElementById('clineLogFull').innerHTML = '<div class="text-red-400">Log alinamadi</div>';
+        });
+
+    fetch('/api/codex-log')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            document.getElementById('codexLogFull').innerHTML = '<pre class="text-gray-400">' + (data.content || 'Log bulunamadi').replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>') + '</pre>';
+        })
+        .catch(function() {
+            document.getElementById('codexLogFull').innerHTML = '<div class="text-red-400">Log alinamadi</div>';
         });
 }
 

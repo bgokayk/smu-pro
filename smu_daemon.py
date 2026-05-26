@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """SMU Daemon — 24/7 sosyal medya otomasyon süreci.
 
 Döngü mantığı:
@@ -31,6 +31,7 @@ import datetime as dt
 import json
 import logging
 import os
+import shutil
 import subprocess
 import sys
 import time
@@ -46,6 +47,7 @@ ROOT = Path(__file__).resolve().parent
 CONFIG_FILE = ROOT / "smu_config.json"
 LOG_FILE = ROOT / "logs" / "smu_daemon.log"
 DAEMON_STATE = ROOT / "state" / "daemon_state.json"
+DAEMON_PID_FILE = ROOT / "state" / "daemon.pid"
 AUDIT_FREEZE_FILE = ROOT / "state" / "audit_freeze.json"
 SLOT_QUEUE_DIR = ROOT / "queues" / "slot_runs"
 PUBLISH_STATE_DIR = ROOT / "state" / "publish_runs"
@@ -186,6 +188,54 @@ def save_daemon_state(state: dict[str, Any]) -> None:
     write_json(DAEMON_STATE, state)
 
 
+def _pid_running(pid: int) -> bool:
+    if pid <= 0 or pid == os.getpid():
+        return False
+    if os.name == "nt":
+        try:
+            import ctypes
+            kernel32 = ctypes.windll.kernel32
+            handle = kernel32.OpenProcess(0x1000, False, int(pid))
+            if handle:
+                kernel32.CloseHandle(handle)
+                return True
+            return False
+        except Exception:
+            return False
+    try:
+        os.kill(pid, 0)
+        return True
+    except PermissionError:
+        return True
+    except (OSError, SystemError):
+        return False
+
+
+def _read_daemon_pid() -> int | None:
+    try:
+        return int(DAEMON_PID_FILE.read_text(encoding="utf-8-sig").strip())
+    except Exception:
+        return None
+
+
+def _register_daemon_pid() -> bool:
+    existing_pid = _read_daemon_pid()
+    if existing_pid and _pid_running(existing_pid):
+        LOG.warning("SMU Daemon zaten çalışıyor (pid=%s); ikinci kopya başlatılmadı", existing_pid)
+        return False
+    DAEMON_PID_FILE.parent.mkdir(parents=True, exist_ok=True)
+    DAEMON_PID_FILE.write_text(str(os.getpid()), encoding="utf-8")
+    return True
+
+
+def _clear_daemon_pid() -> None:
+    if _read_daemon_pid() == os.getpid():
+        try:
+            DAEMON_PID_FILE.unlink()
+        except FileNotFoundError:
+            pass
+
+
 def audit_freeze_active() -> bool:
     return AUDIT_FREEZE_FILE.exists()
 
@@ -218,7 +268,7 @@ def run_python(args: list[str], cwd: Path | None = None, dry_run: bool = False) 
         cmd,
         cwd=str(cwd or ROOT),
         text=True,
-        timeout=3600,
+        timeout=900,
         capture_output=True,
         encoding="utf-8",
         errors="replace",
@@ -244,13 +294,17 @@ def run_node(script: Path, env: dict[str, str] | None = None, dry_run: bool = Fa
         return False
     full_env = {**os.environ, **(env or {})}
     LOG.info("node %s", script.name)
-    result = subprocess.run(
-        ["node", str(script)],
-        cwd=str(script.parent),
-        env=full_env,
-        text=True,
-        timeout=3600,
-    )
+    try:
+        result = subprocess.run(
+            ["node", str(script)],
+            cwd=str(script.parent),
+            env=full_env,
+            text=True,
+            timeout=300,
+        )
+    except subprocess.TimeoutExpired:
+        LOG.warning("node worker timeout (300s): %s", script.name)
+        return False
     if result.returncode != 0:
         LOG.warning("node çıkış kodu %d: %s", result.returncode, script.name)
         return False
@@ -265,10 +319,8 @@ SOURCES_DIR = ROOT / "sources"
 _STATIC_PIPELINES: dict[str, dict[str, Any]] = {
     "poster_loop_cinema": {
         "root": Path("C:/Users/User/.codex/analog-neo-moving-poster"),
-        "steps": [
-            {"type": "python", "script": "build_posterloop_queue_21_50.py", "label": "queue oluştur"},
-        ],
-        "queue_file": Path("C:/Users/User/.codex/analog-neo-moving-poster/automation/posterloop_queue_21_50.json"),
+        "steps": [],
+        "queue_file": Path("C:/Users/User/.codex/analog-neo-moving-poster/automation/posterloop_queue_bulk100_clean_20260524.json"),
         "worker": Path("C:/Users/User/.codex/analog-neo-moving-poster/automation/posterloop_dual_publish_worker.js"),
         "worker_env": {
             "POSTERLOOP_BASE": "C:/Users/User/.codex/analog-neo-moving-poster",
@@ -422,19 +474,10 @@ def do_morning_prep(config: dict[str, Any], dry_run: bool = False) -> None:
 
     LOG.info("=== Sabah hazırlığı başlıyor ===")
 
-    active_channels = [
-        ch_id
-        for ch_id, ch in config.get("channels", {}).items()
-        if ch.get("active", False)
-    ]
-
-    # 1. Her kanal için ingest → queue → render
-    for channel_id in active_channels:
-        LOG.info("--- Pipeline: %s ---", channel_id)
-        run_channel_pipeline(channel_id, dry_run=dry_run)
-
-    # 2. Boş takvim + yorum planı oluştur (slotlar needs_queue_item olarak gelir)
-    LOG.info("Günlük takvim hazırlanıyor…")
+    # Keep the publish loop alive first. The channel render/ingest pipelines can
+    # take a long time or hang; prepare-day can schedule already-ready exports
+    # directly from readyBuckets, so publishing should not wait on render jobs.
+    LOG.info("Hazır exportlardan günlük takvim hazırlanıyor…")
     today = _now_local().date().isoformat()
     schedule_file = ROOT / "schedules" / f"{today}_smu_schedule.json"
 
@@ -452,7 +495,7 @@ def do_morning_prep(config: dict[str, Any], dry_run: bool = False) -> None:
             dry_run=dry_run,
         )
 
-    # 3. prepare-day already builds today's queues and attaches them to the schedule.
+    # prepare-day already builds today's queues and attaches them to the schedule.
     # Do not force-attach legacy automation queues here; that can overwrite a fresh
     # daily schedule with stale batches.
     if schedule_file.exists():
@@ -470,6 +513,7 @@ def do_morning_prep(config: dict[str, Any], dry_run: bool = False) -> None:
     state = load_daemon_state()
     state["last_morning_prep"] = _now_local().isoformat(timespec="seconds")
     state["published_slots"] = []
+    state["failed_slots"] = {}
     save_daemon_state(state)
     LOG.info("=== Sabah hazırlığı tamamlandı ===")
 
@@ -507,6 +551,179 @@ def _slot_queue_item(slot: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _content_suffix(content_id: str) -> str:
+    return str(content_id or "").split("-", 1)[1] if "-" in str(content_id or "") else str(content_id or "")
+
+
+def _published_suffixes(channel_id: str) -> set[str]:
+    suffixes: set[str] = set()
+    legacy_state = Path(r"C:\Users\User\.codex\sahne-baddies-auto\automation\baddies_dual_publish_state.json")
+    if channel_id == "sahnebaddiestr" and legacy_state.exists():
+        try:
+            data = read_json(legacy_state)
+            for item in data.get("instagramDone", []) or []:
+                suffixes.add(_content_suffix(str(item)))
+        except Exception:
+            pass
+
+    if PUBLISH_STATE_DIR.exists():
+        for state_file in PUBLISH_STATE_DIR.glob(f"{channel_id}-slot*.json"):
+            try:
+                data = read_json(state_file)
+            except Exception:
+                continue
+            if not isinstance(data, dict):
+                continue
+            for key, values in data.items():
+                if key.endswith("Done") and isinstance(values, list):
+                    for item in values:
+                        suffixes.add(_content_suffix(str(item)))
+    return suffixes
+
+
+def _media_decodes(file_path: str, frames: int = 30) -> bool:
+    if not file_path or not Path(file_path).exists():
+        return False
+    try:
+        result = subprocess.run(
+            ["ffmpeg", "-v", "error", "-xerror", "-i", file_path, "-frames:v", str(frames), "-f", "null", "-"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=45,
+        )
+        return result.returncode == 0
+    except Exception:
+        return False
+
+
+def _repair_baddies_slot_media(slot: dict[str, Any]) -> bool:
+    """Baddies bozuk medya onarımı — canonical published index ile duplicate korumalı.
+
+    Seçilen yedek:
+    - Daha önce hiçbir kanalda yayınlanmamış olmalı (canonical index)
+    - Bugünkü schedule'da başka bir slot'ta kullanılmamış olmalı
+    - Medya dosyası decode edilebilir olmalı
+    """
+    file_path = slot.get("file", "")
+    max_bytes = _max_publish_bytes("sahnebaddiestr")
+    if _media_decodes(file_path) and _file_within_publish_size(file_path, max_bytes):
+        return True
+    if file_path and max_bytes and Path(file_path).exists() and Path(file_path).stat().st_size > max_bytes:
+        LOG.warning(
+            "Baddies medya dosyası publish limiti üstünde, yedek aranıyor: %s %.1fMB",
+            Path(file_path).name,
+            Path(file_path).stat().st_size / 1024 / 1024,
+        )
+
+    queue_path = Path(r"C:\Users\User\.codex\sahne-baddies-auto\automation\baddies_queue_batch001.json")
+    if not queue_path.exists():
+        fire_slot.last_skip_reason = "invalid_media"
+        LOG.warning("Baddies bozuk medya ve ana queue yok: %s", file_path)
+        return False
+
+    # Canonical published index'i yükle
+    try:
+        from canonical_published_index import get_index as get_canonical_index
+        cindex = get_canonical_index()
+        if not cindex.data.get("by_core"):
+            cindex.scan_and_rebuild()
+    except Exception:
+        cindex = None
+
+    # Bugünkü schedule'da kullanılan tüm ID'leri topla
+    today_schedule_ids: set[str] = set()
+    try:
+        today = _now_local().date().isoformat()
+        sched_path = ROOT / "schedules" / f"{today}_smu_schedule.json"
+        if sched_path.exists():
+            sched = read_json(sched_path)
+            for s in sched.get("slots", []):
+                qid = s.get("queueItemId") or s.get("id") or ""
+                if qid:
+                    today_schedule_ids.add(qid)
+    except Exception:
+        pass
+
+    used_suffixes = _published_suffixes("sahnebaddiestr")
+    try:
+        queue_items = read_json(queue_path)
+    except Exception as exc:
+        fire_slot.last_skip_reason = "invalid_media"
+        LOG.warning("Baddies queue okunamadı: %s", exc)
+        return False
+
+    for item in sorted(queue_items, key=lambda row: str(row.get("id", "")), reverse=True):
+        candidate_id = str(item.get("id", ""))
+        if not candidate_id or _content_suffix(candidate_id) in used_suffixes:
+            continue
+
+        # Canonical index'te yayınlanmış mı kontrol et
+        if cindex and cindex.is_published(item_id=candidate_id):
+            LOG.debug("  Baddies yedek atlandi (zaten yayinlanmis): %s", candidate_id)
+            continue
+
+        # Bugünkü schedule'da başka slot'ta kullanılıyor mu?
+        if candidate_id in today_schedule_ids:
+            LOG.debug("  Baddies yedek atlandi (bugunku schedule'da var): %s", candidate_id)
+            continue
+
+        candidate_file = str(item.get("file", ""))
+        if candidate_file == file_path:
+            continue
+        if not _file_within_publish_size(candidate_file, max_bytes):
+            continue
+        if not _media_decodes(candidate_file):
+            continue
+
+        old_id = slot.get("queueItemId") or slot.get("id") or ""
+        slot["queueItemId"] = candidate_id
+        slot["id"] = candidate_id
+        slot["file"] = candidate_file
+        slot["youtubeTitle"] = item.get("youtubeTitle", "")
+        slot["youtubeDescription"] = item.get("youtubeDescription", "")
+        slot["instagramCaption"] = item.get("instagramCaption", "")
+        slot["tiktokCaption"] = item.get("tiktokCaption", "")
+        slot["notes"] = "SMU auto-repaired invalid Baddies media before publishing."
+        LOG.warning("Baddies bozuk medya değiştirildi: %s -> %s", old_id, candidate_id)
+        return True
+
+    fire_slot.last_skip_reason = "invalid_media"
+    LOG.warning("Baddies bozuk medya için sağlam yedek bulunamadı: %s", file_path)
+    return False
+
+
+def _max_publish_bytes(channel_id: str) -> int:
+    try:
+        cfg = load_config()
+        channel = cfg.get("channels", {}).get(channel_id, {})
+        raw = channel.get("maxPublishFileMB", cfg.get("maxPublishFileMB", 49))
+        return int(float(raw) * 1024 * 1024)
+    except Exception:
+        return 49 * 1024 * 1024
+
+
+def _file_within_publish_size(file_path: str, max_bytes: int) -> bool:
+    if not file_path or not Path(file_path).exists() or max_bytes <= 0:
+        return bool(file_path and Path(file_path).exists())
+    return Path(file_path).stat().st_size <= max_bytes
+
+
+def _platform_settings(channel_id: str) -> tuple[str, str]:
+    config = load_config()
+    channel = config.get("channels", {}).get(channel_id, {})
+    raw = channel.get("publishPlatforms") or config.get("publishPlatforms") or ["youtube", "instagram"]
+    if isinstance(raw, str):
+        platforms = [part.strip().lower() for part in raw.split(",")]
+    else:
+        platforms = [str(part).strip().lower() for part in raw]
+    allowed = {"youtube", "instagram", "tiktok"}
+    platforms = [platform for platform in platforms if platform in allowed]
+    if not platforms:
+        platforms = ["youtube", "instagram"]
+    only_platform = platforms[0] if len(platforms) == 1 else ""
+    return only_platform, ",".join(platforms)
+
+
 def _slot_worker_env(channel_id: str, slot: dict[str, Any]) -> dict[str, str]:
     """Run each scheduled slot as a one-item queue.
 
@@ -523,6 +740,7 @@ def _slot_worker_env(channel_id: str, slot: dict[str, Any]) -> dict[str, str]:
     state_path = PUBLISH_STATE_DIR / f"{slot_id}.json"
     log_path = ROOT / "logs" / f"{slot_id}.log"
     write_json(queue_path, [_slot_queue_item(slot)])
+    only_platform, platform_order = _platform_settings(channel_id)
 
     if channel_id == "poster_loop_cinema":
         env.update(
@@ -530,7 +748,10 @@ def _slot_worker_env(channel_id: str, slot: dict[str, Any]) -> dict[str, str]:
                 "POSTERLOOP_QUEUE_PATH": str(queue_path),
                 "POSTERLOOP_STATE_PATH": str(state_path),
                 "POSTERLOOP_LOG_PATH": str(log_path),
+                "POSTERLOOP_ONLY_PLATFORM": only_platform,
+                "POSTERLOOP_SKIP_FAILED": "1",
                 "POSTERLOOP_WAIT_MS": "5000",
+                "POSTERLOOP_INSTAGRAM_VERIFY_MS": "360000",
             }
         )
     elif channel_id == "sahnebaddiestr":
@@ -539,6 +760,9 @@ def _slot_worker_env(channel_id: str, slot: dict[str, Any]) -> dict[str, str]:
                 "BADDIES_QUEUE_PATH": str(queue_path),
                 "BADDIES_STATE_PATH": str(state_path),
                 "BADDIES_LOG_PATH": str(log_path),
+                "BADDIES_ONLY_PLATFORM": only_platform,
+                "BADDIES_PLATFORM_ORDER": platform_order,
+                "BADDIES_SKIP_FAILED": "1",
                 "BADDIES_WAIT_MS": "5000",
             }
         )
@@ -548,6 +772,10 @@ def _slot_worker_env(channel_id: str, slot: dict[str, Any]) -> dict[str, str]:
                 "CHATKESTI_QUEUE_PATH": str(queue_path),
                 "CHATKESTI_STATE_PATH": str(state_path),
                 "CHATKESTI_LOG_PATH": str(log_path),
+                "CHATKESTI_ONLY_PLATFORM": only_platform,
+                "CHATKESTI_PLATFORM_ORDER": platform_order,
+                "CHATKESTI_REQUIRE_RIGHTS_CONFIRMED": "0",
+                "CHATKESTI_SKIP_FAILED": "1",
                 "CHATKESTI_WAIT_MS": "5000",
             }
         )
@@ -567,7 +795,9 @@ def load_today_schedule() -> dict[str, Any]:
 
 # Statuses that are eligible to be fired by the slot loop.
 # "blocked_legacy_smu_review" was set by an older Codex version — treat as scheduled.
+# "skipped" slots are those that were validated as already-published or duplicate.
 FIREABLE_STATUSES = {"scheduled", "queued"}
+SKIPPED_STATUSES = {"skipped", "done", "completed", "failed"}
 
 
 def slots_due_now(schedule: dict[str, Any], already_fired: list[str], window_min: int = 3) -> list[dict[str, Any]]:
@@ -606,32 +836,91 @@ def _publish_state_path(slot: dict[str, Any]) -> Path:
 
 
 def _already_published(slot: dict[str, Any]) -> bool:
-    """Bu slot daha once basariyla publish oldu mu? (youtubeDone veya instagramDone varsa)"""
+    """Bu slot daha once basariyla publish oldu mu?
+
+    3 katmanli kontrol:
+    1. Kendi slot state dosyasi (youtubeDone/instagramDone)
+    2. AYNI KANALDA farkli slot numarasi ile ayni file path'i yayinlanmis mi (file-based)
+    3. queueItemId baska bir state'te done olarak yazmis mi
+    """
+    # 1. Kendi state dosyasi
     state_path = _publish_state_path(slot)
-    if not state_path.exists():
-        return False
-    try:
-        data = json.loads(state_path.read_text(encoding="utf-8-sig"))
-    except Exception:
-        return False
-    if not isinstance(data, dict):
-        return False
-    # Worker state.json'da youtubeDone veya instagramDone varsa publish tamamlanmistir
-    for key in data:
-        if key.endswith("Done") and isinstance(data[key], list) and len(data[key]) > 0:
-            LOG.info("  Zaten publish olmus (state=%s): %s", key, state_path.name)
-            return True
+    if state_path.exists():
+        try:
+            data = json.loads(state_path.read_text(encoding="utf-8-sig"))
+            if isinstance(data, dict):
+                for key in data:
+                    if key.endswith("Done") and isinstance(data[key], list) and len(data[key]) > 0:
+                        LOG.info("  Zaten publish olmus (state=%s): %s", key, state_path.name)
+                        return True
+        except Exception:
+            pass
+
+    # 2. File-based cross-slot kontrolu — ayni dosya baska slot'ta yayinlandi mi?
+    channel_id = slot.get("channel", "")
+    target_file = slot.get("file", "")
+    queue_item_id = slot.get("queueItemId") or slot.get("id") or ""
+    if target_file and channel_id and PUBLISH_STATE_DIR.exists():
+        from pathlib import Path as _P
+        target_stem = _P(target_file).stem
+        target_core = target_stem[:25].lower() if target_stem else ""
+
+        for run_file in PUBLISH_STATE_DIR.glob(f"{channel_id}-slot*.json"):
+            # Kendi state'imizi atla
+            if run_file.name == state_path.name:
+                continue
+            try:
+                data = json.loads(run_file.read_text(encoding="utf-8-sig"))
+            except Exception:
+                continue
+            if not isinstance(data, dict):
+                continue
+            for key, val in data.items():
+                if not key.endswith("Done") or not isinstance(val, list):
+                    continue
+                for item in val:
+                    item_str = str(item).lower()
+                    if queue_item_id and queue_item_id.lower() in item_str:
+                        LOG.warning("Duplicate engellendi (cross-slot id): %s zaten %s icinde yayinlanmis",
+                                    queue_item_id, run_file.name)
+                        return True
+                    if target_core and target_core in item_str:
+                        LOG.warning("Duplicate engellendi (cross-slot file): %s zaten %s icinde yayinlanmis",
+                                    target_core, run_file.name)
+                        return True
     return False
 
 
 def fire_slot(slot: dict[str, Any], dry_run: bool = False) -> bool:
+    fire_slot.last_skip_reason = ""
     channel_id = slot.get("channel", "")
     slot_num = slot.get("slot", 0)
     content_id = slot.get("queueItemId") or slot.get("id") or ""
+    file_path = slot.get("file", "")
+
+    if channel_id == "sahnebaddiestr":
+        if not _repair_baddies_slot_media(slot):
+            return False
+        content_id = slot.get("queueItemId") or slot.get("id") or ""
+        file_path = slot.get("file", "")
+
+    # GLOBAL DEDUP: Herhangi bir kanalda yayinlanmis mi? (en sert kontrol)
+    try:
+        from global_dedup import is_globally_published, get_publish_info
+        if file_path and is_globally_published(file_path):
+            info = get_publish_info(file_path) or {}
+            prev_channels = info.get("channels", [])
+            LOG.warning("GLOBAL DEDUP engellendi: %s zaten yayinlanmis (kanal: %s)",
+                        Path(file_path).name, ",".join(prev_channels))
+            fire_slot.last_skip_reason = "global_dedup"
+            return False
+    except ImportError:
+        pass  # global_dedup yoksa atla
 
     # Published Registry ile duplicate kontrolü (kalıcı)
     if content_id and publisher_registry.is_published(channel_id, content_id):
         LOG.warning("PublishedRegistry duplicate engellendi: %s / %s", channel_id, content_id)
+        fire_slot.last_skip_reason = "published_registry"
         return False
 
     # Duplicate kontrolu (in-memory)
@@ -640,16 +929,18 @@ def fire_slot(slot: dict[str, Any], dry_run: bool = False) -> bool:
         fire_slot._published = set()
     if slot_key in fire_slot._published:
         LOG.warning(f"Duplicate engellendi (in-memory): {slot_key}")
+        fire_slot.last_skip_reason = "in_memory_duplicate"
         return False
-    fire_slot._published.add(slot_key)
 
     if audit_freeze_active():
         LOG.warning("Audit freeze active; slot skipped: %s", audit_freeze_reason())
+        fire_slot.last_skip_reason = "audit_freeze"
         return False
 
     # Duplicate publish kontrolu — _already_published() kullan
     if _already_published(slot):
         LOG.warning("Duplicate engellendi (state): %s zaten yayinlanmis.", slot_key)
+        fire_slot.last_skip_reason = "state_duplicate"
         return False
 
     worker_path = _channel_worker(channel_id)
@@ -664,23 +955,64 @@ def fire_slot(slot: dict[str, Any], dry_run: bool = False) -> bool:
             LOG.info("[dry-run] python %s", worker_path.name)
             ok = True
         else:
-            result = subprocess.run(
-                [sys.executable, str(worker_path)],
-                cwd=str(worker_path.parent),
-                env=full_env,
-                text=True,
-                timeout=3600,
-            )
-            ok = result.returncode == 0
-            if not ok:
-                LOG.warning("python worker cikis kodu %d: %s", result.returncode, worker_path.name)
+            try:
+                result = subprocess.run(
+                    [sys.executable, str(worker_path)],
+                    cwd=str(worker_path.parent),
+                    env=full_env,
+                    text=True,
+                    timeout=300,
+                )
+                ok = result.returncode == 0
+                if not ok:
+                    LOG.warning("python worker cikis kodu %d: %s", result.returncode, worker_path.name)
+            except subprocess.TimeoutExpired:
+                LOG.warning("python worker timeout (300s): %s", worker_path.name)
+                ok = False
     else:
         ok = run_node(worker_path, env=env, dry_run=dry_run)
 
+    if not ok and not dry_run and _already_published(slot):
+        LOG.warning("Worker çıkışı başarısızdı ama platform Done state'i bulundu; başarı kabul edildi: %s", slot_key)
+        ok = True
+
+    if ok and not dry_run and not _already_published(slot):
+        LOG.warning("Worker 0 döndü ama platform Done state'i yok: %s", slot_key)
+        ok = False
+
     # Başarılı publish sonrası registry'ye kaydet
     if ok and content_id:
+        fire_slot._published.add(slot_key)
         publisher_registry.mark_published(channel_id, content_id)
         LOG.info("PublishedRegistry'e kaydedildi: %s / %s", channel_id, content_id)
+
+        # GLOBAL DEDUP'a da kaydet (cross-channel koruma)
+        try:
+            from global_dedup import mark_published as gd_mark
+            if file_path:
+                gd_mark(channel_id, file_path)
+                LOG.info("GlobalDedup'a kaydedildi: %s", Path(file_path).name)
+        except Exception as e:
+            LOG.warning("GlobalDedup kayit hatasi: %s", e)
+
+        # TELEGRAM bildirimi — basarili yayin
+        try:
+            try:
+                from dotenv import load_dotenv
+                load_dotenv(ROOT / ".env")
+            except ImportError:
+                pass
+            tg_token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+            tg_chat = os.environ.get("TELEGRAM_CHAT_ID", "")
+            if tg_token and tg_chat and tg_chat != "PENDING":
+                from notifiers.telegram_notifier import TelegramNotifier
+                title = (slot.get("youtubeTitle", "") or content_id)[:80]
+                fname = Path(file_path).name if file_path else ""
+                msg = f"YENI PAYLASIM\nKanal: {channel_id}\nBaslik: {title}\nDosya: {fname}\nSaat: {dt.datetime.now().strftime('%H:%M')}"
+                TelegramNotifier(tg_token, tg_chat).send_message(msg)
+                LOG.info("Telegram bildirim gonderildi")
+        except Exception as e:
+            LOG.warning("Telegram bildirim hatasi (kritik degil): %s", e)
 
         # PublishedLedger'a da kaydet (gelişmiş duplicate koruma)
         try:
@@ -698,7 +1030,36 @@ def fire_slot(slot: dict[str, Any], dry_run: bool = False) -> bool:
         except Exception as e:
             LOG.warning("PublishedLedger kayıt hatası (önemli değil): %s", e)
 
+        # Dosyayı published klasörüne taşı (batch klasörü temiz kalsın)
+        if file_path:
+            _move_to_published(file_path, channel_id)
+
     return ok
+
+
+def _move_to_published(file_path: str, channel_id: str) -> None:
+    """Başarılı publish sonrası dosyayı published/YYYY-MM/ klasörüne taşı."""
+    src = Path(file_path)
+    if not src.exists():
+        return
+    now = dt.datetime.now()
+    month_dir = now.strftime("%Y-%m")
+    # Hedef: exports/published/YYYY-MM/dosya_adi
+    # Ready bucket'ın bir üst dizininde published klasörü
+    parent = src.parent
+    published_dir = parent.parent / "published" / month_dir if parent.name != "published" else parent / month_dir
+    try:
+        published_dir.mkdir(parents=True, exist_ok=True)
+        dst = published_dir / src.name
+        # Aynı isimde dosya varsa suffix ekle
+        if dst.exists():
+            stem = src.stem
+            suffix = src.suffix
+            dst = published_dir / f"{stem}_{now.strftime('%H%M%S')}{suffix}"
+        shutil.move(str(src), str(dst))
+        LOG.info("Dosya taşındı: %s -> %s", src.name, dst)
+    except Exception as e:
+        LOG.warning("Dosya taşıma hatası (kritik değil): %s", e)
 
 
 # ── yorum motoru ──────────────────────────────────────────────────────────────
@@ -706,6 +1067,8 @@ def fire_slot(slot: dict[str, Any], dry_run: bool = False) -> bool:
 # ── ana döngü ─────────────────────────────────────────────────────────────────
 
 def cmd_start(args: argparse.Namespace) -> None:
+    if not _register_daemon_pid():
+        return
     config = load_config()
     LOG.info("SMU Daemon başlatıldı (dry_run=%s)", args.dry_run)
 
@@ -885,8 +1248,11 @@ def run_daily_loop(config: dict[str, Any], dry_run: bool = False) -> None:
 
     state = load_daemon_state()
     published: list[str] = state.get("published_slots", [])
+    failed_slots: dict[str, int] = state.get("failed_slots", {})
 
-    due = slots_due_now(schedule, published)
+    catchup_window = int(config.get("daemon", {}).get("catchUpWindowMinutes", 5))
+    max_failures = int(config.get("daemon", {}).get("maxFailuresPerSlot", 2))
+    due = slots_due_now(schedule, published, window_min=max(3, catchup_window))
     if not due:
         return
 
@@ -896,28 +1262,52 @@ def run_daily_loop(config: dict[str, Any], dry_run: bool = False) -> None:
         ok = fire_slot(slot, dry_run=dry_run)
         if ok:
             published.append(slot_id)
+            failed_slots.pop(slot_id, None)
             state["published_slots"] = published
+            state["failed_slots"] = failed_slots
             save_daemon_state(state)
             LOG.info("Slot başarılı: %s", slot_id)
         else:
-            LOG.warning("Slot başarısız: %s", slot_id)
+            skip_reason = getattr(fire_slot, "last_skip_reason", "")
+            if skip_reason in {"global_dedup", "published_registry", "in_memory_duplicate", "state_duplicate", "invalid_media"}:
+                published.append(slot_id)
+                failed_slots.pop(slot_id, None)
+                state["published_slots"] = published
+                state["failed_slots"] = failed_slots
+                save_daemon_state(state)
+                LOG.warning("Slot duplicate/skipped olarak işlendi: %s reason=%s", slot_id, skip_reason)
+            else:
+                failed_slots[slot_id] = int(failed_slots.get(slot_id, 0)) + 1
+                state["failed_slots"] = failed_slots
+                if failed_slots[slot_id] >= max(1, max_failures):
+                    published.append(slot_id)
+                    state["published_slots"] = published
+                    save_daemon_state(state)
+                    LOG.warning(
+                        "Slot max hata sonrası işlendi sayıldı: %s failures=%s",
+                        slot_id,
+                        failed_slots[slot_id],
+                    )
+                else:
+                    save_daemon_state(state)
+                    LOG.warning("Slot başarısız: %s failures=%s", slot_id, failed_slots[slot_id])
 
 
 def _run_comment_engine(config: dict[str, Any], dry_run: bool = False) -> None:
-    """Yorum motoru: saatte en fazla 2 yorumu gerçek API'ye gönder.
+    """Yorum motoru: saatte 5 yorumu gercek API'ye gonder.
 
-    Son yorum turundan bu yana en az 30 dakika geçmiş olmalı.
-    Gerçek YouTube Data API v3 ve Instagram Graph API kullanır.
+    Son yorum turundan bu yana en az 12 dakika gecmis olmali (saatte 5 = her 12 dk).
+    Gercek YouTube Data API v3 ve Instagram Graph API kullanir.
     """
     state = load_daemon_state()
     last_round = state.get("last_comment_round", "")
     now = _now_local()
 
-    # En az 30 dakika geçmiş mi kontrol et
+    # En az 12 dakika gecmis mi kontrol et
     if last_round:
         try:
             last_dt = dt.datetime.fromisoformat(last_round)
-            if (now - last_dt).total_seconds() < 1800:  # 30 dakika
+            if (now - last_dt).total_seconds() < 720:  # 12 dakika = 720 saniye
                 return
         except (ValueError, TypeError):
             pass
@@ -928,9 +1318,9 @@ def _run_comment_engine(config: dict[str, Any], dry_run: bool = False) -> None:
         [str(ROOT / "comment_engine.py"), "post"],
         dry_run=dry_run,
     )
+    state["last_comment_round"] = now.isoformat(timespec="seconds")
+    save_daemon_state(state)
     if ok:
-        state["last_comment_round"] = now.isoformat(timespec="seconds")
-        save_daemon_state(state)
         LOG.info("Yorum motoru tamamlandı (gerçek API)")
     else:
         LOG.warning("Yorum motoru başarısız")
